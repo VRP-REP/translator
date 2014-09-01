@@ -1,4 +1,4 @@
-package example;
+package reader;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,9 +7,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class InstanceReader {
+public class FileLiner {
 	
-	public static String[] read(String location) {		
+	private String location;
+	
+	private String[] lines;
+	
+	public FileLiner(String location){
+		this.location = location;
+		this.lines = read();
+	}
+	
+	public String[] read() {		
 		Path path = new File(location).toPath();
 		Charset charset = Charset.defaultCharset();   
 		
@@ -17,11 +26,18 @@ public class InstanceReader {
 		try {
 			stringList = Files.readAllLines(path, charset);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		return stringList.toArray(new String[]{});
+	}
+	
+	public String getLocation() {
+		return this.location;
+	}
+	
+	public String[] getLines() {
+		return this.lines;
 	}
 
 }

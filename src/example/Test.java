@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.xml.bind.JAXB;
 
+import reader.FileLiner;
 import model.Instance;
 import model.ObjectFactory;
 import model.Instance.Info;
@@ -22,7 +23,8 @@ public class Test {
 		instance.setInfo(info);
 		JAXB.marshal(instance, new File("data/example/output/HolaKSO.xml"));*/
 		
-		String[] content = InstanceReader.read("data/instance/Symmetric_CVRP/E016-03m.dat");
+		FileLiner liner = new FileLiner("data/instance/Symmetric_CVRP/E016-03m.dat");
+		String[] content = liner.getLines();
 		for(String s : content){
 			System.out.println(s);
 		}
