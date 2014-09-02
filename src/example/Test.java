@@ -1,13 +1,10 @@
 package example;
 
-import java.io.File;
+import java.util.Arrays;
 
-import javax.xml.bind.JAXB;
-
+import keyword.AsymmetricCVRPKeyword;
 import reader.FileLiner;
-import model.Instance;
-import model.ObjectFactory;
-import model.Instance.Info;
+import reader.ValueFetcher;
 
 public class Test {
 
@@ -24,10 +21,10 @@ public class Test {
 		JAXB.marshal(instance, new File("data/example/output/HolaKSO.xml"));*/
 		
 		FileLiner liner = new FileLiner("data/instance/Symmetric_CVRP/E016-03m.dat");
-		String[] content = liner.getLines();
-		for(String s : content){
-			System.out.println(s);
-		}
+		ValueFetcher fetcher = new ValueFetcher(liner);
+		System.out.println(fetcher.getValue(AsymmetricCVRPKeyword.NAME));
+		System.out.println(fetcher.getValue(AsymmetricCVRPKeyword.COMMENT));
+		System.out.println(Arrays.toString(fetcher.getBlock(AsymmetricCVRPKeyword.NODE_COORD_SECTION)));
 	}
 
 }
