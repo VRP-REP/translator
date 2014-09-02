@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import keyword.AsymmetricCVRPKeyword;
-
-public class ValueFetcher {
+public class ValueFetcher<T extends Enum<?>> {
 	
 	private FileLiner fileLiner;
 	
@@ -14,13 +12,9 @@ public class ValueFetcher {
 		this.fileLiner = fileLiner;
 	}
 	
-	public String getValue(Enum<?> value) {
-		return getValue(value.toString());
-	}
-	
-	public String getValue(String keyword) {
+	public String getValue(T keyword) {
 		for(String line : fileLiner.getLines()){
-			if(line.startsWith(keyword)){
+			if(line.startsWith(keyword.toString())){
 				Pattern pattern = Pattern.compile("^" + keyword + " : (.*)$");
 				Matcher matcher = pattern.matcher(line);
 				if (matcher.find()) {
@@ -31,18 +25,14 @@ public class ValueFetcher {
 		return null;
 	}
 	
-	public String[] getBlock(Enum<?> value) {
-		return getBlock(value.toString());
-	}
-	
-	public String[] getBlock(String keyword) {
+	public String[] getBlock(T keyword) {
 		String[] lines = fileLiner.getLines();
 		ArrayList<String> block = new ArrayList<String>();
 		boolean end = false;
 		for(int i = 0 ; i < lines.length && !end ; i++){
-			if(lines[i].startsWith(keyword)){
+			if(lines[i].startsWith(keyword.toString())){
 				for(int j = i + 1 ; j < lines.length ; j++){
-					for(AsymmetricCVRPKeyword kw : AsymmetricCVRPKeyword.values()){
+					for(Enum<?> kw : keyword.getClass().getEnumConstants()){
 						if(lines[j].startsWith(kw.toString())){
 							end = true;
 						}

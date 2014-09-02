@@ -21,7 +21,7 @@ public class Test {
 		JAXB.marshal(instance, new File("data/example/output/HolaKSO.xml"));*/
 		
 		FileLiner liner = new FileLiner("data/instance/Symmetric_CVRP/E016-03m.dat");
-		ValueFetcher fetcher = new ValueFetcher(liner);
+		ValueFetcher<AsymmetricCVRPKeyword> fetcher = new ValueFetcher<AsymmetricCVRPKeyword>(liner);
 		System.out.println(fetcher.getValue(AsymmetricCVRPKeyword.NAME));
 		System.out.println(fetcher.getValue(AsymmetricCVRPKeyword.COMMENT));
 		System.out.println(Arrays.toString(fetcher.getBlock(AsymmetricCVRPKeyword.NODE_COORD_SECTION)));
