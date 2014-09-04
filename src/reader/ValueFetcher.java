@@ -15,10 +15,20 @@ public class ValueFetcher<T extends Keyword> {
 
 	public ValueFetcher(FileLiner fileLiner) {
 		this.fileLiner = fileLiner;
-		this.pattern = Pattern.compile("^(?<keyword>[A-Z_]*) : (?<value>.*)$");
+		this.pattern = Pattern.compile("^(?<keyword>[A-Z_]*)\\s+:\\s+(?<value>.*)$");
+	}
+	
+	public String getValue(T keyword) {
+		if(keyword.type().equals(KeywordType.INLINE)){
+			return getInline(keyword);
+		}
+		if(keyword.type().equals(KeywordType.BLOCK)){
+			return String.join("\n", getBlock(keyword));
+		}
+		return null;
 	}
 
-	public String getValue(T keyword) {
+	private String getInline(T keyword) {
 		if(keyword.type() != KeywordType.INLINE) {
 			return null;
 		}
@@ -31,7 +41,7 @@ public class ValueFetcher<T extends Keyword> {
 		return null;
 	}
 
-	public String[] getBlock(T keyword) {
+	private String[] getBlock(T keyword) {
 		if(keyword.type() != KeywordType.BLOCK) {
 			return null;
 		}

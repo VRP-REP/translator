@@ -22,14 +22,19 @@ public class FileLiner {
 		Path path = new File(location).toPath();
 		Charset charset = Charset.defaultCharset();   
 		
-		List<String> stringList = null;
+		List<String> lines = null;
 		try {
-			stringList = Files.readAllLines(path, charset);
+			lines = Files.readAllLines(path, charset);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		//FOR CONVENIENCE, TRIM LINES
+		for(int i = 0 ; i < lines.size() ; i++){
+			lines.set(i, lines.get(i).trim());
+		}
 		
-		return stringList.toArray(new String[]{});
+		return lines.toArray(new String[]{});
 	}
 	
 	public String getLocation() {
