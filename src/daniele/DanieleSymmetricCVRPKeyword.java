@@ -6,7 +6,7 @@ import keyword.Keyword;
 import converter.ArrayListConverter;
 import converter.IntegerConverter;
 import converter.UnchangedConverter;
-import converter.ValueConverter;
+import converter.Converter;
 
 public enum DanieleSymmetricCVRPKeyword implements DanieleKeyword {
 
@@ -21,12 +21,12 @@ public enum DanieleSymmetricCVRPKeyword implements DanieleKeyword {
 	VEHICLES			(Type.INLINE, new IntegerConverter()),
 	DEPOT_SECTION		(Type.BLOCK, new ArrayListConverter()),
 	NODE_COORD_SECTION	(Type.BLOCK, new DanieleNodeCoordConverter(), new Keyword[]{EDGE_WEIGHT_TYPE, DEPOT_SECTION}),
-	EDGE_WEIGHT_SECTION	(Type.BLOCK, new DanieleEdgeWeightConverter(), new Keyword[]{EDGE_WEIGHT_TYPE, EDGE_WEIGHT_FORMAT, DIMENSION, DEPOT_SECTION}),
+	EDGE_WEIGHT_SECTION	(Type.BLOCK, new DanieleEdgeWeightConverter(), new Keyword[]{EDGE_WEIGHT_TYPE, EDGE_WEIGHT_FORMAT, DEPOT_SECTION}),
 	DEMAND_SECTION		(Type.BLOCK, new DanieleDemandConverter(), new Keyword[]{}),
 	EOF					(Type.END, null, new Keyword[]{});
 
 	private final Type type;
-	private final ValueConverter<?> converter;
+	private final Converter<?> converter;
 	private final Keyword[] options;
 	
 	DanieleSymmetricCVRPKeyword() {
@@ -35,13 +35,13 @@ public enum DanieleSymmetricCVRPKeyword implements DanieleKeyword {
 		this.options = new Keyword[]{};
 	}
 	
-	DanieleSymmetricCVRPKeyword(Type type, ValueConverter<?> converter) {
+	DanieleSymmetricCVRPKeyword(Type type, Converter<?> converter) {
 		this.type = type;
 		this.converter = converter;
 		this.options = new Keyword[]{};
 	}
 	
-	DanieleSymmetricCVRPKeyword(Type type, ValueConverter<?> converter, Keyword[] options) {
+	DanieleSymmetricCVRPKeyword(Type type, Converter<?> converter, Keyword[] options) {
 		this.type = type;
 		this.converter = converter;
 		this.options = options;
@@ -64,7 +64,7 @@ public enum DanieleSymmetricCVRPKeyword implements DanieleKeyword {
 	}
 
 	@Override
-	public ValueConverter<?> converter() {
+	public Converter<?> converter() {
 		return converter;
 	}
 

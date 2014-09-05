@@ -2,7 +2,7 @@ package keyword;
 
 import java.util.regex.Pattern;
 
-import converter.ValueConverter;
+import converter.Converter;
 
 public interface Keyword {
 	
@@ -10,7 +10,7 @@ public interface Keyword {
 	
 	public Pattern pattern();
 	
-	public ValueConverter<?> converter();
+	public Converter<?> converter();
 
 	public Keyword[] options();
 	

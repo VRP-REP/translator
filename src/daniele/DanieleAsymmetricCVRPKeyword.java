@@ -2,7 +2,7 @@ package daniele;
 
 import java.util.regex.Pattern;
 
-import converter.ValueConverter;
+import converter.Converter;
 import keyword.Keyword;
 
 public enum DanieleAsymmetricCVRPKeyword implements DanieleKeyword {
@@ -44,7 +44,7 @@ public enum DanieleAsymmetricCVRPKeyword implements DanieleKeyword {
 	}
 
 	@Override
-	public ValueConverter<?> converter() {
+	public Converter<?> converter() {
 		// TODO Auto-generated method stub
 		return null;
 	}

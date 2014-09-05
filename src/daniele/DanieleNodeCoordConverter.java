@@ -6,13 +6,13 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import converter.ValueConverter;
+import converter.Converter;
 import model.ObjectFactory;
 import model.Instance.Network;
 import model.Instance.Network.Nodes;
 import model.Instance.Network.Nodes.Node;
 
-public class DanieleNodeCoordConverter implements ValueConverter<Network> {
+public class DanieleNodeCoordConverter implements Converter<Network> {
 
 	@Override
 	public Network getOutput(String input, HashMap<String, Object> options) {

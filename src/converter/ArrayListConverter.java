@@ -3,7 +3,7 @@ package converter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ArrayListConverter implements ValueConverter<ArrayList<Integer>> {
+public class ArrayListConverter implements Converter<ArrayList<Integer>> {
 	
 	@Override
 	public ArrayList<Integer> getOutput(String input, HashMap<String, Object> options) {

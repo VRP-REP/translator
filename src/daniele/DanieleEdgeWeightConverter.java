@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import converter.ValueConverter;
+import converter.Converter;
 import model.ObjectFactory;
 import model.Instance.Network;
 import model.Instance.Network.Links;
@@ -12,7 +12,7 @@ import model.Instance.Network.Nodes;
 import model.Instance.Network.Links.Link;
 import model.Instance.Network.Nodes.Node;
 
-public class DanieleEdgeWeightConverter implements ValueConverter<Network> {
+public class DanieleEdgeWeightConverter implements Converter<Network> {
 
 	@Override
 	public Network getOutput(String input, HashMap<String, Object> options) {
@@ -22,10 +22,11 @@ public class DanieleEdgeWeightConverter implements ValueConverter<Network> {
 
 		@SuppressWarnings("unchecked")
 		ArrayList<Integer> depots = (ArrayList<Integer>) options.get("DEPOT_SECTION");
-		int dimension = (Integer) options.get("DIMENSION");
 		String edgeWeightType = (String) options.get("EDGE_WEIGHT_TYPE");
 		String edgeWeightFormat = (String) options.get("EDGE_WEIGHT_FORMAT");
 		
+		String[] lines = input.split("\n");
+		int dimension = lines.length + 1;
 		if(edgeWeightType.equals("EXPLICIT")){
 			for(int i = 0 ; i < dimension ; i++){
 				Node node = objectFactory.createInstanceNetworkNodesNode();
@@ -44,7 +45,7 @@ public class DanieleEdgeWeightConverter implements ValueConverter<Network> {
 				 * (0,4) (1,4) (2,4) (3,4)
 				 */
 				for(int j = 1 ; j < dimension ; j++){
-					String[] tokens = input.split("\n")[j - 1].split("\\s+");
+					String[] tokens = lines[j - 1].split("\\s+");
 					for(int i = 0 ; i < j ; i++){
 						Link link = objectFactory.createInstanceNetworkLinksLink();
 						link.setTail(BigInteger.valueOf(i));
@@ -62,7 +63,7 @@ public class DanieleEdgeWeightConverter implements ValueConverter<Network> {
 				 * (3,4)
 				 */
 				for(int i = 0 ; i < dimension - 1 ; i++){
-					String[] tokens = input.split("\n")[i].split("\\s+");
+					String[] tokens = lines[i].split("\\s+");
 					for(int j = dimension - 1 ; j > i ; j--){
 						Link link = objectFactory.createInstanceNetworkLinksLink();
 						link.setTail(BigInteger.valueOf(i));
