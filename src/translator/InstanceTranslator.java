@@ -1,26 +1,12 @@
 package translator;
 
+import java.nio.file.Path;
+
+import keyword.Keyword;
 import model.Instance;
-import model.ObjectFactory;
 
-public class InstanceTranslator {
+public interface InstanceTranslator<T extends Keyword> {
 	
-	private Strategy strategy;
-	
-	public InstanceTranslator(Strategy strategy){
-		this.strategy = strategy;
-	}
-	
-	public Instance getInstance(){
-		ObjectFactory objectFactory = new ObjectFactory();
-		Instance instance = objectFactory.createInstance();
-
-		instance.setInfo(strategy.getInfo());
-		instance.setNetwork(strategy.getNetwork());
-		instance.setFleet(strategy.getFleet());
-		instance.setRequests(strategy.getRequests());
-		
-		return instance;
-	}
+	public Instance getInstance(Path filePath, T[] values);
 
 }

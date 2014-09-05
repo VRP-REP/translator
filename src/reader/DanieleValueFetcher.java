@@ -1,12 +1,11 @@
-package daniele;
+package reader;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 
-import daniele.DanieleKeyword.Type;
-import reader.FileLiner;
-import reader.ValueFetcher;
+import keyword.DanieleKeyword;
 import keyword.Keyword;
+import keyword.DanieleKeyword.Type;
 
 public class DanieleValueFetcher<T extends DanieleKeyword> implements ValueFetcher<T> {
 

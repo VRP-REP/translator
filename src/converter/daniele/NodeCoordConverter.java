@@ -1,4 +1,4 @@
-package daniele;
+package converter.daniele;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -12,17 +12,17 @@ import model.Instance.Network;
 import model.Instance.Network.Nodes;
 import model.Instance.Network.Nodes.Node;
 
-public class DanieleNodeCoordConverter implements Converter<Network> {
+public class NodeCoordConverter implements Converter<Network> {
 
 	@Override
-	public Network getOutput(String input, HashMap<String, Object> options) {
+	public Network getOutput(String input, HashMap<String, Object> anteriorValues) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		Network network = objectFactory.createInstanceNetwork();
 		Nodes nodes = objectFactory.createInstanceNetworkNodes();
 		
 		@SuppressWarnings("unchecked")
-		ArrayList<Integer> depots = (ArrayList<Integer>) options.get("DEPOT_SECTION");
-		String edgeWeightType = (String) options.get("EDGE_WEIGHT_TYPE");
+		ArrayList<Integer> depots = (ArrayList<Integer>) anteriorValues.get("DEPOT_SECTION");
+		String edgeWeightType = (String) anteriorValues.get("EDGE_WEIGHT_TYPE");
 		
 		if(edgeWeightType.equals("EUC_2D")){
 			String regex = "^(?<id>[0-9]*)\\s+(?<x>[0-9.-]*)\\s+(?<y>[0-9.-]*)$";

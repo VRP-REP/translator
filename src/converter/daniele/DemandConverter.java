@@ -1,4 +1,4 @@
-package daniele;
+package converter.daniele;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -11,10 +11,10 @@ import model.Instance.Requests;
 import model.Instance.Requests.Request;
 import converter.Converter;
 
-public class DanieleDemandConverter implements Converter<Requests> {
+public class DemandConverter implements Converter<Requests> {
 
 	@Override
-	public Requests getOutput(String input, HashMap<String, Object> options) {
+	public Requests getOutput(String input, HashMap<String, Object> anteriorValues) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		Requests requests = objectFactory.createInstanceRequests();
 

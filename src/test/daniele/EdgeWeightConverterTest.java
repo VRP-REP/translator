@@ -1,4 +1,4 @@
-package test;
+package test.daniele;
 
 import static org.junit.Assert.*;
 
@@ -12,17 +12,18 @@ import model.Instance.Network;
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 
-import daniele.DanieleEdgeWeightConverter;
+import converter.daniele.EdgeWeightConverter;
+import test.ConverterTest;
 
-public class DanieleEdgeWeightConverterTest extends ConverterTest<DanieleEdgeWeightConverter, Network> {
+public class EdgeWeightConverterTest extends ConverterTest<EdgeWeightConverter, Network> {
 
 	private int numberOfNodes;
 	private int numberOfLinks;
 
-	public DanieleEdgeWeightConverterTest(String input, HashMap<String, Object> options, int numberOfNodes, int numberOfLinks) {
-		super(input, options);
-		this.converter = new DanieleEdgeWeightConverter();
-		this.result = converter.getOutput(input, options);
+	public EdgeWeightConverterTest(String input, HashMap<String, Object> anteriorValues, int numberOfNodes, int numberOfLinks) {
+		super(input, anteriorValues);
+		this.converter = new EdgeWeightConverter();
+		this.result = converter.getOutput(input, anteriorValues);
 		this.numberOfNodes = numberOfNodes;
 		this.numberOfLinks = numberOfLinks;
 	}
@@ -71,7 +72,7 @@ public class DanieleEdgeWeightConverterTest extends ConverterTest<DanieleEdgeWei
 
 	@Test
 	public void testNumberOfElements() {
-		Network network = converter.getOutput(input, options);
+		Network network = converter.getOutput(input, anteriorValues);
 		assertEquals(network.getNodes().getNode().size(), numberOfNodes);
 		assertEquals(network.getLinks().getLink().size(), numberOfLinks);
 	}

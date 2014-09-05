@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class BigIntegerConverter implements Converter<BigInteger> {
 
 	@Override
-	public BigInteger getOutput(String input, HashMap<String, Object> options) {
+	public BigInteger getOutput(String input, HashMap<String, Object> anteriorValues) {
 		return BigInteger.valueOf((Integer.valueOf(input)));
 	}
 

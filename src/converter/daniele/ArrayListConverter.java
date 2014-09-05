@@ -1,18 +1,18 @@
-package converter;
+package converter.daniele;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import converter.Converter;
+
 public class ArrayListConverter implements Converter<ArrayList<Integer>> {
 	
 	@Override
-	public ArrayList<Integer> getOutput(String input, HashMap<String, Object> options) {
+	public ArrayList<Integer> getOutput(String input, HashMap<String, Object> anteriorValues) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		
-		//TODO PARMETRABLE SPLITTER
-		
 		for(String line : input.split("\n")){
-			list.add(Integer.valueOf(line));
+			list.add(Integer.valueOf(line.trim()));
 		}
 		return list;
 	}

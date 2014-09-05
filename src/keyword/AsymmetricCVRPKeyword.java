@@ -1,11 +1,10 @@
-package daniele;
+package keyword;
 
 import java.util.regex.Pattern;
 
 import converter.Converter;
-import keyword.Keyword;
 
-public enum DanieleAsymmetricCVRPKeyword implements DanieleKeyword {
+public enum AsymmetricCVRPKeyword implements DanieleKeyword {
 
 	NAME				(Type.INLINE),
 	COMMENT				(Type.INLINE),
@@ -23,24 +22,13 @@ public enum DanieleAsymmetricCVRPKeyword implements DanieleKeyword {
 
 	private final Type type;
 
-	private DanieleAsymmetricCVRPKeyword(Type type) {
+	private AsymmetricCVRPKeyword(Type type) {
 		this.type = type;
 	}
 	
 	@Override
-	public String displayName() {
-		return this.toString();
-	}
-	
-	@Override
-	public Keyword[] allValues() {
-		return DanieleAsymmetricCVRPKeyword.values();
-	}
-
-	@Override
-	public Pattern pattern() {
-		// TODO Auto-generated method stub
-		return null;
+	public DanieleKeyword[] allValues() {
+		return AsymmetricCVRPKeyword.values();
 	}
 
 	@Override
@@ -50,15 +38,19 @@ public enum DanieleAsymmetricCVRPKeyword implements DanieleKeyword {
 	}
 
 	@Override
-	public Type type() {
+	public String displayName() {
+		return this.toString();
+	}
+	
+	@Override
+	public Pattern pattern() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Keyword[] options() {
-		// TODO Auto-generated method stub
-		return null;
+	public Type type() {
+		return type;
 	}
 
 }

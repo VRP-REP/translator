@@ -40,11 +40,6 @@ public class FileLiner {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		//FOR CONVENIENCE, TRIM LINES
-		//for(int i = 0 ; i < lines.size() ; i++){
-		//	lines.set(i, lines.get(i).trim());
-		//}
 		
 		return lines.toArray(new String[]{});
 	}

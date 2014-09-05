@@ -1,11 +1,10 @@
-package daniele;
+package keyword;
 
 import java.util.regex.Pattern;
 
 import converter.Converter;
-import keyword.Keyword;
 
-public enum DanieleDCVRPKeyword implements DanieleKeyword {
+public enum DCVRPKeyword implements DanieleKeyword {
 
 	NAME				("NAME", Type.INLINE),
 	COMMENT				("COMMENT", Type.INLINE),
@@ -24,7 +23,7 @@ public enum DanieleDCVRPKeyword implements DanieleKeyword {
 	private final String displayName;
 	private final Type type;
 
-	private DanieleDCVRPKeyword(String displayName, Type type) {
+	private DCVRPKeyword(String displayName, Type type) {
 		this.displayName = displayName;
 		this.type = type;
 	}
@@ -35,8 +34,8 @@ public enum DanieleDCVRPKeyword implements DanieleKeyword {
 	}
 
 	@Override
-	public Keyword[] allValues() {
-		return DanieleDCVRPKeyword.values();
+	public DanieleKeyword[] allValues() {
+		return DCVRPKeyword.values();
 	}
 
 	@Override
@@ -54,12 +53,6 @@ public enum DanieleDCVRPKeyword implements DanieleKeyword {
 	@Override
 	public Type type() {
 		return type;
-	}
-
-	@Override
-	public Keyword[] options() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

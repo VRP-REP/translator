@@ -1,6 +1,5 @@
-package daniele;
+package keyword;
 
-import keyword.Keyword;
 
 public interface DanieleKeyword extends Keyword {
 	
