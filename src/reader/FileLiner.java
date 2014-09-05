@@ -7,10 +7,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+/**
+ * This class intends to read any type of text file, converting it
+ * to an array containing the lines.
+ * 
+ * @author hubertlobit
+ */
 public class FileLiner {
 	
+	/**
+	 * The location (path) of file.
+	 */
 	private String location;
 	
+	/**
+	 * The lines of file.
+	 */
 	private String[] lines;
 	
 	public FileLiner(String location){
@@ -18,7 +30,7 @@ public class FileLiner {
 		this.lines = read();
 	}
 	
-	public String[] read() {		
+	private String[] read() {		
 		Path path = new File(location).toPath();
 		Charset charset = Charset.defaultCharset();   
 		
@@ -30,9 +42,9 @@ public class FileLiner {
 		}
 
 		//FOR CONVENIENCE, TRIM LINES
-		for(int i = 0 ; i < lines.size() ; i++){
-			lines.set(i, lines.get(i).trim());
-		}
+		//for(int i = 0 ; i < lines.size() ; i++){
+		//	lines.set(i, lines.get(i).trim());
+		//}
 		
 		return lines.toArray(new String[]{});
 	}

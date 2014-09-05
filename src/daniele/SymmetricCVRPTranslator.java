@@ -1,12 +1,11 @@
-package converter;
+package daniele;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import keyword.SymmetricCVRPKeyword;
-import reader.ValueFetcher;
+import translator.InstanceTranslator;
 import model.Demand;
 import model.Instance;
 import model.Instance.Fleet;
@@ -21,15 +20,15 @@ import model.Instance.Requests;
 import model.Instance.Requests.Request;
 import model.ObjectFactory;
 
-public class SymmetricCVRPConverter implements InstanceConverter {
+public class SymmetricCVRPTranslator implements InstanceTranslator {
 
-	private ValueFetcher<SymmetricCVRPKeyword> valueFetcher;
+	private DanieleValueFetcher<DanieleSymmetricCVRPKeyword> valueFetcher;
 
 	private ObjectFactory objectFactory;
 
 	private Instance instance;
 
-	public SymmetricCVRPConverter(ValueFetcher<SymmetricCVRPKeyword> valueFetcher){	
+	public SymmetricCVRPTranslator(DanieleValueFetcher<DanieleSymmetricCVRPKeyword> valueFetcher){	
 		this.valueFetcher = valueFetcher;
 		this.objectFactory = new ObjectFactory();
 		this.instance = objectFactory.createInstance();
@@ -42,8 +41,8 @@ public class SymmetricCVRPConverter implements InstanceConverter {
 
 	private void setInfo() {
 		Info info = objectFactory.createInstanceInfo();
-		info.setName(valueFetcher.getValue(SymmetricCVRPKeyword.NAME));
-		info.setDataset(valueFetcher.getValue(SymmetricCVRPKeyword.COMMENT));
+		info.setName(valueFetcher.getValue(DanieleSymmetricCVRPKeyword.NAME));
+		info.setDataset(valueFetcher.getValue(DanieleSymmetricCVRPKeyword.COMMENT));
 		instance.setInfo(info);
 	}
 
@@ -51,15 +50,15 @@ public class SymmetricCVRPConverter implements InstanceConverter {
 		Network network = objectFactory.createInstanceNetwork();
 		Nodes nodes = objectFactory.createInstanceNetworkNodes();
 
-		String depotsData = valueFetcher.getValue(SymmetricCVRPKeyword.DEPOT_SECTION);
+		String depotsData = valueFetcher.getValue(DanieleSymmetricCVRPKeyword.DEPOT_SECTION);
 		ArrayList<Integer> depots = new ArrayList<Integer>();
 		for(String line : depotsData.split("\n")){
 			depots.add(Integer.valueOf(line));
 		}
 
-		String edgeWeightType = valueFetcher.getValue(SymmetricCVRPKeyword.EDGE_WEIGHT_TYPE);
+		String edgeWeightType = valueFetcher.getValue(DanieleSymmetricCVRPKeyword.EDGE_WEIGHT_TYPE);
 		if(edgeWeightType.equals("EUC_2D")){
-			String nodesData = valueFetcher.getValue(SymmetricCVRPKeyword.NODE_COORD_SECTION);
+			String nodesData = valueFetcher.getValue(DanieleSymmetricCVRPKeyword.NODE_COORD_SECTION);
 			String regex = "^(?<id>[0-9]*)\\s+(?<x>[0-9.-]*)\\s+(?<y>[0-9.-]*)$";
 			Pattern pattern = Pattern.compile(regex);
 			for(String line : nodesData.split("\n")){
@@ -81,7 +80,7 @@ public class SymmetricCVRPConverter implements InstanceConverter {
 		}
 
 		if(edgeWeightType.equals("EXPLICIT")){
-			int dimension = Integer.valueOf(valueFetcher.getValue(SymmetricCVRPKeyword.DIMENSION));
+			int dimension = Integer.valueOf(valueFetcher.getValue(DanieleSymmetricCVRPKeyword.DIMENSION));
 			for(int i = 0 ; i < dimension ; i++){
 				Node node = objectFactory.createInstanceNetworkNodesNode();
 				node.setId(BigInteger.valueOf(i));
@@ -91,8 +90,8 @@ public class SymmetricCVRPConverter implements InstanceConverter {
 			}
 
 			Links links = objectFactory.createInstanceNetworkLinks();
-			String linksData = valueFetcher.getValue(SymmetricCVRPKeyword.EDGE_WEIGHT_SECTION);
-			String edgeWeightFormat = valueFetcher.getValue(SymmetricCVRPKeyword.EDGE_WEIGHT_FORMAT);
+			String linksData = valueFetcher.getValue(DanieleSymmetricCVRPKeyword.EDGE_WEIGHT_SECTION);
+			String edgeWeightFormat = valueFetcher.getValue(DanieleSymmetricCVRPKeyword.EDGE_WEIGHT_FORMAT);
 			if(edgeWeightFormat.equals("LOWER_ROW")){
 				/**
 				 * (0,1)
@@ -139,8 +138,8 @@ public class SymmetricCVRPConverter implements InstanceConverter {
 	private void setFleet() {
 		Fleet fleet = objectFactory.createInstanceFleet();
 
-		String fleetSize = valueFetcher.getValue(SymmetricCVRPKeyword.VEHICLES);
-		String capacity = valueFetcher.getValue(SymmetricCVRPKeyword.CAPACITY);
+		String fleetSize = valueFetcher.getValue(DanieleSymmetricCVRPKeyword.VEHICLES);
+		String capacity = valueFetcher.getValue(DanieleSymmetricCVRPKeyword.CAPACITY);
 
 		for(int i = 0 ; i < Integer.valueOf(fleetSize) ; i++){
 			Vehicle vehicle = objectFactory.createInstanceFleetVehicle();
@@ -155,7 +154,7 @@ public class SymmetricCVRPConverter implements InstanceConverter {
 	private void setRequests() {
 		Requests requests = objectFactory.createInstanceRequests();
 
-		String requestsData = valueFetcher.getValue(SymmetricCVRPKeyword.DEMAND_SECTION);
+		String requestsData = valueFetcher.getValue(DanieleSymmetricCVRPKeyword.DEMAND_SECTION);
 		String regex = "^(?<id>[0-9]*)\\s+(?<demand>[0-9]*)$";
 		Pattern pattern = Pattern.compile(regex);
 		for(String line : requestsData.split("\n")){

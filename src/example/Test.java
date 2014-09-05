@@ -7,11 +7,11 @@ import java.nio.file.Paths;
 
 import javax.xml.bind.JAXB;
 
-import keyword.SymmetricCVRPKeyword;
-import converter.InstanceConverter;
-import converter.SymmetricCVRPConverter;
+import daniele.DanieleSymmetricCVRPKeyword;
+import daniele.DanieleValueFetcher;
+import daniele.SymmetricCVRPTranslator;
 import reader.FileLiner;
-import reader.ValueFetcher;
+import translator.InstanceTranslator;
 
 public class Test {
 
@@ -20,12 +20,12 @@ public class Test {
 			Files.walk(Paths.get("data/instance/Symmetric_CVRP")).forEach(filePath -> {
 				if (Files.isRegularFile(filePath)) {
 					FileLiner liner = new FileLiner(filePath.toString());
-					ValueFetcher<SymmetricCVRPKeyword> fetcher = new ValueFetcher<SymmetricCVRPKeyword>(liner);
+					DanieleValueFetcher<DanieleSymmetricCVRPKeyword> fetcher = new DanieleValueFetcher<DanieleSymmetricCVRPKeyword>(liner);
 					System.out.println("-----------------------------------------------------");
-					for(SymmetricCVRPKeyword kw : SymmetricCVRPKeyword.values()){
+					for(DanieleSymmetricCVRPKeyword kw : DanieleSymmetricCVRPKeyword.values()){
 						System.out.println(fetcher.getValue(kw));
 					}
-					InstanceConverter converter = new SymmetricCVRPConverter(fetcher);
+					InstanceTranslator converter = new SymmetricCVRPTranslator(fetcher);
 					File file = new File("data/example/output/Symmetric_CVRP/"+ converter.getInstance().getInfo().getName() +".xml");
 					JAXB.marshal(converter.getInstance(), file);
 				}
