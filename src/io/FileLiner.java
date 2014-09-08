@@ -1,6 +1,5 @@
-package reader;
+package io;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -16,22 +15,21 @@ import java.util.List;
 public class FileLiner {
 	
 	/**
-	 * The location (path) of file.
+	 * The path of file.
 	 */
-	private String location;
+	private Path path;
 	
 	/**
 	 * The lines of file.
 	 */
 	private String[] lines;
 	
-	public FileLiner(String location){
-		this.location = location;
+	public FileLiner(Path path){
+		this.path = path;
 		this.lines = read();
 	}
 	
-	private String[] read() {		
-		Path path = new File(location).toPath();
+	private String[] read() {
 		Charset charset = Charset.defaultCharset();   
 		
 		List<String> lines = null;
@@ -44,8 +42,8 @@ public class FileLiner {
 		return lines.toArray(new String[]{});
 	}
 	
-	public String getLocation() {
-		return this.location;
+	public Path getPath() {
+		return this.path;
 	}
 	
 	public String[] getLines() {

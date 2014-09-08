@@ -1,23 +1,41 @@
 package translator;
 
+import fetcher.DanieleValueFetcher;
+
 import java.nio.file.Path;
 
+import converter.GlobalConverter;
 import keyword.DanieleKeyword;
-import keyword.Keyword;
 import model.Instance;
-import reader.DanieleValueFetcher;
-import reader.FileLiner;
+import model.Instance.Fleet;
+import model.Instance.Info;
+import model.Instance.Network;
+import model.ObjectFactory;
 
-public class DanieleTranslator<T extends DanieleKeyword> implements InstanceTranslator<T> {
-	
-	private GlobalConverter<DanieleValueFetcher<T>, T> converter;
-	
-	public Instance getInstance(Path filePath, T[] values){
-		FileLiner liner = new FileLiner(filePath.toString());
-		DanieleValueFetcher<T> fetcher = new DanieleValueFetcher<T>(liner);
-		converter = new GlobalConverter<DanieleValueFetcher<T>, T>(fetcher, values);
-		//FIXME Values ne devrait contenir que les mots clés effectivement présents dans le fichier !
-		return null;
+public class DanieleTranslator implements InstanceTranslator<DanieleKeyword> {
+
+	private GlobalConverter<DanieleValueFetcher, DanieleKeyword> converter;
+
+	public Instance getInstance(Path filePath){
+		DanieleValueFetcher fetcher = new DanieleValueFetcher(filePath);
+		converter = new GlobalConverter<DanieleValueFetcher, DanieleKeyword>(fetcher);
+
+		ObjectFactory objectFactory = new ObjectFactory();
+		Instance instance = objectFactory.createInstance();
+
+		Info info = objectFactory.createInstanceInfo();
+		info.setName((String) converter.get(DanieleKeyword.NAME));
+		info.setDataset((String) converter.get(DanieleKeyword.COMMENT));
+		instance.setInfo(info);
+
+		Fleet fleet = objectFactory.createInstanceFleet();
+
+		String edgeWeightType = (String) converter.get(DanieleKeyword.EDGE_WEIGHT_TYPE);
+		if(edgeWeightType.equals("EUC_2D")){
+			instance.setNetwork((Network) converter.get(DanieleKeyword.NODE_COORD_SECTION));
+		}
+
+		return instance;
 	}
 
 }

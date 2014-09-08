@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import keyword.DanieleKeyword;
+import keyword.Keyword;
 import converter.Converter;
 import model.ObjectFactory;
 import model.Instance.Network;
@@ -15,14 +17,14 @@ import model.Instance.Network.Nodes.Node;
 public class NodeCoordConverter implements Converter<Network> {
 
 	@Override
-	public Network getOutput(String input, HashMap<String, Object> anteriorValues) {
+	public Network getOutput(String input, HashMap<Keyword, Object> anteriorValues) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		Network network = objectFactory.createInstanceNetwork();
 		Nodes nodes = objectFactory.createInstanceNetworkNodes();
 		
 		@SuppressWarnings("unchecked")
-		ArrayList<Integer> depots = (ArrayList<Integer>) anteriorValues.get("DEPOT_SECTION");
-		String edgeWeightType = (String) anteriorValues.get("EDGE_WEIGHT_TYPE");
+		ArrayList<Integer> depots = (ArrayList<Integer>) anteriorValues.get(DanieleKeyword.DEPOT_SECTION);
+		String edgeWeightType = (String) anteriorValues.get(DanieleKeyword.EDGE_WEIGHT_TYPE);
 		
 		if(edgeWeightType.equals("EUC_2D")){
 			String regex = "^(?<id>[0-9]*)\\s+(?<x>[0-9.-]*)\\s+(?<y>[0-9.-]*)$";
@@ -45,6 +47,7 @@ public class NodeCoordConverter implements Converter<Network> {
 			network.setDecimals(2);
 		}
 		
+		network.setNodes(nodes);
 		return network;
 	}
 

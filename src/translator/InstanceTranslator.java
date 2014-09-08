@@ -7,6 +7,6 @@ import model.Instance;
 
 public interface InstanceTranslator<T extends Keyword> {
 	
-	public Instance getInstance(Path filePath, T[] values);
+	public Instance getInstance(Path filePath);
 
 }

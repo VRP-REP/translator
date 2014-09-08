@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import keyword.Keyword;
 import model.Demand;
 import model.ObjectFactory;
 import model.Instance.Requests;
@@ -14,7 +15,7 @@ import converter.Converter;
 public class DemandConverter implements Converter<Requests> {
 
 	@Override
-	public Requests getOutput(String input, HashMap<String, Object> anteriorValues) {
+	public Requests getOutput(String input, HashMap<Keyword, Object> anteriorValues) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		Requests requests = objectFactory.createInstanceRequests();
 

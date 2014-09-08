@@ -2,6 +2,8 @@ package test;
 
 import java.util.HashMap;
 
+import keyword.Keyword;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -11,11 +13,11 @@ import converter.Converter;
 public abstract class ConverterTest<T extends Converter<?>, R> {
 
 	protected String input;
-	protected HashMap<String, Object> anteriorValues;
+	protected HashMap<Keyword, Object> anteriorValues;
 	protected T converter;
 	protected R result;
 
-	public ConverterTest(String input, HashMap<String, Object> options){
+	public ConverterTest(String input, HashMap<Keyword, Object> options){
 		this.input = input;
 		this.anteriorValues = options;
 	}

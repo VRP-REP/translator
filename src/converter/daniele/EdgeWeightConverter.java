@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import keyword.DanieleKeyword;
+import keyword.Keyword;
 import converter.Converter;
 import model.ObjectFactory;
 import model.Instance.Network;
@@ -15,15 +17,15 @@ import model.Instance.Network.Nodes.Node;
 public class EdgeWeightConverter implements Converter<Network> {
 
 	@Override
-	public Network getOutput(String input, HashMap<String, Object> anteriorValues) {
+	public Network getOutput(String input, HashMap<Keyword, Object> anteriorValues) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		Network network = objectFactory.createInstanceNetwork();
 		Nodes nodes = objectFactory.createInstanceNetworkNodes();
 
 		@SuppressWarnings("unchecked")
-		ArrayList<Integer> depots = (ArrayList<Integer>) anteriorValues.get("DEPOT_SECTION");
-		String edgeWeightType = (String) anteriorValues.get("EDGE_WEIGHT_TYPE");
-		String edgeWeightFormat = (String) anteriorValues.get("EDGE_WEIGHT_FORMAT");
+		ArrayList<Integer> depots = (ArrayList<Integer>) anteriorValues.get(DanieleKeyword.DEPOT_SECTION);
+		String edgeWeightType = (String) anteriorValues.get(DanieleKeyword.EDGE_WEIGHT_TYPE);
+		String edgeWeightFormat = (String) anteriorValues.get(DanieleKeyword.EDGE_WEIGHT_FORMAT);
 		
 		String[] lines = input.split("\n");
 		int dimension = lines.length + 1;
