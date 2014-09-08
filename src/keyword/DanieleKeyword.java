@@ -2,6 +2,7 @@ package keyword;
 
 import java.util.regex.Pattern;
 
+import converter.DoubleConverter;
 import converter.IntegerConverter;
 import converter.UnchangedConverter;
 import converter.Converter;
@@ -19,9 +20,9 @@ public enum DanieleKeyword implements Keyword {
 	EDGE_WEIGHT_FORMAT	(),
 	DISPLAY_DATA_TYPE	(),
 	DIMENSION			(Type.INLINE, new IntegerConverter()),
-	CAPACITY			(Type.INLINE, new IntegerConverter()),
-	MAX_LENGTH			(Type.INLINE, new IntegerConverter(), "MAX. LENGTH"),
-	SERV_TIME			(Type.INLINE, new IntegerConverter(), "SERV. TIME"),
+	CAPACITY			(Type.INLINE, new DoubleConverter()),
+	MAX_LENGTH			(Type.INLINE, new DoubleConverter(), "MAX. LENGTH"),
+	SERV_TIME			(Type.INLINE, new DoubleConverter(), "SERV. TIME"),
 	VEHICLES			(Type.INLINE, new IntegerConverter()),
 	DEPOT_SECTION		(Type.BLOCK, new ArrayListConverter()),
 	NODE_COORD_SECTION	(Type.BLOCK, new NodeCoordConverter()),
@@ -69,7 +70,7 @@ public enum DanieleKeyword implements Keyword {
 
 	public Pattern pattern() {
 		if(this.type.equals(Type.INLINE)){
-			return Pattern.compile("^(?<keyword>[A-Z_]*)\\s+:\\s+(?<value>.*)$");
+			return Pattern.compile("^(?<keyword>[A-Z\\s\\.\\_]*)\\s+:\\s+(?<value>.*)$");
 		}
 		if(this.type.equals(Type.BLOCK)){
 			return Pattern.compile("^(?<keyword>[A-Z_]*)\n+(?<value>.*)$");

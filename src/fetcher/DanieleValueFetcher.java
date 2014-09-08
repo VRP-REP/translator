@@ -1,8 +1,5 @@
 package fetcher;
 
-import io.FileLiner;
-
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.regex.Matcher;
@@ -12,13 +9,17 @@ import keyword.DanieleKeyword.Type;
 
 public class DanieleValueFetcher implements ValueFetcher<DanieleKeyword> {
 
-	private FileLiner fileLiner;
-	
+	private String[] lines;
+
 	private LinkedHashMap<DanieleKeyword, String> map;
 
-	public DanieleValueFetcher(Path path) {
-		this.fileLiner = new FileLiner(path);
-		this.map = new LinkedHashMap<DanieleKeyword, String>();
+	public DanieleValueFetcher(String[] lines) {
+		this.lines = lines;
+		this.map = initMap();
+	}
+
+	private LinkedHashMap<DanieleKeyword, String> initMap() {
+		map = new LinkedHashMap<DanieleKeyword, String>();
 		for(DanieleKeyword kw : DanieleKeyword.values()){
 			if(kw.type().equals(Type.INLINE)){
 				String inlineValue = getInline(kw);
@@ -33,10 +34,11 @@ public class DanieleValueFetcher implements ValueFetcher<DanieleKeyword> {
 				}
 			}
 		}
+		return map;
 	}
 
 	private String getInline(DanieleKeyword keyword) {
-		for(String line : fileLiner.getLines()){
+		for(String line : lines){
 			Matcher matcher = keyword.pattern().matcher(line);
 			if (matcher.find() && matcher.group("keyword").equals(keyword.displayName())) {
 				return matcher.group("value");
@@ -46,7 +48,6 @@ public class DanieleValueFetcher implements ValueFetcher<DanieleKeyword> {
 	}
 
 	private String[] getBlock(DanieleKeyword keyword) {
-		String[] lines = fileLiner.getLines();
 		ArrayList<String> block = new ArrayList<String>();
 		boolean end = false;
 		for(int i = 0 ; i < lines.length && !end ; i++){
