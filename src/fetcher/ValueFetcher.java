@@ -2,10 +2,10 @@ package fetcher;
 
 import keyword.Keyword;
 
-public interface ValueFetcher<T extends Keyword> {
+public interface ValueFetcher {
 	
-	public T[] getKeywords();
+	public Keyword[] getKeywords();
 	
-	public String getValue(T keyword);
+	public String getValue(Keyword keyword);
 	
 }

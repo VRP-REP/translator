@@ -1,24 +1,25 @@
 package converter;
 
+
 import fetcher.ValueFetcher;
 
 import java.util.HashMap;
 
 import keyword.Keyword;
 
-public class GlobalConverter<T extends ValueFetcher<K>, K extends Keyword> {
+public class GlobalConverter {
 
 	private HashMap<Keyword, Object> values;
-	private T fetcher;
+	private ValueFetcher fetcher;
 
-	public GlobalConverter(T fetcher){
+	public GlobalConverter(ValueFetcher fetcher){
 		this.values = new HashMap<Keyword, Object>();
 		this.fetcher = fetcher;
 		startConversion();
 	}
 
 	private void startConversion(){
-		for(K kw : fetcher.getKeywords()){
+		for(Keyword kw : fetcher.getKeywords()){
 			String input = fetcher.getValue(kw);
 			Object output = kw.converter().getOutput(input, values);
 			values.put(kw, output);

@@ -6,8 +6,9 @@ import java.util.regex.Matcher;
 
 import keyword.DanieleKeyword;
 import keyword.DanieleKeyword.Type;
+import keyword.Keyword;
 
-public class DanieleValueFetcher implements ValueFetcher<DanieleKeyword> {
+public class DanieleValueFetcher implements ValueFetcher {
 
 	private String[] lines;
 
@@ -68,13 +69,13 @@ public class DanieleValueFetcher implements ValueFetcher<DanieleKeyword> {
 	}
 
 	@Override
-	public String getValue(DanieleKeyword keyword) {
-		return map.get(keyword);
+	public Keyword[] getKeywords() {
+		return map.keySet().toArray(new DanieleKeyword[]{});
 	}
 
 	@Override
-	public DanieleKeyword[] getKeywords() {
-		return map.keySet().toArray(new DanieleKeyword[]{});
+	public String getValue(Keyword keyword) {
+		return map.get(keyword);
 	}
 
 }

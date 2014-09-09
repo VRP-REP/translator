@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import keyword.DanieleKeyword;
+import static keyword.DanieleKeyword.*;
 import keyword.Keyword;
 import converter.Converter;
 import model.ObjectFactory;
@@ -23,10 +23,10 @@ public class EdgeWeightConverter implements Converter<Network> {
 		Nodes nodes = objectFactory.createInstanceNetworkNodes();
 
 		@SuppressWarnings("unchecked")
-		ArrayList<Integer> depots = (ArrayList<Integer>) anteriorValues.get(DanieleKeyword.DEPOT_SECTION);
-		int dimension = (Integer) anteriorValues.get(DanieleKeyword.DIMENSION);
-		String edgeWeightType = (String) anteriorValues.get(DanieleKeyword.EDGE_WEIGHT_TYPE);
-		String edgeWeightFormat = (String) anteriorValues.get(DanieleKeyword.EDGE_WEIGHT_FORMAT);
+		ArrayList<Integer> depots = (ArrayList<Integer>) anteriorValues.get(DEPOT_SECTION);
+		int dimension = (Integer) anteriorValues.get(DIMENSION);
+		String edgeWeightType = (String) anteriorValues.get(EDGE_WEIGHT_TYPE);
+		String edgeWeightFormat = (String) anteriorValues.get(EDGE_WEIGHT_FORMAT);
 
 		String[] lines = input.split("\n");
 		if(edgeWeightType.equals("EXPLICIT")){
@@ -40,6 +40,7 @@ public class EdgeWeightConverter implements Converter<Network> {
 
 			Links links = objectFactory.createInstanceNetworkLinks();
 			if(edgeWeightFormat.equals("LOWER_ROW")){
+				links.setSymmetric(true);
 				/**
 				 * (1,2)
 				 * (1,3) (2,3)
@@ -58,6 +59,7 @@ public class EdgeWeightConverter implements Converter<Network> {
 				}
 			}
 			if(edgeWeightFormat.equals("LOWER_COL")){
+				links.setSymmetric(true);
 				/**
 				 * (1,5) (1,4) (1,3) (1,2)
 				 * (2,5) (2,4) (2,3)

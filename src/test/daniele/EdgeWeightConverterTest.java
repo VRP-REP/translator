@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
+import static keyword.DanieleKeyword.*;
 import keyword.DanieleKeyword;
 import keyword.Keyword;
 import model.Instance.Network;
@@ -37,15 +38,16 @@ public class EdgeWeightConverterTest extends ConverterTest<EdgeWeightConverter, 
 				"10    20    25    25    20    10",
 				"12    20    25    30    20",
 				"10    11    22    30",
-				"2    11    25",
+				"2     11    25",
 				"10    20",
 				"12"
 		});
 
 		HashMap<Keyword, Object> options1 = new HashMap<Keyword, Object>();
-		options1.put(DanieleKeyword.EDGE_WEIGHT_TYPE, "EXPLICIT");
-		options1.put(DanieleKeyword.EDGE_WEIGHT_FORMAT, "LOWER_COL");
-		options1.put(DanieleKeyword.DEPOT_SECTION, new ArrayList<Integer>(Arrays.asList(new Integer[]{1})));
+		options1.put(DIMENSION, 7);
+		options1.put(EDGE_WEIGHT_TYPE, "EXPLICIT");
+		options1.put(EDGE_WEIGHT_FORMAT, "LOWER_COL");
+		options1.put(DEPOT_SECTION, new ArrayList<Integer>(Arrays.asList(new Integer[]{1})));
 
 		String input2 = String.join("\n", new String[]{
 				"241",
@@ -61,9 +63,10 @@ public class EdgeWeightConverterTest extends ConverterTest<EdgeWeightConverter, 
 		});
 
 		HashMap<Keyword, Object> options2 = new HashMap<Keyword, Object>();
-		options2.put(DanieleKeyword.EDGE_WEIGHT_TYPE, "EXPLICIT");
-		options2.put(DanieleKeyword.EDGE_WEIGHT_FORMAT, "LOWER_ROW");
-		options2.put(DanieleKeyword.DEPOT_SECTION, new ArrayList<Integer>(Arrays.asList(new Integer[]{1})));
+		options2.put(DIMENSION, 11);
+		options2.put(EDGE_WEIGHT_TYPE, "EXPLICIT");
+		options2.put(EDGE_WEIGHT_FORMAT, "LOWER_ROW");
+		options2.put(DEPOT_SECTION, new ArrayList<Integer>(Arrays.asList(new Integer[]{1})));
 
 		return Arrays.asList(new Object[][] {
 				{input1, options1, 7, (6*7)/2},

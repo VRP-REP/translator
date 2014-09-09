@@ -13,22 +13,22 @@ import converter.daniele.NodeCoordConverter;
 
 public enum DanieleKeyword implements Keyword {
 
-	NAME				(),
-	COMMENT				(),
-	TYPE				(),
-	EDGE_WEIGHT_TYPE	(),
-	EDGE_WEIGHT_FORMAT	(),
-	DISPLAY_DATA_TYPE	(),
-	DIMENSION			(Type.INLINE, new IntegerConverter()),
-	CAPACITY			(Type.INLINE, new DoubleConverter()),
-	MAX_LENGTH			(Type.INLINE, new DoubleConverter(), "MAX. LENGTH"),
-	SERV_TIME			(Type.INLINE, new DoubleConverter(), "SERV. TIME"),
-	VEHICLES			(Type.INLINE, new IntegerConverter()),
-	DEPOT_SECTION		(Type.BLOCK, new ArrayListConverter()),
-	NODE_COORD_SECTION	(Type.BLOCK, new NodeCoordConverter()),
-	EDGE_WEIGHT_SECTION	(Type.BLOCK, new EdgeWeightConverter()),
-	DEMAND_SECTION		(Type.BLOCK, new DemandConverter()),
-	EOF					(Type.END, null);
+	NAME					(),
+	COMMENT					(),
+	TYPE					(),
+	EDGE_WEIGHT_TYPE		(),
+	EDGE_WEIGHT_FORMAT		(),
+	DISPLAY_DATA_TYPE		(),
+	DIMENSION				(Type.INLINE, new IntegerConverter()),
+	CAPACITY				(Type.INLINE, new DoubleConverter()),
+	MAX_LENGTH				(Type.INLINE, new DoubleConverter(), "MAX. LENGTH"),
+	SERV_TIME				(Type.INLINE, new DoubleConverter(), "SERV. TIME"),
+	VEHICLES				(Type.INLINE, new IntegerConverter()),
+	DEPOT_SECTION			(Type.BLOCK, new ArrayListConverter()),
+	NODE_COORD_SECTION		(Type.BLOCK, new NodeCoordConverter()),
+	EDGE_WEIGHT_SECTION		(Type.BLOCK, new EdgeWeightConverter()),
+	DEMAND_SECTION			(Type.BLOCK, new DemandConverter()),
+	EOF						(Type.END, null);
 
 	public enum Type {
 		INLINE,
@@ -73,7 +73,7 @@ public enum DanieleKeyword implements Keyword {
 			return Pattern.compile("^(?<keyword>[A-Z\\s\\.\\_]*)\\s+:\\s+(?<value>.*)$");
 		}
 		if(this.type.equals(Type.BLOCK)){
-			return Pattern.compile("^(?<keyword>[A-Z_]*)\n+(?<value>.*)$");
+			return Pattern.compile("^(?<keyword>[A-Z\\s\\.\\_]*)\n+(?<value>.*)$");
 		}
 		return null;
 	}

@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.Collection;
 
-import keyword.Keyword;
-
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 
@@ -15,12 +13,12 @@ import test.ValueFetcherTest;
 
 public class DanieleValueFetcherTest extends ValueFetcherTest<DanieleValueFetcher> {
 
-	private int numberOfElements;
+	private int numberOfKeywords;
 
-	public DanieleValueFetcherTest(String[] input, int numberOfElements) {
+	public DanieleValueFetcherTest(String[] input, int numberOfKeywords) {
 		super(input);
 		this.fetcher = new DanieleValueFetcher(input);
-		this.numberOfElements = numberOfElements;
+		this.numberOfKeywords = numberOfKeywords;
 	}
 
 	@Parameterized.Parameters
@@ -44,11 +42,8 @@ public class DanieleValueFetcherTest extends ValueFetcherTest<DanieleValueFetche
 	}
 
 	@Test
-	public void testNumberOfElements() {
-		for(Keyword kw : fetcher.getKeywords()){
-			System.out.println(kw.displayName());
-		}
-		assertEquals(fetcher.getKeywords().length, numberOfElements);
+	public void testNumberOfKeywords() {
+		assertEquals(fetcher.getKeywords().length, numberOfKeywords);
 	}
 
 }
