@@ -1,21 +1,20 @@
-package test.daniele;
+package test.tsplib95;
 
 import static org.junit.Assert.*;
+import static tsplib95.TSPLIB95Keyword.*;
+import impl.Keyword;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
-import static keyword.DanieleKeyword.*;
-import keyword.DanieleKeyword;
-import keyword.Keyword;
 import model.Instance.Network;
 
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 
-import converter.daniele.EdgeWeightConverter;
+import converter.tsplib95.EdgeWeightConverter;
 import test.ConverterTest;
 
 public class EdgeWeightConverterTest extends ConverterTest<EdgeWeightConverter, Network> {

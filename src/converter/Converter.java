@@ -1,9 +1,9 @@
 package converter;
 
 
-import java.util.HashMap;
+import impl.Keyword;
 
-import keyword.Keyword;
+import java.util.Map;
 
 /**
  * This interface intends to convert a string value read from a text file
@@ -20,6 +20,6 @@ public interface Converter<T> {
 	 * @param anteriorValues
 	 * @return
 	 */
-	public T getOutput(String input, HashMap<Keyword, Object> anteriorValues);
+	public T getOutput(String input, Map<Keyword, Object> anteriorValues);
 	
 }

@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.6" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="converter.daniele.EdgeWeightConverter" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/converter/daniele/EdgeWeightConverter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="98" width="323" x="1407" y="-147"/>    
+  <class id="1" language="java" name="converter.tsplib95.EdgeWeightConverter" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/converter/tsplib95/EdgeWeightConverter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="184" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="2" language="java" name="keyword.DanieleKeyword" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/keyword/DanieleKeyword.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2639" y="799"/>    
+  <enumeration id="2" language="java" name="tsplib95.TSPLIB95Keyword" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/tsplib95/TSPLIB95Keyword.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1255" y="972"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="3" language="java" name="translator.DanieleTranslator" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/translator/DanieleTranslator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1537" y="605"/>    
+  <class id="3" language="java" name="tsplib95.TSPLIB95Translator" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/tsplib95/TSPLIB95Translator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2888" y="644"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="fetcher.DanieleValueFetcher" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/fetcher/DanieleValueFetcher.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1143" y="559"/>    
+  <class id="4" language="java" name="tsplib95.TSPLIB95ValueFetcher" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/tsplib95/TSPLIB95ValueFetcher.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2038" y="810"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="converter.daniele.NodeCoordConverter" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/converter/daniele/NodeCoordConverter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="98" width="323" x="1770" y="-147"/>    
+  <class id="5" language="java" name="converter.tsplib95.NodeCoordConverter" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/converter/tsplib95/NodeCoordConverter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="547" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="converter.daniele.DemandConverter" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/converter/daniele/DemandConverter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="98" width="330" x="2133" y="-147"/>    
+  <class id="6" language="java" name="converter.tsplib95.DemandConverter" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/converter/tsplib95/DemandConverter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="914" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="7" language="java" name="fetcher.ValueFetcher" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/fetcher/ValueFetcher.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1144" y="819"/>    
+  <interface id="7" language="java" name="impl.ValueFetcher" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/impl/ValueFetcher.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2352" y="807"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="8" language="java" name="translator.TranslateFiles" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/translator/TranslateFiles.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1535" y="179"/>    
+  <class id="8" language="java" name="impl.TranslateFiles" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/impl/TranslateFiles.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2027" y="514"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <interface id="9" language="java" name="converter.Converter" project="VRPLIBTranslator" 
     file="/VRPLIBTranslator/src/converter/Converter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="80" width="275" x="2503" y="387"/>    
+    <position height="-1" width="-1" x="1256" y="600"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,34 +84,34 @@
   </interface>  
   <class id="10" language="java" name="converter.IntegerConverter" project="VRPLIBTranslator" 
     file="/VRPLIBTranslator/src/converter/IntegerConverter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="98" width="316" x="2503" y="-147"/>    
+    <position height="-1" width="-1" x="1277" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="converter.daniele.ArrayListConverter" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/converter/daniele/ArrayListConverter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="98" width="378" x="2859" y="-147"/>    
+  <class id="11" language="java" name="converter.tsplib95.ListConverter" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/converter/tsplib95/ListConverter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1664" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="12" language="java" name="translator.InstanceTranslator" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/translator/InstanceTranslator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1532" y="378"/>    
+  <interface id="12" language="java" name="impl.InstanceTranslator" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/impl/InstanceTranslator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2614" y="520"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="13" language="java" name="converter.GlobalConverter" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/converter/GlobalConverter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1534" y="816"/>    
+  <class id="13" language="java" name="impl.GlobalConverter" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/impl/GlobalConverter.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2617" y="812"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="converter.UnchangedConverter" project="VRPLIBTranslator" 
     file="/VRPLIBTranslator/src/converter/UnchangedConverter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="98" width="310" x="3277" y="-147"/>    
+    <position height="-1" width="-1" x="2048" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,16 +129,16 @@
   </class>  
   <class id="15" language="java" name="converter.DoubleConverter" project="VRPLIBTranslator" 
     file="/VRPLIBTranslator/src/converter/DoubleConverter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="98" width="318" x="3627" y="-147"/>    
+    <position height="-1" width="-1" x="2402" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="16" language="java" name="keyword.Keyword" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/keyword/Keyword.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3026" y="804"/>    
+  <interface id="16" language="java" name="impl.Keyword" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/impl/Keyword.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1642" y="977"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,85 +147,98 @@
   </interface>  
   <class id="17" language="java" name="converter.BigIntegerConverter" project="VRPLIBTranslator" 
     file="/VRPLIBTranslator/src/converter/BigIntegerConverter.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="98" width="334" x="3985" y="-147"/>    
+    <position height="-1" width="-1" x="2768" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="18">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="7"/>  
+  <class id="18" language="java" name="impl.InstanceTranslatorImpl" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/impl/InstanceTranslatorImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2616" y="647"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="19">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
   </realization>  
-  <association id="19">    
+  <realization id="20">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <association id="21">    
     <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="20" name="fetcher"/>      
-      <multiplicity id="21" minimum="0" maximum="1"/>    
+      <attribute id="22" name="fetcher"/>      
+      <multiplicity id="23" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="22">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <realization id="23">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
   <association id="24">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="25" name="translator"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="27">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="28" name="converter"/>      
-      <multiplicity id="29" minimum="0" maximum="1"/>    
+      <attribute id="25" name="converter"/>      
+      <multiplicity id="26" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="30">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="9"/>  
+  <realization id="27">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="7"/>  
   </realization>  
-  <realization id="31">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <realization id="32">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="16"/>  
-  </realization>  
-  <realization id="33">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <realization id="34">    
+  <realization id="28">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="9"/>  
   </realization>  
-  <realization id="35">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="12"/>  
+  <realization id="29">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="16"/>  
   </realization>  
-  <realization id="36">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="9"/>  
-  </realization>  
-  <realization id="37">    
+  <association id="30">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="31" name="translator"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="33">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="9"/>  
   </realization>  
-  <association id="38">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="39" name="converter"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
+  <realization id="34">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="18"/>  
+  </generalization>  
+  <realization id="36">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <realization id="37">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <realization id="38">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <realization id="39">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <association id="40">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="41" name="converter"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  

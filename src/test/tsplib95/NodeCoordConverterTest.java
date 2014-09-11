@@ -1,20 +1,20 @@
-package test.daniele;
+package test.tsplib95;
 
 import static org.junit.Assert.*;
+import static tsplib95.TSPLIB95Keyword.*;
+import impl.Keyword;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
-import keyword.DanieleKeyword;
-import keyword.Keyword;
 import model.Instance.Network;
 
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 
-import converter.daniele.NodeCoordConverter;
+import converter.tsplib95.NodeCoordConverter;
 import test.ConverterTest;
 
 public class NodeCoordConverterTest extends ConverterTest<NodeCoordConverter, Network> {
@@ -51,8 +51,8 @@ public class NodeCoordConverterTest extends ConverterTest<NodeCoordConverter, Ne
 		});
 
 		HashMap<Keyword, Object> anteriorValues1 = new HashMap<Keyword, Object>();
-		anteriorValues1.put(DanieleKeyword.EDGE_WEIGHT_TYPE, "EUC_2D");
-		anteriorValues1.put(DanieleKeyword.DEPOT_SECTION, new ArrayList<Integer>(Arrays.asList(new Integer[]{1})));
+		anteriorValues1.put(EDGE_WEIGHT_TYPE, "EUC_2D");
+		anteriorValues1.put(DEPOT_SECTION, new ArrayList<Integer>(Arrays.asList(new Integer[]{1})));
 
 		return Arrays.asList(new Object[][] {
 				{input1, anteriorValues1, 16}

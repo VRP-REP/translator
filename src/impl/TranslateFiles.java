@@ -1,4 +1,4 @@
-package translator;
+package impl;
 import static java.nio.file.FileVisitResult.*;
 import io.InstanceWriter;
 
@@ -13,9 +13,9 @@ import model.Instance;
 
 public class TranslateFiles extends SimpleFileVisitor<Path> {
 	
-	private InstanceTranslator<?> translator;
+	private InstanceTranslator translator;
 	
-	public TranslateFiles(InstanceTranslator<?> translator) {
+	public TranslateFiles(InstanceTranslator translator) {
 		super();
 		this.translator = translator;
 	}

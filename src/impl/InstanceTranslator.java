@@ -1,11 +1,10 @@
-package translator;
+package impl;
 
 import java.nio.file.Path;
 
-import keyword.Keyword;
 import model.Instance;
 
-public interface InstanceTranslator<T extends Keyword> {
+public interface InstanceTranslator {
 	
 	public Instance getInstance(Path filePath);
 

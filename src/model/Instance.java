@@ -2,31 +2,25 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.09.01 à 12:12:00 PM CEST 
+// Généré le : 2014.09.09 à 04:59:16 PM CEST 
 //
 
 
 package model;
 
-import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyAttribute;
+import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlMixed;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
-import javax.xml.namespace.QName;
+import org.w3c.dom.Element;
 
 
 /**
@@ -46,6 +40,17 @@ import javax.xml.namespace.QName;
  *                 &lt;sequence>
  *                   &lt;element name="dataset" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                   &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *                   &lt;element name="descriptor" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;any processContents='skip' maxOccurs="unbounded"/>
+ *                           &lt;/sequence>
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -78,11 +83,10 @@ import javax.xml.namespace.QName;
  *                                         &lt;/sequence>
  *                                       &lt;/choice>
  *                                       &lt;element name="compatible_vehicle" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
- *                                       &lt;element ref="{}custom" minOccurs="0"/>
  *                                     &lt;/sequence>
  *                                     &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                                     &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *                                     &lt;anyAttribute processContents='skip'/>
+ *                                     &lt;attribute name="trailer" type="{http://www.w3.org/2001/XMLSchema}boolean" />
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
  *                               &lt;/complexType>
@@ -103,43 +107,24 @@ import javax.xml.namespace.QName;
  *                                   &lt;complexContent>
  *                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                       &lt;sequence>
- *                                         &lt;element name="length" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *                                         &lt;element name="length" type="{}positive_double" minOccurs="0"/>
  *                                         &lt;choice minOccurs="0">
- *                                           &lt;element name="travel_time" type="{}type_time"/>
- *                                           &lt;element name="td_travel_time" maxOccurs="unbounded">
- *                                             &lt;complexType>
- *                                               &lt;complexContent>
- *                                                 &lt;extension base="{}type_tw">
- *                                                   &lt;sequence>
- *                                                     &lt;element ref="{}time"/>
- *                                                   &lt;/sequence>
- *                                                 &lt;/extension>
- *                                               &lt;/complexContent>
- *                                             &lt;/complexType>
- *                                           &lt;/element>
+ *                                           &lt;element name="travel_time" type="{}positive_double"/>
+ *                                           &lt;element name="td_travel_time" type="{}time_dependent_parameter_type" maxOccurs="unbounded"/>
+ *                                           &lt;element name="uncertain_travel_time" type="{}uncertain_parameter_type"/>
  *                                         &lt;/choice>
  *                                         &lt;choice minOccurs="0">
- *                                           &lt;element name="travel_cost" type="{}type_cost"/>
- *                                           &lt;element name="td_trave_cost" maxOccurs="unbounded">
- *                                             &lt;complexType>
- *                                               &lt;complexContent>
- *                                                 &lt;extension base="{}type_tw">
- *                                                   &lt;sequence>
- *                                                     &lt;element ref="{}cost"/>
- *                                                   &lt;/sequence>
- *                                                 &lt;/extension>
- *                                               &lt;/complexContent>
- *                                             &lt;/complexType>
- *                                           &lt;/element>
+ *                                           &lt;element name="travel_cost" type="{}positive_double"/>
+ *                                           &lt;element name="td_travel_cost" type="{}time_dependent_parameter_type" maxOccurs="unbounded"/>
+ *                                           &lt;element name="uncertain_travel_cost" type="{}uncertain_parameter_type"/>
  *                                         &lt;/choice>
- *                                         &lt;element ref="{}custom" minOccurs="0"/>
+ *                                         &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
  *                                       &lt;/sequence>
  *                                       &lt;attribute name="tail" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                                       &lt;attribute name="head" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                                       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                                       &lt;attribute name="directed" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" />
  *                                       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *                                       &lt;anyAttribute processContents='skip'/>
  *                                     &lt;/restriction>
  *                                   &lt;/complexContent>
  *                                 &lt;/complexType>
@@ -163,7 +148,6 @@ import javax.xml.namespace.QName;
  *                       &lt;/choice>
  *                     &lt;/sequence>
  *                   &lt;/choice>
- *                   &lt;element ref="{}custom" minOccurs="0"/>
  *                 &lt;/sequence>
  *               &lt;/restriction>
  *             &lt;/complexContent>
@@ -174,49 +158,81 @@ import javax.xml.namespace.QName;
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="vehicle" maxOccurs="unbounded">
+ *                   &lt;element name="vehicle_profile" maxOccurs="unbounded">
  *                     &lt;complexType>
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                           &lt;sequence>
- *                             &lt;choice minOccurs="0">
- *                               &lt;element name="capacity" type="{http://www.w3.org/2001/XMLSchema}double"/>
- *                               &lt;sequence>
- *                                 &lt;element name="max_weight" type="{http://www.w3.org/2001/XMLSchema}double"/>
- *                                 &lt;element name="max_volume" type="{http://www.w3.org/2001/XMLSchema}double"/>
- *                               &lt;/sequence>
+ *                             &lt;choice>
+ *                               &lt;element name="departure_from_any_node">
+ *                                 &lt;complexType>
+ *                                   &lt;complexContent>
+ *                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                     &lt;/restriction>
+ *                                   &lt;/complexContent>
+ *                                 &lt;/complexType>
+ *                               &lt;/element>
+ *                               &lt;element name="departure_node" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded"/>
  *                             &lt;/choice>
- *                             &lt;element ref="{}dimensions" minOccurs="0"/>
- *                             &lt;element name="max_travel_distance" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
- *                             &lt;element name="max_travel_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
- *                             &lt;element ref="{}compartment" maxOccurs="unbounded" minOccurs="0"/>
- *                             &lt;element name="compatible_node_types" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded" minOccurs="0"/>
- *                             &lt;element name="max_stops" maxOccurs="unbounded" minOccurs="0">
- *                               &lt;complexType>
- *                                 &lt;simpleContent>
- *                                   &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>int">
- *                                     &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" />
- *                                   &lt;/extension>
- *                                 &lt;/simpleContent>
- *                               &lt;/complexType>
- *                             &lt;/element>
- *                             &lt;element ref="{}speed_profile" minOccurs="0"/>
- *                             &lt;element name="departure_node" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
- *                             &lt;element name="arrival_node" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
+ *                             &lt;choice>
+ *                               &lt;element name="arrival_at_any_node">
+ *                                 &lt;complexType>
+ *                                   &lt;complexContent>
+ *                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                     &lt;/restriction>
+ *                                   &lt;/complexContent>
+ *                                 &lt;/complexType>
+ *                               &lt;/element>
+ *                               &lt;element name="arrival_node" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded"/>
+ *                             &lt;/choice>
+ *                             &lt;group ref="{}storage"/>
+ *                             &lt;element name="max_travel_time" type="{}positive_double" minOccurs="0"/>
+ *                             &lt;element name="max_travel_distance" type="{}positive_double" minOccurs="0"/>
+ *                             &lt;element name="speed_factor" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *                             &lt;sequence>
+ *                               &lt;element name="fix_cost" type="{}positive_double" minOccurs="0"/>
+ *                               &lt;element name="cost_x_distance" type="{}positive_double" minOccurs="0"/>
+ *                               &lt;element name="cost_x_time" type="{}positive_double" minOccurs="0"/>
+ *                             &lt;/sequence>
  *                             &lt;element name="resource" maxOccurs="unbounded" minOccurs="0">
  *                               &lt;complexType>
  *                                 &lt;simpleContent>
  *                                   &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
- *                                     &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+ *                                     &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *                                   &lt;/extension>
  *                                 &lt;/simpleContent>
  *                               &lt;/complexType>
  *                             &lt;/element>
- *                             &lt;element ref="{}cost" maxOccurs="unbounded" minOccurs="0"/>
- *                             &lt;element ref="{}custom" minOccurs="0"/>
+ *                             &lt;element name="trailers" maxOccurs="unbounded" minOccurs="0">
+ *                               &lt;complexType>
+ *                                 &lt;simpleContent>
+ *                                   &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>positiveInteger">
+ *                                     &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+ *                                   &lt;/extension>
+ *                                 &lt;/simpleContent>
+ *                               &lt;/complexType>
+ *                             &lt;/element>
+ *                             &lt;element ref="{}action" maxOccurs="unbounded" minOccurs="0"/>
  *                           &lt;/sequence>
  *                           &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *                           &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *                           &lt;attribute name="number" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
+ *                   &lt;element name="trailer_profile" maxOccurs="unbounded" minOccurs="0">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;sequence>
+ *                             &lt;group ref="{}storage"/>
+ *                             &lt;sequence>
+ *                               &lt;element name="fix_cost" type="{}positive_double" minOccurs="0"/>
+ *                               &lt;element name="cost_x_distance" type="{}positive_double" minOccurs="0"/>
+ *                               &lt;element name="cost_x_time" type="{}positive_double" minOccurs="0"/>
+ *                             &lt;/sequence>
+ *                           &lt;/sequence>
+ *                           &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *                           &lt;attribute name="number" type="{http://www.w3.org/2001/XMLSchema}int" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
@@ -238,11 +254,15 @@ import javax.xml.namespace.QName;
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                           &lt;sequence>
  *                             &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
+ *                             &lt;choice>
+ *                               &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *                               &lt;element name="td_quantity" type="{}time_dependent_parameter_type"/>
+ *                               &lt;element name="uncertain_quantity" type="{}uncertain_parameter_type"/>
+ *                             &lt;/choice>
  *                             &lt;element ref="{}demand" maxOccurs="unbounded" minOccurs="0"/>
  *                             &lt;element name="prize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
- *                             &lt;element ref="{}cost" maxOccurs="unbounded" minOccurs="0"/>
- *                             &lt;element name="release_date" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
- *                             &lt;element name="service_time" type="{}type_time" minOccurs="0"/>
+ *                             &lt;element name="release" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *                             &lt;element name="service_time" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
  *                             &lt;element name="predecessors" minOccurs="0">
  *                               &lt;complexType>
  *                                 &lt;complexContent>
@@ -270,17 +290,37 @@ import javax.xml.namespace.QName;
  *                               &lt;complexType>
  *                                 &lt;simpleContent>
  *                                   &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
- *                                     &lt;attribute name="resource_id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
+ *                                     &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *                                   &lt;/extension>
  *                                 &lt;/simpleContent>
  *                               &lt;/complexType>
  *                             &lt;/element>
- *                             &lt;element ref="{}custom" minOccurs="0"/>
  *                           &lt;/sequence>
  *                           &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                           &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                           &lt;attribute name="node" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *                           &lt;attribute name="link" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *                         &lt;/restriction>
+ *                       &lt;/complexContent>
+ *                     &lt;/complexType>
+ *                   &lt;/element>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element name="resources" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="resource" maxOccurs="unbounded">
+ *                     &lt;complexType>
+ *                       &lt;complexContent>
+ *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                           &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+ *                           &lt;attribute name="renewable" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *                           &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *                         &lt;/restriction>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
@@ -300,12 +340,22 @@ import javax.xml.namespace.QName;
  *                       &lt;complexContent>
  *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                           &lt;sequence>
+ *                             &lt;choice>
+ *                               &lt;element name="compatible_with_all_vehicles">
+ *                                 &lt;complexType>
+ *                                   &lt;complexContent>
+ *                                     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                                     &lt;/restriction>
+ *                                   &lt;/complexContent>
+ *                                 &lt;/complexType>
+ *                               &lt;/element>
+ *                               &lt;element name="compatible_vehicle_type" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded"/>
+ *                             &lt;/choice>
  *                             &lt;element name="skill" maxOccurs="unbounded" minOccurs="0">
  *                               &lt;complexType>
  *                                 &lt;complexContent>
  *                                   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                                     &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *                                     &lt;anyAttribute processContents='skip'/>
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
  *                               &lt;/complexType>
@@ -318,59 +368,14 @@ import javax.xml.namespace.QName;
  *                                       &lt;element name="max_work_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                                       &lt;element name="max_driving_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *                                       &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
- *                                       &lt;element ref="{}custom" minOccurs="0"/>
  *                                     &lt;/sequence>
  *                                   &lt;/restriction>
  *                                 &lt;/complexContent>
  *                               &lt;/complexType>
  *                             &lt;/element>
- *                             &lt;element ref="{}cost" maxOccurs="unbounded" minOccurs="0"/>
- *                             &lt;element ref="{}custom" minOccurs="0"/>
  *                           &lt;/sequence>
  *                           &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
  *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="resources" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="resource" maxOccurs="unbounded">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence>
- *                             &lt;element name="descriptor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                           &lt;/sequence>
- *                           &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
- *                           &lt;anyAttribute processContents='skip'/>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element name="additional_fees" minOccurs="0">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="fee">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;extension base="{}type_cost">
- *                           &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
- *                         &lt;/extension>
  *                       &lt;/complexContent>
  *                     &lt;/complexType>
  *                   &lt;/element>
@@ -402,10 +407,8 @@ public class Instance {
     protected Instance.Fleet fleet;
     @XmlElement(required = true)
     protected Instance.Requests requests;
-    protected Instance.Drivers drivers;
     protected Instance.Resources resources;
-    @XmlElement(name = "additional_fees")
-    protected Instance.AdditionalFees additionalFees;
+    protected Instance.Drivers drivers;
 
     /**
      * Obtient la valeur de la propriété info.
@@ -504,30 +507,6 @@ public class Instance {
     }
 
     /**
-     * Obtient la valeur de la propriété drivers.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Instance.Drivers }
-     *     
-     */
-    public Instance.Drivers getDrivers() {
-        return drivers;
-    }
-
-    /**
-     * Définit la valeur de la propriété drivers.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Instance.Drivers }
-     *     
-     */
-    public void setDrivers(Instance.Drivers value) {
-        this.drivers = value;
-    }
-
-    /**
      * Obtient la valeur de la propriété resources.
      * 
      * @return
@@ -552,135 +531,27 @@ public class Instance {
     }
 
     /**
-     * Obtient la valeur de la propriété additionalFees.
+     * Obtient la valeur de la propriété drivers.
      * 
      * @return
      *     possible object is
-     *     {@link Instance.AdditionalFees }
+     *     {@link Instance.Drivers }
      *     
      */
-    public Instance.AdditionalFees getAdditionalFees() {
-        return additionalFees;
+    public Instance.Drivers getDrivers() {
+        return drivers;
     }
 
     /**
-     * Définit la valeur de la propriété additionalFees.
+     * Définit la valeur de la propriété drivers.
      * 
      * @param value
      *     allowed object is
-     *     {@link Instance.AdditionalFees }
+     *     {@link Instance.Drivers }
      *     
      */
-    public void setAdditionalFees(Instance.AdditionalFees value) {
-        this.additionalFees = value;
-    }
-
-
-    /**
-     * <p>Classe Java pour anonymous complex type.
-     * 
-     * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="fee">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;extension base="{}type_cost">
-     *                 &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
-     *               &lt;/extension>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "fee"
-    })
-    public static class AdditionalFees {
-
-        @XmlElement(required = true)
-        protected Instance.AdditionalFees.Fee fee;
-
-        /**
-         * Obtient la valeur de la propriété fee.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Instance.AdditionalFees.Fee }
-         *     
-         */
-        public Instance.AdditionalFees.Fee getFee() {
-            return fee;
-        }
-
-        /**
-         * Définit la valeur de la propriété fee.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Instance.AdditionalFees.Fee }
-         *     
-         */
-        public void setFee(Instance.AdditionalFees.Fee value) {
-            this.fee = value;
-        }
-
-
-        /**
-         * <p>Classe Java pour anonymous complex type.
-         * 
-         * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-         * 
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;extension base="{}type_cost">
-         *       &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
-         *     &lt;/extension>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         * 
-         * 
-         */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "")
-        public static class Fee
-            extends TypeCost
-        {
-
-            @XmlAttribute(name = "type", required = true)
-            protected int type;
-
-            /**
-             * Obtient la valeur de la propriété type.
-             * 
-             */
-            public int getType() {
-                return type;
-            }
-
-            /**
-             * Définit la valeur de la propriété type.
-             * 
-             */
-            public void setType(int value) {
-                this.type = value;
-            }
-
-        }
-
+    public void setDrivers(Instance.Drivers value) {
+        this.drivers = value;
     }
 
 
@@ -699,12 +570,22 @@ public class Instance {
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                 &lt;sequence>
+     *                   &lt;choice>
+     *                     &lt;element name="compatible_with_all_vehicles">
+     *                       &lt;complexType>
+     *                         &lt;complexContent>
+     *                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                           &lt;/restriction>
+     *                         &lt;/complexContent>
+     *                       &lt;/complexType>
+     *                     &lt;/element>
+     *                     &lt;element name="compatible_vehicle_type" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded"/>
+     *                   &lt;/choice>
      *                   &lt;element name="skill" maxOccurs="unbounded" minOccurs="0">
      *                     &lt;complexType>
      *                       &lt;complexContent>
      *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                           &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
-     *                           &lt;anyAttribute processContents='skip'/>
      *                         &lt;/restriction>
      *                       &lt;/complexContent>
      *                     &lt;/complexType>
@@ -717,14 +598,11 @@ public class Instance {
      *                             &lt;element name="max_work_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *                             &lt;element name="max_driving_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
      *                             &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
-     *                             &lt;element ref="{}custom" minOccurs="0"/>
      *                           &lt;/sequence>
      *                         &lt;/restriction>
      *                       &lt;/complexContent>
      *                     &lt;/complexType>
      *                   &lt;/element>
-     *                   &lt;element ref="{}cost" maxOccurs="unbounded" minOccurs="0"/>
-     *                   &lt;element ref="{}custom" minOccurs="0"/>
      *                 &lt;/sequence>
      *                 &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
      *               &lt;/restriction>
@@ -788,12 +666,22 @@ public class Instance {
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *       &lt;sequence>
+         *         &lt;choice>
+         *           &lt;element name="compatible_with_all_vehicles">
+         *             &lt;complexType>
+         *               &lt;complexContent>
+         *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                 &lt;/restriction>
+         *               &lt;/complexContent>
+         *             &lt;/complexType>
+         *           &lt;/element>
+         *           &lt;element name="compatible_vehicle_type" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded"/>
+         *         &lt;/choice>
          *         &lt;element name="skill" maxOccurs="unbounded" minOccurs="0">
          *           &lt;complexType>
          *             &lt;complexContent>
          *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
-         *                 &lt;anyAttribute processContents='skip'/>
          *               &lt;/restriction>
          *             &lt;/complexContent>
          *           &lt;/complexType>
@@ -806,14 +694,11 @@ public class Instance {
          *                   &lt;element name="max_work_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
          *                   &lt;element name="max_driving_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
          *                   &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
-         *                   &lt;element ref="{}custom" minOccurs="0"/>
          *                 &lt;/sequence>
          *               &lt;/restriction>
          *             &lt;/complexContent>
          *           &lt;/complexType>
          *         &lt;/element>
-         *         &lt;element ref="{}cost" maxOccurs="unbounded" minOccurs="0"/>
-         *         &lt;element ref="{}custom" minOccurs="0"/>
          *       &lt;/sequence>
          *       &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
          *     &lt;/restriction>
@@ -825,20 +710,75 @@ public class Instance {
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
+            "compatibleWithAllVehicles",
+            "compatibleVehicleType",
             "skill",
-            "workloadProfile",
-            "cost",
-            "custom"
+            "workloadProfile"
         })
         public static class DriverProfile {
 
+            @XmlElement(name = "compatible_with_all_vehicles")
+            protected Instance.Drivers.DriverProfile.CompatibleWithAllVehicles compatibleWithAllVehicles;
+            @XmlElement(name = "compatible_vehicle_type", type = Integer.class)
+            protected List<Integer> compatibleVehicleType;
             protected List<Instance.Drivers.DriverProfile.Skill> skill;
             @XmlElement(name = "workload_profile")
             protected Instance.Drivers.DriverProfile.WorkloadProfile workloadProfile;
-            protected List<Cost> cost;
-            protected Custom custom;
             @XmlAttribute(name = "type", required = true)
             protected int type;
+
+            /**
+             * Obtient la valeur de la propriété compatibleWithAllVehicles.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Instance.Drivers.DriverProfile.CompatibleWithAllVehicles }
+             *     
+             */
+            public Instance.Drivers.DriverProfile.CompatibleWithAllVehicles getCompatibleWithAllVehicles() {
+                return compatibleWithAllVehicles;
+            }
+
+            /**
+             * Définit la valeur de la propriété compatibleWithAllVehicles.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Instance.Drivers.DriverProfile.CompatibleWithAllVehicles }
+             *     
+             */
+            public void setCompatibleWithAllVehicles(Instance.Drivers.DriverProfile.CompatibleWithAllVehicles value) {
+                this.compatibleWithAllVehicles = value;
+            }
+
+            /**
+             * Gets the value of the compatibleVehicleType property.
+             * 
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the compatibleVehicleType property.
+             * 
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getCompatibleVehicleType().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link Integer }
+             * 
+             * 
+             */
+            public List<Integer> getCompatibleVehicleType() {
+                if (compatibleVehicleType == null) {
+                    compatibleVehicleType = new ArrayList<Integer>();
+                }
+                return this.compatibleVehicleType;
+            }
 
             /**
              * Gets the value of the skill property.
@@ -894,59 +834,6 @@ public class Instance {
             }
 
             /**
-             * The cost associate to the driver profile. Use this element to model, for instance, the cost of breaks Gets the value of the cost property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the cost property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getCost().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link Cost }
-             * 
-             * 
-             */
-            public List<Cost> getCost() {
-                if (cost == null) {
-                    cost = new ArrayList<Cost>();
-                }
-                return this.cost;
-            }
-
-            /**
-             * Obtient la valeur de la propriété custom.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Custom }
-             *     
-             */
-            public Custom getCustom() {
-                return custom;
-            }
-
-            /**
-             * Définit la valeur de la propriété custom.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Custom }
-             *     
-             */
-            public void setCustom(Custom value) {
-                this.custom = value;
-            }
-
-            /**
              * Obtient la valeur de la propriété type.
              * 
              */
@@ -972,8 +859,31 @@ public class Instance {
              * &lt;complexType>
              *   &lt;complexContent>
              *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *     &lt;/restriction>
+             *   &lt;/complexContent>
+             * &lt;/complexType>
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "")
+            public static class CompatibleWithAllVehicles {
+
+
+            }
+
+
+            /**
+             * <p>Classe Java pour anonymous complex type.
+             * 
+             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+             * 
+             * <pre>
+             * &lt;complexType>
+             *   &lt;complexContent>
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
-             *       &lt;anyAttribute processContents='skip'/>
              *     &lt;/restriction>
              *   &lt;/complexContent>
              * &lt;/complexType>
@@ -991,8 +901,6 @@ public class Instance {
                 protected String content;
                 @XmlAttribute(name = "id", required = true)
                 protected BigInteger id;
-                @XmlAnyAttribute
-                private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
                 /**
                  * Obtient la valeur de la propriété content.
@@ -1042,24 +950,6 @@ public class Instance {
                     this.id = value;
                 }
 
-                /**
-                 * Gets a map that contains attributes that aren't bound to any typed property on this class.
-                 * 
-                 * <p>
-                 * the map is keyed by the name of the attribute and 
-                 * the value is the string value of the attribute.
-                 * 
-                 * the map returned by this method is live, and you can add new attribute
-                 * by updating the map directly. Because of this design, there's no setter.
-                 * 
-                 * 
-                 * @return
-                 *     always non-null
-                 */
-                public Map<QName, String> getOtherAttributes() {
-                    return otherAttributes;
-                }
-
             }
 
 
@@ -1076,7 +966,6 @@ public class Instance {
              *         &lt;element name="max_work_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
              *         &lt;element name="max_driving_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
              *         &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
-             *         &lt;element ref="{}custom" minOccurs="0"/>
              *       &lt;/sequence>
              *     &lt;/restriction>
              *   &lt;/complexContent>
@@ -1089,8 +978,7 @@ public class Instance {
             @XmlType(name = "", propOrder = {
                 "maxWorkTime",
                 "maxDrivingTime",
-                "tw",
-                "custom"
+                "tw"
             })
             public static class WorkloadProfile {
 
@@ -1099,7 +987,6 @@ public class Instance {
                 @XmlElement(name = "max_driving_time")
                 protected Double maxDrivingTime;
                 protected List<Tw> tw;
-                protected Custom custom;
 
                 /**
                  * Obtient la valeur de la propriété maxWorkTime.
@@ -1178,30 +1065,6 @@ public class Instance {
                     return this.tw;
                 }
 
-                /**
-                 * Obtient la valeur de la propriété custom.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link Custom }
-                 *     
-                 */
-                public Custom getCustom() {
-                    return custom;
-                }
-
-                /**
-                 * Définit la valeur de la propriété custom.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link Custom }
-                 *     
-                 */
-                public void setCustom(Custom value) {
-                    this.custom = value;
-                }
-
             }
 
         }
@@ -1219,49 +1082,81 @@ public class Instance {
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;sequence>
-     *         &lt;element name="vehicle" maxOccurs="unbounded">
+     *         &lt;element name="vehicle_profile" maxOccurs="unbounded">
      *           &lt;complexType>
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                 &lt;sequence>
-     *                   &lt;choice minOccurs="0">
-     *                     &lt;element name="capacity" type="{http://www.w3.org/2001/XMLSchema}double"/>
-     *                     &lt;sequence>
-     *                       &lt;element name="max_weight" type="{http://www.w3.org/2001/XMLSchema}double"/>
-     *                       &lt;element name="max_volume" type="{http://www.w3.org/2001/XMLSchema}double"/>
-     *                     &lt;/sequence>
+     *                   &lt;choice>
+     *                     &lt;element name="departure_from_any_node">
+     *                       &lt;complexType>
+     *                         &lt;complexContent>
+     *                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                           &lt;/restriction>
+     *                         &lt;/complexContent>
+     *                       &lt;/complexType>
+     *                     &lt;/element>
+     *                     &lt;element name="departure_node" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded"/>
      *                   &lt;/choice>
-     *                   &lt;element ref="{}dimensions" minOccurs="0"/>
-     *                   &lt;element name="max_travel_distance" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-     *                   &lt;element name="max_travel_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-     *                   &lt;element ref="{}compartment" maxOccurs="unbounded" minOccurs="0"/>
-     *                   &lt;element name="compatible_node_types" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded" minOccurs="0"/>
-     *                   &lt;element name="max_stops" maxOccurs="unbounded" minOccurs="0">
-     *                     &lt;complexType>
-     *                       &lt;simpleContent>
-     *                         &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>int">
-     *                           &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *                         &lt;/extension>
-     *                       &lt;/simpleContent>
-     *                     &lt;/complexType>
-     *                   &lt;/element>
-     *                   &lt;element ref="{}speed_profile" minOccurs="0"/>
-     *                   &lt;element name="departure_node" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-     *                   &lt;element name="arrival_node" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
+     *                   &lt;choice>
+     *                     &lt;element name="arrival_at_any_node">
+     *                       &lt;complexType>
+     *                         &lt;complexContent>
+     *                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                           &lt;/restriction>
+     *                         &lt;/complexContent>
+     *                       &lt;/complexType>
+     *                     &lt;/element>
+     *                     &lt;element name="arrival_node" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded"/>
+     *                   &lt;/choice>
+     *                   &lt;group ref="{}storage"/>
+     *                   &lt;element name="max_travel_time" type="{}positive_double" minOccurs="0"/>
+     *                   &lt;element name="max_travel_distance" type="{}positive_double" minOccurs="0"/>
+     *                   &lt;element name="speed_factor" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+     *                   &lt;sequence>
+     *                     &lt;element name="fix_cost" type="{}positive_double" minOccurs="0"/>
+     *                     &lt;element name="cost_x_distance" type="{}positive_double" minOccurs="0"/>
+     *                     &lt;element name="cost_x_time" type="{}positive_double" minOccurs="0"/>
+     *                   &lt;/sequence>
      *                   &lt;element name="resource" maxOccurs="unbounded" minOccurs="0">
      *                     &lt;complexType>
      *                       &lt;simpleContent>
      *                         &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
-     *                           &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+     *                           &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
      *                         &lt;/extension>
      *                       &lt;/simpleContent>
      *                     &lt;/complexType>
      *                   &lt;/element>
-     *                   &lt;element ref="{}cost" maxOccurs="unbounded" minOccurs="0"/>
-     *                   &lt;element ref="{}custom" minOccurs="0"/>
+     *                   &lt;element name="trailers" maxOccurs="unbounded" minOccurs="0">
+     *                     &lt;complexType>
+     *                       &lt;simpleContent>
+     *                         &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>positiveInteger">
+     *                           &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+     *                         &lt;/extension>
+     *                       &lt;/simpleContent>
+     *                     &lt;/complexType>
+     *                   &lt;/element>
+     *                   &lt;element ref="{}action" maxOccurs="unbounded" minOccurs="0"/>
      *                 &lt;/sequence>
      *                 &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
-     *                 &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}int" />
+     *                 &lt;attribute name="number" type="{http://www.w3.org/2001/XMLSchema}int" />
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
+     *         &lt;element name="trailer_profile" maxOccurs="unbounded" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;group ref="{}storage"/>
+     *                   &lt;sequence>
+     *                     &lt;element name="fix_cost" type="{}positive_double" minOccurs="0"/>
+     *                     &lt;element name="cost_x_distance" type="{}positive_double" minOccurs="0"/>
+     *                     &lt;element name="cost_x_time" type="{}positive_double" minOccurs="0"/>
+     *                   &lt;/sequence>
+     *                 &lt;/sequence>
+     *                 &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
      *                 &lt;attribute name="number" type="{http://www.w3.org/2001/XMLSchema}int" />
      *               &lt;/restriction>
      *             &lt;/complexContent>
@@ -1277,40 +1172,72 @@ public class Instance {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "vehicle"
+        "vehicleProfile",
+        "trailerProfile"
     })
     public static class Fleet {
 
-        @XmlElement(required = true)
-        protected List<Instance.Fleet.Vehicle> vehicle;
+        @XmlElement(name = "vehicle_profile", required = true)
+        protected List<Instance.Fleet.VehicleProfile> vehicleProfile;
+        @XmlElement(name = "trailer_profile")
+        protected List<Instance.Fleet.TrailerProfile> trailerProfile;
 
         /**
-         * Gets the value of the vehicle property.
+         * Gets the value of the vehicleProfile property.
          * 
          * <p>
          * This accessor method returns a reference to the live list,
          * not a snapshot. Therefore any modification you make to the
          * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the vehicle property.
+         * This is why there is not a <CODE>set</CODE> method for the vehicleProfile property.
          * 
          * <p>
          * For example, to add a new item, do as follows:
          * <pre>
-         *    getVehicle().add(newItem);
+         *    getVehicleProfile().add(newItem);
          * </pre>
          * 
          * 
          * <p>
          * Objects of the following type(s) are allowed in the list
-         * {@link Instance.Fleet.Vehicle }
+         * {@link Instance.Fleet.VehicleProfile }
          * 
          * 
          */
-        public List<Instance.Fleet.Vehicle> getVehicle() {
-            if (vehicle == null) {
-                vehicle = new ArrayList<Instance.Fleet.Vehicle>();
+        public List<Instance.Fleet.VehicleProfile> getVehicleProfile() {
+            if (vehicleProfile == null) {
+                vehicleProfile = new ArrayList<Instance.Fleet.VehicleProfile>();
             }
-            return this.vehicle;
+            return this.vehicleProfile;
+        }
+
+        /**
+         * Gets the value of the trailerProfile property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the trailerProfile property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getTrailerProfile().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link Instance.Fleet.TrailerProfile }
+         * 
+         * 
+         */
+        public List<Instance.Fleet.TrailerProfile> getTrailerProfile() {
+            if (trailerProfile == null) {
+                trailerProfile = new ArrayList<Instance.Fleet.TrailerProfile>();
+            }
+            return this.trailerProfile;
         }
 
 
@@ -1324,44 +1251,14 @@ public class Instance {
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *       &lt;sequence>
-         *         &lt;choice minOccurs="0">
-         *           &lt;element name="capacity" type="{http://www.w3.org/2001/XMLSchema}double"/>
-         *           &lt;sequence>
-         *             &lt;element name="max_weight" type="{http://www.w3.org/2001/XMLSchema}double"/>
-         *             &lt;element name="max_volume" type="{http://www.w3.org/2001/XMLSchema}double"/>
-         *           &lt;/sequence>
-         *         &lt;/choice>
-         *         &lt;element ref="{}dimensions" minOccurs="0"/>
-         *         &lt;element name="max_travel_distance" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-         *         &lt;element name="max_travel_time" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-         *         &lt;element ref="{}compartment" maxOccurs="unbounded" minOccurs="0"/>
-         *         &lt;element name="compatible_node_types" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded" minOccurs="0"/>
-         *         &lt;element name="max_stops" maxOccurs="unbounded" minOccurs="0">
-         *           &lt;complexType>
-         *             &lt;simpleContent>
-         *               &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>int">
-         *                 &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" />
-         *               &lt;/extension>
-         *             &lt;/simpleContent>
-         *           &lt;/complexType>
-         *         &lt;/element>
-         *         &lt;element ref="{}speed_profile" minOccurs="0"/>
-         *         &lt;element name="departure_node" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-         *         &lt;element name="arrival_node" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-         *         &lt;element name="resource" maxOccurs="unbounded" minOccurs="0">
-         *           &lt;complexType>
-         *             &lt;simpleContent>
-         *               &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
-         *                 &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
-         *               &lt;/extension>
-         *             &lt;/simpleContent>
-         *           &lt;/complexType>
-         *         &lt;/element>
-         *         &lt;element ref="{}cost" maxOccurs="unbounded" minOccurs="0"/>
-         *         &lt;element ref="{}custom" minOccurs="0"/>
+         *         &lt;group ref="{}storage"/>
+         *         &lt;sequence>
+         *           &lt;element name="fix_cost" type="{}positive_double" minOccurs="0"/>
+         *           &lt;element name="cost_x_distance" type="{}positive_double" minOccurs="0"/>
+         *           &lt;element name="cost_x_time" type="{}positive_double" minOccurs="0"/>
+         *         &lt;/sequence>
          *       &lt;/sequence>
-         *       &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
-         *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}int" />
+         *       &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
          *       &lt;attribute name="number" type="{http://www.w3.org/2001/XMLSchema}int" />
          *     &lt;/restriction>
          *   &lt;/complexContent>
@@ -1376,48 +1273,28 @@ public class Instance {
             "maxWeight",
             "maxVolume",
             "dimensions",
-            "maxTravelDistance",
-            "maxTravelTime",
             "compartment",
-            "compatibleNodeTypes",
-            "maxStops",
-            "speedProfile",
-            "departureNode",
-            "arrivalNode",
-            "resource",
-            "cost",
-            "custom"
+            "fixCost",
+            "costXDistance",
+            "costXTime"
         })
-        public static class Vehicle {
+        public static class TrailerProfile {
 
             protected Double capacity;
             @XmlElement(name = "max_weight")
             protected Double maxWeight;
             @XmlElement(name = "max_volume")
             protected Double maxVolume;
-            protected Dimensions dimensions;
-            @XmlElement(name = "max_travel_distance")
-            protected Double maxTravelDistance;
-            @XmlElement(name = "max_travel_time")
-            protected Double maxTravelTime;
+            protected DimensionsType dimensions;
             protected List<Compartment> compartment;
-            @XmlElement(name = "compatible_node_types")
-            protected List<BigInteger> compatibleNodeTypes;
-            @XmlElement(name = "max_stops")
-            protected List<Instance.Fleet.Vehicle.MaxStops> maxStops;
-            @XmlElement(name = "speed_profile")
-            protected SpeedProfile speedProfile;
-            @XmlElement(name = "departure_node")
-            protected BigInteger departureNode;
-            @XmlElement(name = "arrival_node")
-            protected BigInteger arrivalNode;
-            protected List<Instance.Fleet.Vehicle.Resource> resource;
-            protected List<Cost> cost;
-            protected Custom custom;
+            @XmlElement(name = "fix_cost")
+            protected Double fixCost;
+            @XmlElement(name = "cost_x_distance")
+            protected Double costXDistance;
+            @XmlElement(name = "cost_x_time")
+            protected Double costXTime;
             @XmlAttribute(name = "type", required = true)
-            protected BigInteger type;
-            @XmlAttribute(name = "id")
-            protected Integer id;
+            protected int type;
             @XmlAttribute(name = "number")
             protected Integer number;
 
@@ -1494,14 +1371,14 @@ public class Instance {
             }
 
             /**
-             * Obtient la valeur de la propriété dimensions.
+             * Defines the dimensions of the storage unit
              * 
              * @return
              *     possible object is
-             *     {@link Dimensions }
+             *     {@link DimensionsType }
              *     
              */
-            public Dimensions getDimensions() {
+            public DimensionsType getDimensions() {
                 return dimensions;
             }
 
@@ -1510,63 +1387,15 @@ public class Instance {
              * 
              * @param value
              *     allowed object is
-             *     {@link Dimensions }
+             *     {@link DimensionsType }
              *     
              */
-            public void setDimensions(Dimensions value) {
+            public void setDimensions(DimensionsType value) {
                 this.dimensions = value;
             }
 
             /**
-             * Obtient la valeur de la propriété maxTravelDistance.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Double }
-             *     
-             */
-            public Double getMaxTravelDistance() {
-                return maxTravelDistance;
-            }
-
-            /**
-             * Définit la valeur de la propriété maxTravelDistance.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Double }
-             *     
-             */
-            public void setMaxTravelDistance(Double value) {
-                this.maxTravelDistance = value;
-            }
-
-            /**
-             * Obtient la valeur de la propriété maxTravelTime.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Double }
-             *     
-             */
-            public Double getMaxTravelTime() {
-                return maxTravelTime;
-            }
-
-            /**
-             * Définit la valeur de la propriété maxTravelTime.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Double }
-             *     
-             */
-            public void setMaxTravelTime(Double value) {
-                this.maxTravelTime = value;
-            }
-
-            /**
-             * Defines a vehicle compartment. Use this element to model multicompartment VRPs Gets the value of the compartment property.
+             * Defines a compartment. Use this element to model multicompartment VRPs Gets the value of the compartment property.
              * 
              * <p>
              * This accessor method returns a reference to the live list,
@@ -1595,18 +1424,285 @@ public class Instance {
             }
 
             /**
-             * Gets the value of the compatibleNodeTypes property.
+             * Obtient la valeur de la propriété fixCost.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getFixCost() {
+                return fixCost;
+            }
+
+            /**
+             * Définit la valeur de la propriété fixCost.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setFixCost(Double value) {
+                this.fixCost = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété costXDistance.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getCostXDistance() {
+                return costXDistance;
+            }
+
+            /**
+             * Définit la valeur de la propriété costXDistance.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setCostXDistance(Double value) {
+                this.costXDistance = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété costXTime.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getCostXTime() {
+                return costXTime;
+            }
+
+            /**
+             * Définit la valeur de la propriété costXTime.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setCostXTime(Double value) {
+                this.costXTime = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété type.
+             * 
+             */
+            public int getType() {
+                return type;
+            }
+
+            /**
+             * Définit la valeur de la propriété type.
+             * 
+             */
+            public void setType(int value) {
+                this.type = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété number.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Integer }
+             *     
+             */
+            public Integer getNumber() {
+                return number;
+            }
+
+            /**
+             * Définit la valeur de la propriété number.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Integer }
+             *     
+             */
+            public void setNumber(Integer value) {
+                this.number = value;
+            }
+
+        }
+
+
+        /**
+         * <p>Classe Java pour anonymous complex type.
+         * 
+         * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;sequence>
+         *         &lt;choice>
+         *           &lt;element name="departure_from_any_node">
+         *             &lt;complexType>
+         *               &lt;complexContent>
+         *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                 &lt;/restriction>
+         *               &lt;/complexContent>
+         *             &lt;/complexType>
+         *           &lt;/element>
+         *           &lt;element name="departure_node" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded"/>
+         *         &lt;/choice>
+         *         &lt;choice>
+         *           &lt;element name="arrival_at_any_node">
+         *             &lt;complexType>
+         *               &lt;complexContent>
+         *                 &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *                 &lt;/restriction>
+         *               &lt;/complexContent>
+         *             &lt;/complexType>
+         *           &lt;/element>
+         *           &lt;element name="arrival_node" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded"/>
+         *         &lt;/choice>
+         *         &lt;group ref="{}storage"/>
+         *         &lt;element name="max_travel_time" type="{}positive_double" minOccurs="0"/>
+         *         &lt;element name="max_travel_distance" type="{}positive_double" minOccurs="0"/>
+         *         &lt;element name="speed_factor" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+         *         &lt;sequence>
+         *           &lt;element name="fix_cost" type="{}positive_double" minOccurs="0"/>
+         *           &lt;element name="cost_x_distance" type="{}positive_double" minOccurs="0"/>
+         *           &lt;element name="cost_x_time" type="{}positive_double" minOccurs="0"/>
+         *         &lt;/sequence>
+         *         &lt;element name="resource" maxOccurs="unbounded" minOccurs="0">
+         *           &lt;complexType>
+         *             &lt;simpleContent>
+         *               &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
+         *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
+         *               &lt;/extension>
+         *             &lt;/simpleContent>
+         *           &lt;/complexType>
+         *         &lt;/element>
+         *         &lt;element name="trailers" maxOccurs="unbounded" minOccurs="0">
+         *           &lt;complexType>
+         *             &lt;simpleContent>
+         *               &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>positiveInteger">
+         *                 &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+         *               &lt;/extension>
+         *             &lt;/simpleContent>
+         *           &lt;/complexType>
+         *         &lt;/element>
+         *         &lt;element ref="{}action" maxOccurs="unbounded" minOccurs="0"/>
+         *       &lt;/sequence>
+         *       &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
+         *       &lt;attribute name="number" type="{http://www.w3.org/2001/XMLSchema}int" />
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "departureFromAnyNode",
+            "departureNode",
+            "arrivalAtAnyNode",
+            "arrivalNode",
+            "capacity",
+            "maxWeight",
+            "maxVolume",
+            "dimensions",
+            "compartment",
+            "maxTravelTime",
+            "maxTravelDistance",
+            "speedFactor",
+            "fixCost",
+            "costXDistance",
+            "costXTime",
+            "resource",
+            "trailers",
+            "action"
+        })
+        public static class VehicleProfile {
+
+            @XmlElement(name = "departure_from_any_node")
+            protected Instance.Fleet.VehicleProfile.DepartureFromAnyNode departureFromAnyNode;
+            @XmlElement(name = "departure_node")
+            protected List<BigInteger> departureNode;
+            @XmlElement(name = "arrival_at_any_node")
+            protected Instance.Fleet.VehicleProfile.ArrivalAtAnyNode arrivalAtAnyNode;
+            @XmlElement(name = "arrival_node")
+            protected List<BigInteger> arrivalNode;
+            protected Double capacity;
+            @XmlElement(name = "max_weight")
+            protected Double maxWeight;
+            @XmlElement(name = "max_volume")
+            protected Double maxVolume;
+            protected DimensionsType dimensions;
+            protected List<Compartment> compartment;
+            @XmlElement(name = "max_travel_time")
+            protected Double maxTravelTime;
+            @XmlElement(name = "max_travel_distance")
+            protected Double maxTravelDistance;
+            @XmlElement(name = "speed_factor")
+            protected Double speedFactor;
+            @XmlElement(name = "fix_cost")
+            protected Double fixCost;
+            @XmlElement(name = "cost_x_distance")
+            protected Double costXDistance;
+            @XmlElement(name = "cost_x_time")
+            protected Double costXTime;
+            protected List<Instance.Fleet.VehicleProfile.Resource> resource;
+            protected List<Instance.Fleet.VehicleProfile.Trailers> trailers;
+            protected List<Action> action;
+            @XmlAttribute(name = "type", required = true)
+            protected BigInteger type;
+            @XmlAttribute(name = "number")
+            protected Integer number;
+
+            /**
+             * Obtient la valeur de la propriété departureFromAnyNode.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Instance.Fleet.VehicleProfile.DepartureFromAnyNode }
+             *     
+             */
+            public Instance.Fleet.VehicleProfile.DepartureFromAnyNode getDepartureFromAnyNode() {
+                return departureFromAnyNode;
+            }
+
+            /**
+             * Définit la valeur de la propriété departureFromAnyNode.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Instance.Fleet.VehicleProfile.DepartureFromAnyNode }
+             *     
+             */
+            public void setDepartureFromAnyNode(Instance.Fleet.VehicleProfile.DepartureFromAnyNode value) {
+                this.departureFromAnyNode = value;
+            }
+
+            /**
+             * Gets the value of the departureNode property.
              * 
              * <p>
              * This accessor method returns a reference to the live list,
              * not a snapshot. Therefore any modification you make to the
              * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the compatibleNodeTypes property.
+             * This is why there is not a <CODE>set</CODE> method for the departureNode property.
              * 
              * <p>
              * For example, to add a new item, do as follows:
              * <pre>
-             *    getCompatibleNodeTypes().add(newItem);
+             *    getDepartureNode().add(newItem);
              * </pre>
              * 
              * 
@@ -1616,112 +1712,333 @@ public class Instance {
              * 
              * 
              */
-            public List<BigInteger> getCompatibleNodeTypes() {
-                if (compatibleNodeTypes == null) {
-                    compatibleNodeTypes = new ArrayList<BigInteger>();
+            public List<BigInteger> getDepartureNode() {
+                if (departureNode == null) {
+                    departureNode = new ArrayList<BigInteger>();
                 }
-                return this.compatibleNodeTypes;
+                return this.departureNode;
             }
 
             /**
-             * Gets the value of the maxStops property.
+             * Obtient la valeur de la propriété arrivalAtAnyNode.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Instance.Fleet.VehicleProfile.ArrivalAtAnyNode }
+             *     
+             */
+            public Instance.Fleet.VehicleProfile.ArrivalAtAnyNode getArrivalAtAnyNode() {
+                return arrivalAtAnyNode;
+            }
+
+            /**
+             * Définit la valeur de la propriété arrivalAtAnyNode.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Instance.Fleet.VehicleProfile.ArrivalAtAnyNode }
+             *     
+             */
+            public void setArrivalAtAnyNode(Instance.Fleet.VehicleProfile.ArrivalAtAnyNode value) {
+                this.arrivalAtAnyNode = value;
+            }
+
+            /**
+             * Gets the value of the arrivalNode property.
              * 
              * <p>
              * This accessor method returns a reference to the live list,
              * not a snapshot. Therefore any modification you make to the
              * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the maxStops property.
+             * This is why there is not a <CODE>set</CODE> method for the arrivalNode property.
              * 
              * <p>
              * For example, to add a new item, do as follows:
              * <pre>
-             *    getMaxStops().add(newItem);
+             *    getArrivalNode().add(newItem);
              * </pre>
              * 
              * 
              * <p>
              * Objects of the following type(s) are allowed in the list
-             * {@link Instance.Fleet.Vehicle.MaxStops }
+             * {@link BigInteger }
              * 
              * 
              */
-            public List<Instance.Fleet.Vehicle.MaxStops> getMaxStops() {
-                if (maxStops == null) {
-                    maxStops = new ArrayList<Instance.Fleet.Vehicle.MaxStops>();
+            public List<BigInteger> getArrivalNode() {
+                if (arrivalNode == null) {
+                    arrivalNode = new ArrayList<BigInteger>();
                 }
-                return this.maxStops;
+                return this.arrivalNode;
             }
 
             /**
-             * Defines the vehicle's speed profile
+             * Obtient la valeur de la propriété capacity.
              * 
              * @return
              *     possible object is
-             *     {@link SpeedProfile }
+             *     {@link Double }
              *     
              */
-            public SpeedProfile getSpeedProfile() {
-                return speedProfile;
+            public Double getCapacity() {
+                return capacity;
             }
 
             /**
-             * Définit la valeur de la propriété speedProfile.
+             * Définit la valeur de la propriété capacity.
              * 
              * @param value
              *     allowed object is
-             *     {@link SpeedProfile }
+             *     {@link Double }
              *     
              */
-            public void setSpeedProfile(SpeedProfile value) {
-                this.speedProfile = value;
+            public void setCapacity(Double value) {
+                this.capacity = value;
             }
 
             /**
-             * Obtient la valeur de la propriété departureNode.
+             * Obtient la valeur de la propriété maxWeight.
              * 
              * @return
              *     possible object is
-             *     {@link BigInteger }
+             *     {@link Double }
              *     
              */
-            public BigInteger getDepartureNode() {
-                return departureNode;
+            public Double getMaxWeight() {
+                return maxWeight;
             }
 
             /**
-             * Définit la valeur de la propriété departureNode.
+             * Définit la valeur de la propriété maxWeight.
              * 
              * @param value
              *     allowed object is
-             *     {@link BigInteger }
+             *     {@link Double }
              *     
              */
-            public void setDepartureNode(BigInteger value) {
-                this.departureNode = value;
+            public void setMaxWeight(Double value) {
+                this.maxWeight = value;
             }
 
             /**
-             * Obtient la valeur de la propriété arrivalNode.
+             * Obtient la valeur de la propriété maxVolume.
              * 
              * @return
              *     possible object is
-             *     {@link BigInteger }
+             *     {@link Double }
              *     
              */
-            public BigInteger getArrivalNode() {
-                return arrivalNode;
+            public Double getMaxVolume() {
+                return maxVolume;
             }
 
             /**
-             * Définit la valeur de la propriété arrivalNode.
+             * Définit la valeur de la propriété maxVolume.
              * 
              * @param value
              *     allowed object is
-             *     {@link BigInteger }
+             *     {@link Double }
              *     
              */
-            public void setArrivalNode(BigInteger value) {
-                this.arrivalNode = value;
+            public void setMaxVolume(Double value) {
+                this.maxVolume = value;
+            }
+
+            /**
+             * Defines the dimensions of the storage unit
+             * 
+             * @return
+             *     possible object is
+             *     {@link DimensionsType }
+             *     
+             */
+            public DimensionsType getDimensions() {
+                return dimensions;
+            }
+
+            /**
+             * Définit la valeur de la propriété dimensions.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link DimensionsType }
+             *     
+             */
+            public void setDimensions(DimensionsType value) {
+                this.dimensions = value;
+            }
+
+            /**
+             * Defines a compartment. Use this element to model multicompartment VRPs Gets the value of the compartment property.
+             * 
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the compartment property.
+             * 
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getCompartment().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link Compartment }
+             * 
+             * 
+             */
+            public List<Compartment> getCompartment() {
+                if (compartment == null) {
+                    compartment = new ArrayList<Compartment>();
+                }
+                return this.compartment;
+            }
+
+            /**
+             * Obtient la valeur de la propriété maxTravelTime.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getMaxTravelTime() {
+                return maxTravelTime;
+            }
+
+            /**
+             * Définit la valeur de la propriété maxTravelTime.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setMaxTravelTime(Double value) {
+                this.maxTravelTime = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété maxTravelDistance.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getMaxTravelDistance() {
+                return maxTravelDistance;
+            }
+
+            /**
+             * Définit la valeur de la propriété maxTravelDistance.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setMaxTravelDistance(Double value) {
+                this.maxTravelDistance = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété speedFactor.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getSpeedFactor() {
+                return speedFactor;
+            }
+
+            /**
+             * Définit la valeur de la propriété speedFactor.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setSpeedFactor(Double value) {
+                this.speedFactor = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété fixCost.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getFixCost() {
+                return fixCost;
+            }
+
+            /**
+             * Définit la valeur de la propriété fixCost.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setFixCost(Double value) {
+                this.fixCost = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété costXDistance.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getCostXDistance() {
+                return costXDistance;
+            }
+
+            /**
+             * Définit la valeur de la propriété costXDistance.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setCostXDistance(Double value) {
+                this.costXDistance = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété costXTime.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getCostXTime() {
+                return costXTime;
+            }
+
+            /**
+             * Définit la valeur de la propriété costXTime.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setCostXTime(Double value) {
+                this.costXTime = value;
             }
 
             /**
@@ -1742,68 +2059,73 @@ public class Instance {
              * 
              * <p>
              * Objects of the following type(s) are allowed in the list
-             * {@link Instance.Fleet.Vehicle.Resource }
+             * {@link Instance.Fleet.VehicleProfile.Resource }
              * 
              * 
              */
-            public List<Instance.Fleet.Vehicle.Resource> getResource() {
+            public List<Instance.Fleet.VehicleProfile.Resource> getResource() {
                 if (resource == null) {
-                    resource = new ArrayList<Instance.Fleet.Vehicle.Resource>();
+                    resource = new ArrayList<Instance.Fleet.VehicleProfile.Resource>();
                 }
                 return this.resource;
             }
 
             /**
-             * The costs of using a vehicle with this profile Gets the value of the cost property.
+             * Gets the value of the trailers property.
              * 
              * <p>
              * This accessor method returns a reference to the live list,
              * not a snapshot. Therefore any modification you make to the
              * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the cost property.
+             * This is why there is not a <CODE>set</CODE> method for the trailers property.
              * 
              * <p>
              * For example, to add a new item, do as follows:
              * <pre>
-             *    getCost().add(newItem);
+             *    getTrailers().add(newItem);
              * </pre>
              * 
              * 
              * <p>
              * Objects of the following type(s) are allowed in the list
-             * {@link Cost }
+             * {@link Instance.Fleet.VehicleProfile.Trailers }
              * 
              * 
              */
-            public List<Cost> getCost() {
-                if (cost == null) {
-                    cost = new ArrayList<Cost>();
+            public List<Instance.Fleet.VehicleProfile.Trailers> getTrailers() {
+                if (trailers == null) {
+                    trailers = new ArrayList<Instance.Fleet.VehicleProfile.Trailers>();
                 }
-                return this.cost;
+                return this.trailers;
             }
 
             /**
-             * Obtient la valeur de la propriété custom.
+             * Gets the value of the action property.
              * 
-             * @return
-             *     possible object is
-             *     {@link Custom }
-             *     
-             */
-            public Custom getCustom() {
-                return custom;
-            }
-
-            /**
-             * Définit la valeur de la propriété custom.
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the action property.
              * 
-             * @param value
-             *     allowed object is
-             *     {@link Custom }
-             *     
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getAction().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link Action }
+             * 
+             * 
              */
-            public void setCustom(Custom value) {
-                this.custom = value;
+            public List<Action> getAction() {
+                if (action == null) {
+                    action = new ArrayList<Action>();
+                }
+                return this.action;
             }
 
             /**
@@ -1828,30 +2150,6 @@ public class Instance {
              */
             public void setType(BigInteger value) {
                 this.type = value;
-            }
-
-            /**
-             * Obtient la valeur de la propriété id.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Integer }
-             *     
-             */
-            public Integer getId() {
-                return id;
-            }
-
-            /**
-             * Définit la valeur de la propriété id.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Integer }
-             *     
-             */
-            public void setId(Integer value) {
-                this.id = value;
             }
 
             /**
@@ -1886,66 +2184,43 @@ public class Instance {
              * 
              * <pre>
              * &lt;complexType>
-             *   &lt;simpleContent>
-             *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>int">
-             *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" />
-             *     &lt;/extension>
-             *   &lt;/simpleContent>
+             *   &lt;complexContent>
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *     &lt;/restriction>
+             *   &lt;/complexContent>
              * &lt;/complexType>
              * </pre>
              * 
              * 
              */
             @XmlAccessorType(XmlAccessType.FIELD)
-            @XmlType(name = "", propOrder = {
-                "value"
-            })
-            public static class MaxStops {
+            @XmlType(name = "")
+            public static class ArrivalAtAnyNode {
 
-                @XmlValue
-                protected int value;
-                @XmlAttribute(name = "type")
-                protected String type;
 
-                /**
-                 * Obtient la valeur de la propriété value.
-                 * 
-                 */
-                public int getValue() {
-                    return value;
-                }
+            }
 
-                /**
-                 * Définit la valeur de la propriété value.
-                 * 
-                 */
-                public void setValue(int value) {
-                    this.value = value;
-                }
 
-                /**
-                 * Obtient la valeur de la propriété type.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link String }
-                 *     
-                 */
-                public String getType() {
-                    return type;
-                }
+            /**
+             * <p>Classe Java pour anonymous complex type.
+             * 
+             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+             * 
+             * <pre>
+             * &lt;complexType>
+             *   &lt;complexContent>
+             *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+             *     &lt;/restriction>
+             *   &lt;/complexContent>
+             * &lt;/complexType>
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "")
+            public static class DepartureFromAnyNode {
 
-                /**
-                 * Définit la valeur de la propriété type.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link String }
-                 *     
-                 */
-                public void setType(String value) {
-                    this.type = value;
-                }
 
             }
 
@@ -1959,7 +2234,7 @@ public class Instance {
              * &lt;complexType>
              *   &lt;simpleContent>
              *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
-             *       &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
+             *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
              *     &lt;/extension>
              *   &lt;/simpleContent>
              * &lt;/complexType>
@@ -1975,9 +2250,8 @@ public class Instance {
 
                 @XmlValue
                 protected double value;
-                @XmlAttribute(name = "type", required = true)
-                @XmlSchemaType(name = "anySimpleType")
-                protected String type;
+                @XmlAttribute(name = "id", required = true)
+                protected int id;
 
                 /**
                  * Obtient la valeur de la propriété value.
@@ -1996,14 +2270,87 @@ public class Instance {
                 }
 
                 /**
+                 * Obtient la valeur de la propriété id.
+                 * 
+                 */
+                public int getId() {
+                    return id;
+                }
+
+                /**
+                 * Définit la valeur de la propriété id.
+                 * 
+                 */
+                public void setId(int value) {
+                    this.id = value;
+                }
+
+            }
+
+
+            /**
+             * <p>Classe Java pour anonymous complex type.
+             * 
+             * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+             * 
+             * <pre>
+             * &lt;complexType>
+             *   &lt;simpleContent>
+             *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>positiveInteger">
+             *       &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+             *     &lt;/extension>
+             *   &lt;/simpleContent>
+             * &lt;/complexType>
+             * </pre>
+             * 
+             * 
+             */
+            @XmlAccessorType(XmlAccessType.FIELD)
+            @XmlType(name = "", propOrder = {
+                "value"
+            })
+            public static class Trailers {
+
+                @XmlValue
+                @XmlSchemaType(name = "positiveInteger")
+                protected BigInteger value;
+                @XmlAttribute(name = "type", required = true)
+                @XmlSchemaType(name = "positiveInteger")
+                protected BigInteger type;
+
+                /**
+                 * Obtient la valeur de la propriété value.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link BigInteger }
+                 *     
+                 */
+                public BigInteger getValue() {
+                    return value;
+                }
+
+                /**
+                 * Définit la valeur de la propriété value.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link BigInteger }
+                 *     
+                 */
+                public void setValue(BigInteger value) {
+                    this.value = value;
+                }
+
+                /**
                  * Obtient la valeur de la propriété type.
                  * 
                  * @return
                  *     possible object is
-                 *     {@link String }
+                 *     {@link BigInteger }
                  *     
                  */
-                public String getType() {
+                public BigInteger getType() {
                     return type;
                 }
 
@@ -2012,10 +2359,10 @@ public class Instance {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link String }
+                 *     {@link BigInteger }
                  *     
                  */
-                public void setType(String value) {
+                public void setType(BigInteger value) {
                     this.type = value;
                 }
 
@@ -2038,6 +2385,17 @@ public class Instance {
      *       &lt;sequence>
      *         &lt;element name="dataset" type="{http://www.w3.org/2001/XMLSchema}string"/>
      *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+     *         &lt;element name="descriptor" minOccurs="0">
+     *           &lt;complexType>
+     *             &lt;complexContent>
+     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *                 &lt;sequence>
+     *                   &lt;any processContents='skip' maxOccurs="unbounded"/>
+     *                 &lt;/sequence>
+     *               &lt;/restriction>
+     *             &lt;/complexContent>
+     *           &lt;/complexType>
+     *         &lt;/element>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -2049,7 +2407,8 @@ public class Instance {
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
         "dataset",
-        "name"
+        "name",
+        "descriptor"
     })
     public static class Info {
 
@@ -2057,6 +2416,7 @@ public class Instance {
         protected String dataset;
         @XmlElement(required = true)
         protected String name;
+        protected Instance.Info.Descriptor descriptor;
 
         /**
          * Obtient la valeur de la propriété dataset.
@@ -2106,6 +2466,90 @@ public class Instance {
             this.name = value;
         }
 
+        /**
+         * Obtient la valeur de la propriété descriptor.
+         * 
+         * @return
+         *     possible object is
+         *     {@link Instance.Info.Descriptor }
+         *     
+         */
+        public Instance.Info.Descriptor getDescriptor() {
+            return descriptor;
+        }
+
+        /**
+         * Définit la valeur de la propriété descriptor.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link Instance.Info.Descriptor }
+         *     
+         */
+        public void setDescriptor(Instance.Info.Descriptor value) {
+            this.descriptor = value;
+        }
+
+
+        /**
+         * <p>Classe Java pour anonymous complex type.
+         * 
+         * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+         * 
+         * <pre>
+         * &lt;complexType>
+         *   &lt;complexContent>
+         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+         *       &lt;sequence>
+         *         &lt;any processContents='skip' maxOccurs="unbounded"/>
+         *       &lt;/sequence>
+         *     &lt;/restriction>
+         *   &lt;/complexContent>
+         * &lt;/complexType>
+         * </pre>
+         * 
+         * 
+         */
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "any"
+        })
+        public static class Descriptor {
+
+            @XmlAnyElement
+            protected List<Element> any;
+
+            /**
+             * Gets the value of the any property.
+             * 
+             * <p>
+             * This accessor method returns a reference to the live list,
+             * not a snapshot. Therefore any modification you make to the
+             * returned list will be present inside the JAXB object.
+             * This is why there is not a <CODE>set</CODE> method for the any property.
+             * 
+             * <p>
+             * For example, to add a new item, do as follows:
+             * <pre>
+             *    getAny().add(newItem);
+             * </pre>
+             * 
+             * 
+             * <p>
+             * Objects of the following type(s) are allowed in the list
+             * {@link Element }
+             * 
+             * 
+             */
+            public List<Element> getAny() {
+                if (any == null) {
+                    any = new ArrayList<Element>();
+                }
+                return this.any;
+            }
+
+        }
+
     }
 
 
@@ -2141,11 +2585,10 @@ public class Instance {
      *                               &lt;/sequence>
      *                             &lt;/choice>
      *                             &lt;element name="compatible_vehicle" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
-     *                             &lt;element ref="{}custom" minOccurs="0"/>
      *                           &lt;/sequence>
      *                           &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
      *                           &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
-     *                           &lt;anyAttribute processContents='skip'/>
+     *                           &lt;attribute name="trailer" type="{http://www.w3.org/2001/XMLSchema}boolean" />
      *                         &lt;/restriction>
      *                       &lt;/complexContent>
      *                     &lt;/complexType>
@@ -2166,43 +2609,24 @@ public class Instance {
      *                         &lt;complexContent>
      *                           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                             &lt;sequence>
-     *                               &lt;element name="length" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+     *                               &lt;element name="length" type="{}positive_double" minOccurs="0"/>
      *                               &lt;choice minOccurs="0">
-     *                                 &lt;element name="travel_time" type="{}type_time"/>
-     *                                 &lt;element name="td_travel_time" maxOccurs="unbounded">
-     *                                   &lt;complexType>
-     *                                     &lt;complexContent>
-     *                                       &lt;extension base="{}type_tw">
-     *                                         &lt;sequence>
-     *                                           &lt;element ref="{}time"/>
-     *                                         &lt;/sequence>
-     *                                       &lt;/extension>
-     *                                     &lt;/complexContent>
-     *                                   &lt;/complexType>
-     *                                 &lt;/element>
+     *                                 &lt;element name="travel_time" type="{}positive_double"/>
+     *                                 &lt;element name="td_travel_time" type="{}time_dependent_parameter_type" maxOccurs="unbounded"/>
+     *                                 &lt;element name="uncertain_travel_time" type="{}uncertain_parameter_type"/>
      *                               &lt;/choice>
      *                               &lt;choice minOccurs="0">
-     *                                 &lt;element name="travel_cost" type="{}type_cost"/>
-     *                                 &lt;element name="td_trave_cost" maxOccurs="unbounded">
-     *                                   &lt;complexType>
-     *                                     &lt;complexContent>
-     *                                       &lt;extension base="{}type_tw">
-     *                                         &lt;sequence>
-     *                                           &lt;element ref="{}cost"/>
-     *                                         &lt;/sequence>
-     *                                       &lt;/extension>
-     *                                     &lt;/complexContent>
-     *                                   &lt;/complexType>
-     *                                 &lt;/element>
+     *                                 &lt;element name="travel_cost" type="{}positive_double"/>
+     *                                 &lt;element name="td_travel_cost" type="{}time_dependent_parameter_type" maxOccurs="unbounded"/>
+     *                                 &lt;element name="uncertain_travel_cost" type="{}uncertain_parameter_type"/>
      *                               &lt;/choice>
-     *                               &lt;element ref="{}custom" minOccurs="0"/>
+     *                               &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
      *                             &lt;/sequence>
      *                             &lt;attribute name="tail" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
      *                             &lt;attribute name="head" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
      *                             &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}integer" />
      *                             &lt;attribute name="directed" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" />
      *                             &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}integer" />
-     *                             &lt;anyAttribute processContents='skip'/>
      *                           &lt;/restriction>
      *                         &lt;/complexContent>
      *                       &lt;/complexType>
@@ -2226,7 +2650,6 @@ public class Instance {
      *             &lt;/choice>
      *           &lt;/sequence>
      *         &lt;/choice>
-     *         &lt;element ref="{}custom" minOccurs="0"/>
      *       &lt;/sequence>
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -2244,8 +2667,7 @@ public class Instance {
         "distanceCalculator",
         "ceil",
         "floor",
-        "decimals",
-        "custom"
+        "decimals"
     })
     public static class Network {
 
@@ -2259,7 +2681,6 @@ public class Instance {
         protected Object ceil;
         protected Object floor;
         protected Integer decimals;
-        protected Custom custom;
 
         /**
          * Obtient la valeur de la propriété nodes.
@@ -2453,30 +2874,6 @@ public class Instance {
             this.decimals = value;
         }
 
-        /**
-         * Add your own lements to the network definition
-         * 
-         * @return
-         *     possible object is
-         *     {@link Custom }
-         *     
-         */
-        public Custom getCustom() {
-            return custom;
-        }
-
-        /**
-         * Définit la valeur de la propriété custom.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Custom }
-         *     
-         */
-        public void setCustom(Custom value) {
-            this.custom = value;
-        }
-
 
         /**
          * <p>Classe Java pour anonymous complex type.
@@ -2493,43 +2890,24 @@ public class Instance {
          *             &lt;complexContent>
          *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *                 &lt;sequence>
-         *                   &lt;element name="length" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+         *                   &lt;element name="length" type="{}positive_double" minOccurs="0"/>
          *                   &lt;choice minOccurs="0">
-         *                     &lt;element name="travel_time" type="{}type_time"/>
-         *                     &lt;element name="td_travel_time" maxOccurs="unbounded">
-         *                       &lt;complexType>
-         *                         &lt;complexContent>
-         *                           &lt;extension base="{}type_tw">
-         *                             &lt;sequence>
-         *                               &lt;element ref="{}time"/>
-         *                             &lt;/sequence>
-         *                           &lt;/extension>
-         *                         &lt;/complexContent>
-         *                       &lt;/complexType>
-         *                     &lt;/element>
+         *                     &lt;element name="travel_time" type="{}positive_double"/>
+         *                     &lt;element name="td_travel_time" type="{}time_dependent_parameter_type" maxOccurs="unbounded"/>
+         *                     &lt;element name="uncertain_travel_time" type="{}uncertain_parameter_type"/>
          *                   &lt;/choice>
          *                   &lt;choice minOccurs="0">
-         *                     &lt;element name="travel_cost" type="{}type_cost"/>
-         *                     &lt;element name="td_trave_cost" maxOccurs="unbounded">
-         *                       &lt;complexType>
-         *                         &lt;complexContent>
-         *                           &lt;extension base="{}type_tw">
-         *                             &lt;sequence>
-         *                               &lt;element ref="{}cost"/>
-         *                             &lt;/sequence>
-         *                           &lt;/extension>
-         *                         &lt;/complexContent>
-         *                       &lt;/complexType>
-         *                     &lt;/element>
+         *                     &lt;element name="travel_cost" type="{}positive_double"/>
+         *                     &lt;element name="td_travel_cost" type="{}time_dependent_parameter_type" maxOccurs="unbounded"/>
+         *                     &lt;element name="uncertain_travel_cost" type="{}uncertain_parameter_type"/>
          *                   &lt;/choice>
-         *                   &lt;element ref="{}custom" minOccurs="0"/>
+         *                   &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
          *                 &lt;/sequence>
          *                 &lt;attribute name="tail" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
          *                 &lt;attribute name="head" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
          *                 &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}integer" />
          *                 &lt;attribute name="directed" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" />
          *                 &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}integer" />
-         *                 &lt;anyAttribute processContents='skip'/>
          *               &lt;/restriction>
          *             &lt;/complexContent>
          *           &lt;/complexType>
@@ -2610,43 +2988,24 @@ public class Instance {
              *   &lt;complexContent>
              *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
              *       &lt;sequence>
-             *         &lt;element name="length" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+             *         &lt;element name="length" type="{}positive_double" minOccurs="0"/>
              *         &lt;choice minOccurs="0">
-             *           &lt;element name="travel_time" type="{}type_time"/>
-             *           &lt;element name="td_travel_time" maxOccurs="unbounded">
-             *             &lt;complexType>
-             *               &lt;complexContent>
-             *                 &lt;extension base="{}type_tw">
-             *                   &lt;sequence>
-             *                     &lt;element ref="{}time"/>
-             *                   &lt;/sequence>
-             *                 &lt;/extension>
-             *               &lt;/complexContent>
-             *             &lt;/complexType>
-             *           &lt;/element>
+             *           &lt;element name="travel_time" type="{}positive_double"/>
+             *           &lt;element name="td_travel_time" type="{}time_dependent_parameter_type" maxOccurs="unbounded"/>
+             *           &lt;element name="uncertain_travel_time" type="{}uncertain_parameter_type"/>
              *         &lt;/choice>
              *         &lt;choice minOccurs="0">
-             *           &lt;element name="travel_cost" type="{}type_cost"/>
-             *           &lt;element name="td_trave_cost" maxOccurs="unbounded">
-             *             &lt;complexType>
-             *               &lt;complexContent>
-             *                 &lt;extension base="{}type_tw">
-             *                   &lt;sequence>
-             *                     &lt;element ref="{}cost"/>
-             *                   &lt;/sequence>
-             *                 &lt;/extension>
-             *               &lt;/complexContent>
-             *             &lt;/complexType>
-             *           &lt;/element>
+             *           &lt;element name="travel_cost" type="{}positive_double"/>
+             *           &lt;element name="td_travel_cost" type="{}time_dependent_parameter_type" maxOccurs="unbounded"/>
+             *           &lt;element name="uncertain_travel_cost" type="{}uncertain_parameter_type"/>
              *         &lt;/choice>
-             *         &lt;element ref="{}custom" minOccurs="0"/>
+             *         &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
              *       &lt;/sequence>
              *       &lt;attribute name="tail" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
              *       &lt;attribute name="head" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
              *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}integer" />
              *       &lt;attribute name="directed" type="{http://www.w3.org/2001/XMLSchema}boolean" default="false" />
              *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}integer" />
-             *       &lt;anyAttribute processContents='skip'/>
              *     &lt;/restriction>
              *   &lt;/complexContent>
              * &lt;/complexType>
@@ -2659,22 +3018,28 @@ public class Instance {
                 "length",
                 "travelTime",
                 "tdTravelTime",
+                "uncertainTravelTime",
                 "travelCost",
-                "tdTraveCost",
-                "custom"
+                "tdTravelCost",
+                "uncertainTravelCost",
+                "tw"
             })
             public static class Link {
 
                 protected Double length;
                 @XmlElement(name = "travel_time")
-                protected TypeTime travelTime;
+                protected Double travelTime;
                 @XmlElement(name = "td_travel_time")
-                protected List<Instance.Network.Links.Link.TdTravelTime> tdTravelTime;
+                protected List<TimeDependentParameterType> tdTravelTime;
+                @XmlElement(name = "uncertain_travel_time")
+                protected UncertainParameterType uncertainTravelTime;
                 @XmlElement(name = "travel_cost")
-                protected TypeCost travelCost;
-                @XmlElement(name = "td_trave_cost")
-                protected List<Instance.Network.Links.Link.TdTraveCost> tdTraveCost;
-                protected Custom custom;
+                protected Double travelCost;
+                @XmlElement(name = "td_travel_cost")
+                protected List<TimeDependentParameterType> tdTravelCost;
+                @XmlElement(name = "uncertain_travel_cost")
+                protected UncertainParameterType uncertainTravelCost;
+                protected List<Tw> tw;
                 @XmlAttribute(name = "tail", required = true)
                 protected BigInteger tail;
                 @XmlAttribute(name = "head", required = true)
@@ -2685,8 +3050,6 @@ public class Instance {
                 protected Boolean directed;
                 @XmlAttribute(name = "type")
                 protected BigInteger type;
-                @XmlAnyAttribute
-                private Map<QName, String> otherAttributes = new HashMap<QName, String>();
 
                 /**
                  * Obtient la valeur de la propriété length.
@@ -2717,10 +3080,10 @@ public class Instance {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link TypeTime }
+                 *     {@link Double }
                  *     
                  */
-                public TypeTime getTravelTime() {
+                public Double getTravelTime() {
                     return travelTime;
                 }
 
@@ -2729,10 +3092,10 @@ public class Instance {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link TypeTime }
+                 *     {@link Double }
                  *     
                  */
-                public void setTravelTime(TypeTime value) {
+                public void setTravelTime(Double value) {
                     this.travelTime = value;
                 }
 
@@ -2754,15 +3117,39 @@ public class Instance {
                  * 
                  * <p>
                  * Objects of the following type(s) are allowed in the list
-                 * {@link Instance.Network.Links.Link.TdTravelTime }
+                 * {@link TimeDependentParameterType }
                  * 
                  * 
                  */
-                public List<Instance.Network.Links.Link.TdTravelTime> getTdTravelTime() {
+                public List<TimeDependentParameterType> getTdTravelTime() {
                     if (tdTravelTime == null) {
-                        tdTravelTime = new ArrayList<Instance.Network.Links.Link.TdTravelTime>();
+                        tdTravelTime = new ArrayList<TimeDependentParameterType>();
                     }
                     return this.tdTravelTime;
+                }
+
+                /**
+                 * Obtient la valeur de la propriété uncertainTravelTime.
+                 * 
+                 * @return
+                 *     possible object is
+                 *     {@link UncertainParameterType }
+                 *     
+                 */
+                public UncertainParameterType getUncertainTravelTime() {
+                    return uncertainTravelTime;
+                }
+
+                /**
+                 * Définit la valeur de la propriété uncertainTravelTime.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link UncertainParameterType }
+                 *     
+                 */
+                public void setUncertainTravelTime(UncertainParameterType value) {
+                    this.uncertainTravelTime = value;
                 }
 
                 /**
@@ -2770,10 +3157,10 @@ public class Instance {
                  * 
                  * @return
                  *     possible object is
-                 *     {@link TypeCost }
+                 *     {@link Double }
                  *     
                  */
-                public TypeCost getTravelCost() {
+                public Double getTravelCost() {
                     return travelCost;
                 }
 
@@ -2782,64 +3169,93 @@ public class Instance {
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link TypeCost }
+                 *     {@link Double }
                  *     
                  */
-                public void setTravelCost(TypeCost value) {
+                public void setTravelCost(Double value) {
                     this.travelCost = value;
                 }
 
                 /**
-                 * Gets the value of the tdTraveCost property.
+                 * Gets the value of the tdTravelCost property.
                  * 
                  * <p>
                  * This accessor method returns a reference to the live list,
                  * not a snapshot. Therefore any modification you make to the
                  * returned list will be present inside the JAXB object.
-                 * This is why there is not a <CODE>set</CODE> method for the tdTraveCost property.
+                 * This is why there is not a <CODE>set</CODE> method for the tdTravelCost property.
                  * 
                  * <p>
                  * For example, to add a new item, do as follows:
                  * <pre>
-                 *    getTdTraveCost().add(newItem);
+                 *    getTdTravelCost().add(newItem);
                  * </pre>
                  * 
                  * 
                  * <p>
                  * Objects of the following type(s) are allowed in the list
-                 * {@link Instance.Network.Links.Link.TdTraveCost }
+                 * {@link TimeDependentParameterType }
                  * 
                  * 
                  */
-                public List<Instance.Network.Links.Link.TdTraveCost> getTdTraveCost() {
-                    if (tdTraveCost == null) {
-                        tdTraveCost = new ArrayList<Instance.Network.Links.Link.TdTraveCost>();
+                public List<TimeDependentParameterType> getTdTravelCost() {
+                    if (tdTravelCost == null) {
+                        tdTravelCost = new ArrayList<TimeDependentParameterType>();
                     }
-                    return this.tdTraveCost;
+                    return this.tdTravelCost;
                 }
 
                 /**
-                 * Models customizable elements. Use this element to add features not included in the datamodel
+                 * Obtient la valeur de la propriété uncertainTravelCost.
                  * 
                  * @return
                  *     possible object is
-                 *     {@link Custom }
+                 *     {@link UncertainParameterType }
                  *     
                  */
-                public Custom getCustom() {
-                    return custom;
+                public UncertainParameterType getUncertainTravelCost() {
+                    return uncertainTravelCost;
                 }
 
                 /**
-                 * Définit la valeur de la propriété custom.
+                 * Définit la valeur de la propriété uncertainTravelCost.
                  * 
                  * @param value
                  *     allowed object is
-                 *     {@link Custom }
+                 *     {@link UncertainParameterType }
                  *     
                  */
-                public void setCustom(Custom value) {
-                    this.custom = value;
+                public void setUncertainTravelCost(UncertainParameterType value) {
+                    this.uncertainTravelCost = value;
+                }
+
+                /**
+                 * Time windows. Use these elements to model the link's availability Gets the value of the tw property.
+                 * 
+                 * <p>
+                 * This accessor method returns a reference to the live list,
+                 * not a snapshot. Therefore any modification you make to the
+                 * returned list will be present inside the JAXB object.
+                 * This is why there is not a <CODE>set</CODE> method for the tw property.
+                 * 
+                 * <p>
+                 * For example, to add a new item, do as follows:
+                 * <pre>
+                 *    getTw().add(newItem);
+                 * </pre>
+                 * 
+                 * 
+                 * <p>
+                 * Objects of the following type(s) are allowed in the list
+                 * {@link Tw }
+                 * 
+                 * 
+                 */
+                public List<Tw> getTw() {
+                    if (tw == null) {
+                        tw = new ArrayList<Tw>();
+                    }
+                    return this.tw;
                 }
 
                 /**
@@ -2966,138 +3382,6 @@ public class Instance {
                     this.type = value;
                 }
 
-                /**
-                 * Gets a map that contains attributes that aren't bound to any typed property on this class.
-                 * 
-                 * <p>
-                 * the map is keyed by the name of the attribute and 
-                 * the value is the string value of the attribute.
-                 * 
-                 * the map returned by this method is live, and you can add new attribute
-                 * by updating the map directly. Because of this design, there's no setter.
-                 * 
-                 * 
-                 * @return
-                 *     always non-null
-                 */
-                public Map<QName, String> getOtherAttributes() {
-                    return otherAttributes;
-                }
-
-
-                /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
-                 * <pre>
-                 * &lt;complexType>
-                 *   &lt;complexContent>
-                 *     &lt;extension base="{}type_tw">
-                 *       &lt;sequence>
-                 *         &lt;element ref="{}cost"/>
-                 *       &lt;/sequence>
-                 *     &lt;/extension>
-                 *   &lt;/complexContent>
-                 * &lt;/complexType>
-                 * </pre>
-                 * 
-                 * 
-                 */
-                @XmlAccessorType(XmlAccessType.FIELD)
-                @XmlType(name = "", propOrder = {
-                    "cost"
-                })
-                public static class TdTraveCost
-                    extends TypeTw
-                {
-
-                    @XmlElement(required = true)
-                    protected Cost cost;
-
-                    /**
-                     * The travel time
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link Cost }
-                     *     
-                     */
-                    public Cost getCost() {
-                        return cost;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété cost.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link Cost }
-                     *     
-                     */
-                    public void setCost(Cost value) {
-                        this.cost = value;
-                    }
-
-                }
-
-
-                /**
-                 * <p>Classe Java pour anonymous complex type.
-                 * 
-                 * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
-                 * 
-                 * <pre>
-                 * &lt;complexType>
-                 *   &lt;complexContent>
-                 *     &lt;extension base="{}type_tw">
-                 *       &lt;sequence>
-                 *         &lt;element ref="{}time"/>
-                 *       &lt;/sequence>
-                 *     &lt;/extension>
-                 *   &lt;/complexContent>
-                 * &lt;/complexType>
-                 * </pre>
-                 * 
-                 * 
-                 */
-                @XmlAccessorType(XmlAccessType.FIELD)
-                @XmlType(name = "", propOrder = {
-                    "time"
-                })
-                public static class TdTravelTime
-                    extends TypeTw
-                {
-
-                    @XmlElement(required = true)
-                    protected Time time;
-
-                    /**
-                     * The travel time
-                     * 
-                     * @return
-                     *     possible object is
-                     *     {@link Time }
-                     *     
-                     */
-                    public Time getTime() {
-                        return time;
-                    }
-
-                    /**
-                     * Définit la valeur de la propriété time.
-                     * 
-                     * @param value
-                     *     allowed object is
-                     *     {@link Time }
-                     *     
-                     */
-                    public void setTime(Time value) {
-                        this.time = value;
-                    }
-
-                }
-
             }
 
         }
@@ -3130,11 +3414,10 @@ public class Instance {
          *                     &lt;/sequence>
          *                   &lt;/choice>
          *                   &lt;element name="compatible_vehicle" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
-         *                   &lt;element ref="{}custom" minOccurs="0"/>
          *                 &lt;/sequence>
          *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
          *                 &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
-         *                 &lt;anyAttribute processContents='skip'/>
+         *                 &lt;attribute name="trailer" type="{http://www.w3.org/2001/XMLSchema}boolean" />
          *               &lt;/restriction>
          *             &lt;/complexContent>
          *           &lt;/complexType>
@@ -3208,11 +3491,10 @@ public class Instance {
              *           &lt;/sequence>
              *         &lt;/choice>
              *         &lt;element name="compatible_vehicle" type="{http://www.w3.org/2001/XMLSchema}int" maxOccurs="unbounded" minOccurs="0"/>
-             *         &lt;element ref="{}custom" minOccurs="0"/>
              *       &lt;/sequence>
              *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
              *       &lt;attribute name="type" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
-             *       &lt;anyAttribute processContents='skip'/>
+             *       &lt;attribute name="trailer" type="{http://www.w3.org/2001/XMLSchema}boolean" />
              *     &lt;/restriction>
              *   &lt;/complexContent>
              * &lt;/complexType>
@@ -3227,8 +3509,7 @@ public class Instance {
                 "cz",
                 "latitude",
                 "longitude",
-                "compatibleVehicle",
-                "custom"
+                "compatibleVehicle"
             })
             public static class Node {
 
@@ -3239,13 +3520,12 @@ public class Instance {
                 protected Double longitude;
                 @XmlElement(name = "compatible_vehicle", type = Integer.class)
                 protected List<Integer> compatibleVehicle;
-                protected Custom custom;
                 @XmlAttribute(name = "id", required = true)
                 protected BigInteger id;
                 @XmlAttribute(name = "type", required = true)
                 protected BigInteger type;
-                @XmlAnyAttribute
-                private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+                @XmlAttribute(name = "trailer")
+                protected Boolean trailer;
 
                 /**
                  * Obtient la valeur de la propriété cx.
@@ -3397,30 +3677,6 @@ public class Instance {
                 }
 
                 /**
-                 * Obtient la valeur de la propriété custom.
-                 * 
-                 * @return
-                 *     possible object is
-                 *     {@link Custom }
-                 *     
-                 */
-                public Custom getCustom() {
-                    return custom;
-                }
-
-                /**
-                 * Définit la valeur de la propriété custom.
-                 * 
-                 * @param value
-                 *     allowed object is
-                 *     {@link Custom }
-                 *     
-                 */
-                public void setCustom(Custom value) {
-                    this.custom = value;
-                }
-
-                /**
                  * Obtient la valeur de la propriété id.
                  * 
                  * @return
@@ -3469,21 +3725,27 @@ public class Instance {
                 }
 
                 /**
-                 * Gets a map that contains attributes that aren't bound to any typed property on this class.
-                 * 
-                 * <p>
-                 * the map is keyed by the name of the attribute and 
-                 * the value is the string value of the attribute.
-                 * 
-                 * the map returned by this method is live, and you can add new attribute
-                 * by updating the map directly. Because of this design, there's no setter.
-                 * 
+                 * Obtient la valeur de la propriété trailer.
                  * 
                  * @return
-                 *     always non-null
+                 *     possible object is
+                 *     {@link Boolean }
+                 *     
                  */
-                public Map<QName, String> getOtherAttributes() {
-                    return otherAttributes;
+                public Boolean isTrailer() {
+                    return trailer;
+                }
+
+                /**
+                 * Définit la valeur de la propriété trailer.
+                 * 
+                 * @param value
+                 *     allowed object is
+                 *     {@link Boolean }
+                 *     
+                 */
+                public void setTrailer(Boolean value) {
+                    this.trailer = value;
                 }
 
             }
@@ -3509,11 +3771,15 @@ public class Instance {
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *                 &lt;sequence>
      *                   &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
+     *                   &lt;choice>
+     *                     &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}double"/>
+     *                     &lt;element name="td_quantity" type="{}time_dependent_parameter_type"/>
+     *                     &lt;element name="uncertain_quantity" type="{}uncertain_parameter_type"/>
+     *                   &lt;/choice>
      *                   &lt;element ref="{}demand" maxOccurs="unbounded" minOccurs="0"/>
      *                   &lt;element name="prize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-     *                   &lt;element ref="{}cost" maxOccurs="unbounded" minOccurs="0"/>
-     *                   &lt;element name="release_date" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-     *                   &lt;element name="service_time" type="{}type_time" minOccurs="0"/>
+     *                   &lt;element name="release" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+     *                   &lt;element name="service_time" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
      *                   &lt;element name="predecessors" minOccurs="0">
      *                     &lt;complexType>
      *                       &lt;complexContent>
@@ -3541,12 +3807,11 @@ public class Instance {
      *                     &lt;complexType>
      *                       &lt;simpleContent>
      *                         &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
-     *                           &lt;attribute name="resource_id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
+     *                           &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
      *                         &lt;/extension>
      *                       &lt;/simpleContent>
      *                     &lt;/complexType>
      *                   &lt;/element>
-     *                   &lt;element ref="{}custom" minOccurs="0"/>
      *                 &lt;/sequence>
      *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
      *                 &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -3614,11 +3879,15 @@ public class Instance {
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
          *       &lt;sequence>
          *         &lt;element ref="{}tw" maxOccurs="unbounded" minOccurs="0"/>
+         *         &lt;choice>
+         *           &lt;element name="quantity" type="{http://www.w3.org/2001/XMLSchema}double"/>
+         *           &lt;element name="td_quantity" type="{}time_dependent_parameter_type"/>
+         *           &lt;element name="uncertain_quantity" type="{}uncertain_parameter_type"/>
+         *         &lt;/choice>
          *         &lt;element ref="{}demand" maxOccurs="unbounded" minOccurs="0"/>
          *         &lt;element name="prize" type="{http://www.w3.org/2001/XMLSchema}integer" minOccurs="0"/>
-         *         &lt;element ref="{}cost" maxOccurs="unbounded" minOccurs="0"/>
-         *         &lt;element name="release_date" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
-         *         &lt;element name="service_time" type="{}type_time" minOccurs="0"/>
+         *         &lt;element name="release" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+         *         &lt;element name="service_time" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
          *         &lt;element name="predecessors" minOccurs="0">
          *           &lt;complexType>
          *             &lt;complexContent>
@@ -3646,12 +3915,11 @@ public class Instance {
          *           &lt;complexType>
          *             &lt;simpleContent>
          *               &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
-         *                 &lt;attribute name="resource_id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
+         *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
          *               &lt;/extension>
          *             &lt;/simpleContent>
          *           &lt;/complexType>
          *         &lt;/element>
-         *         &lt;element ref="{}custom" minOccurs="0"/>
          *       &lt;/sequence>
          *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
          *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}integer" />
@@ -3667,33 +3935,36 @@ public class Instance {
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
             "tw",
+            "quantity",
+            "tdQuantity",
+            "uncertainQuantity",
             "demand",
             "prize",
-            "cost",
-            "releaseDate",
+            "release",
             "serviceTime",
             "predecessors",
             "successors",
             "skill",
-            "resource",
-            "custom"
+            "resource"
         })
         public static class Request {
 
             protected List<Tw> tw;
+            protected Double quantity;
+            @XmlElement(name = "td_quantity")
+            protected TimeDependentParameterType tdQuantity;
+            @XmlElement(name = "uncertain_quantity")
+            protected UncertainParameterType uncertainQuantity;
             protected List<Demand> demand;
             protected BigInteger prize;
-            protected List<Cost> cost;
-            @XmlElement(name = "release_date")
-            protected Double releaseDate;
+            protected Double release;
             @XmlElement(name = "service_time")
-            protected TypeTime serviceTime;
+            protected Object serviceTime;
             protected Instance.Requests.Request.Predecessors predecessors;
             protected Instance.Requests.Request.Successors successors;
             @XmlElement(type = Integer.class)
             protected List<Integer> skill;
             protected List<Instance.Requests.Request.Resource> resource;
-            protected Custom custom;
             @XmlAttribute(name = "id", required = true)
             protected BigInteger id;
             @XmlAttribute(name = "type")
@@ -3730,6 +4001,78 @@ public class Instance {
                     tw = new ArrayList<Tw>();
                 }
                 return this.tw;
+            }
+
+            /**
+             * Obtient la valeur de la propriété quantity.
+             * 
+             * @return
+             *     possible object is
+             *     {@link Double }
+             *     
+             */
+            public Double getQuantity() {
+                return quantity;
+            }
+
+            /**
+             * Définit la valeur de la propriété quantity.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link Double }
+             *     
+             */
+            public void setQuantity(Double value) {
+                this.quantity = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété tdQuantity.
+             * 
+             * @return
+             *     possible object is
+             *     {@link TimeDependentParameterType }
+             *     
+             */
+            public TimeDependentParameterType getTdQuantity() {
+                return tdQuantity;
+            }
+
+            /**
+             * Définit la valeur de la propriété tdQuantity.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link TimeDependentParameterType }
+             *     
+             */
+            public void setTdQuantity(TimeDependentParameterType value) {
+                this.tdQuantity = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété uncertainQuantity.
+             * 
+             * @return
+             *     possible object is
+             *     {@link UncertainParameterType }
+             *     
+             */
+            public UncertainParameterType getUncertainQuantity() {
+                return uncertainQuantity;
+            }
+
+            /**
+             * Définit la valeur de la propriété uncertainQuantity.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link UncertainParameterType }
+             *     
+             */
+            public void setUncertainQuantity(UncertainParameterType value) {
+                this.uncertainQuantity = value;
             }
 
             /**
@@ -3786,56 +4129,27 @@ public class Instance {
             }
 
             /**
-             * The costs of servicing the request (e.g., the outsourcing cost in the VRPPC) Gets the value of the cost property.
-             * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the cost property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getCost().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link Cost }
-             * 
-             * 
-             */
-            public List<Cost> getCost() {
-                if (cost == null) {
-                    cost = new ArrayList<Cost>();
-                }
-                return this.cost;
-            }
-
-            /**
-             * Obtient la valeur de la propriété releaseDate.
+             * Obtient la valeur de la propriété release.
              * 
              * @return
              *     possible object is
              *     {@link Double }
              *     
              */
-            public Double getReleaseDate() {
-                return releaseDate;
+            public Double getRelease() {
+                return release;
             }
 
             /**
-             * Définit la valeur de la propriété releaseDate.
+             * Définit la valeur de la propriété release.
              * 
              * @param value
              *     allowed object is
              *     {@link Double }
              *     
              */
-            public void setReleaseDate(Double value) {
-                this.releaseDate = value;
+            public void setRelease(Double value) {
+                this.release = value;
             }
 
             /**
@@ -3843,10 +4157,10 @@ public class Instance {
              * 
              * @return
              *     possible object is
-             *     {@link TypeTime }
+             *     {@link Object }
              *     
              */
-            public TypeTime getServiceTime() {
+            public Object getServiceTime() {
                 return serviceTime;
             }
 
@@ -3855,10 +4169,10 @@ public class Instance {
              * 
              * @param value
              *     allowed object is
-             *     {@link TypeTime }
+             *     {@link Object }
              *     
              */
-            public void setServiceTime(TypeTime value) {
+            public void setServiceTime(Object value) {
                 this.serviceTime = value;
             }
 
@@ -3966,30 +4280,6 @@ public class Instance {
                     resource = new ArrayList<Instance.Requests.Request.Resource>();
                 }
                 return this.resource;
-            }
-
-            /**
-             * Obtient la valeur de la propriété custom.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Custom }
-             *     
-             */
-            public Custom getCustom() {
-                return custom;
-            }
-
-            /**
-             * Définit la valeur de la propriété custom.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Custom }
-             *     
-             */
-            public void setCustom(Custom value) {
-                this.custom = value;
             }
 
             /**
@@ -4158,7 +4448,7 @@ public class Instance {
              * &lt;complexType>
              *   &lt;simpleContent>
              *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>double">
-             *       &lt;attribute name="resource_id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
+             *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}int" />
              *     &lt;/extension>
              *   &lt;/simpleContent>
              * &lt;/complexType>
@@ -4174,8 +4464,8 @@ public class Instance {
 
                 @XmlValue
                 protected double value;
-                @XmlAttribute(name = "resource_id", required = true)
-                protected int resourceId;
+                @XmlAttribute(name = "id", required = true)
+                protected int id;
 
                 /**
                  * Obtient la valeur de la propriété value.
@@ -4194,19 +4484,19 @@ public class Instance {
                 }
 
                 /**
-                 * Obtient la valeur de la propriété resourceId.
+                 * Obtient la valeur de la propriété id.
                  * 
                  */
-                public int getResourceId() {
-                    return resourceId;
+                public int getId() {
+                    return id;
                 }
 
                 /**
-                 * Définit la valeur de la propriété resourceId.
+                 * Définit la valeur de la propriété id.
                  * 
                  */
-                public void setResourceId(int value) {
-                    this.resourceId = value;
+                public void setId(int value) {
+                    this.id = value;
                 }
 
             }
@@ -4290,11 +4580,9 @@ public class Instance {
      *           &lt;complexType>
      *             &lt;complexContent>
      *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="descriptor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                 &lt;/sequence>
      *                 &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
-     *                 &lt;anyAttribute processContents='skip'/>
+     *                 &lt;attribute name="renewable" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+     *                 &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
      *               &lt;/restriction>
      *             &lt;/complexContent>
      *           &lt;/complexType>
@@ -4355,11 +4643,9 @@ public class Instance {
          * &lt;complexType>
          *   &lt;complexContent>
          *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="descriptor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *       &lt;/sequence>
          *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" />
-         *       &lt;anyAttribute processContents='skip'/>
+         *       &lt;attribute name="renewable" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+         *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
          *     &lt;/restriction>
          *   &lt;/complexContent>
          * &lt;/complexType>
@@ -4373,42 +4659,37 @@ public class Instance {
         })
         public static class Resource {
 
-            @XmlElementRef(name = "descriptor", type = JAXBElement.class, required = false)
-            @XmlMixed
-            protected List<Serializable> content;
+            @XmlValue
+            protected String content;
             @XmlAttribute(name = "id", required = true)
             protected BigInteger id;
-            @XmlAnyAttribute
-            private Map<QName, String> otherAttributes = new HashMap<QName, String>();
+            @XmlAttribute(name = "renewable", required = true)
+            protected boolean renewable;
+            @XmlAttribute(name = "name", required = true)
+            protected String name;
 
             /**
-             * Gets the value of the content property.
+             * Obtient la valeur de la propriété content.
              * 
-             * <p>
-             * This accessor method returns a reference to the live list,
-             * not a snapshot. Therefore any modification you make to the
-             * returned list will be present inside the JAXB object.
-             * This is why there is not a <CODE>set</CODE> method for the content property.
-             * 
-             * <p>
-             * For example, to add a new item, do as follows:
-             * <pre>
-             *    getContent().add(newItem);
-             * </pre>
-             * 
-             * 
-             * <p>
-             * Objects of the following type(s) are allowed in the list
-             * {@link JAXBElement }{@code <}{@link String }{@code >}
-             * {@link String }
-             * 
-             * 
+             * @return
+             *     possible object is
+             *     {@link String }
+             *     
              */
-            public List<Serializable> getContent() {
-                if (content == null) {
-                    content = new ArrayList<Serializable>();
-                }
-                return this.content;
+            public String getContent() {
+                return content;
+            }
+
+            /**
+             * Définit la valeur de la propriété content.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setContent(String value) {
+                this.content = value;
             }
 
             /**
@@ -4436,21 +4717,43 @@ public class Instance {
             }
 
             /**
-             * Gets a map that contains attributes that aren't bound to any typed property on this class.
+             * Obtient la valeur de la propriété renewable.
              * 
-             * <p>
-             * the map is keyed by the name of the attribute and 
-             * the value is the string value of the attribute.
+             */
+            public boolean isRenewable() {
+                return renewable;
+            }
+
+            /**
+             * Définit la valeur de la propriété renewable.
              * 
-             * the map returned by this method is live, and you can add new attribute
-             * by updating the map directly. Because of this design, there's no setter.
-             * 
+             */
+            public void setRenewable(boolean value) {
+                this.renewable = value;
+            }
+
+            /**
+             * Obtient la valeur de la propriété name.
              * 
              * @return
-             *     always non-null
+             *     possible object is
+             *     {@link String }
+             *     
              */
-            public Map<QName, String> getOtherAttributes() {
-                return otherAttributes;
+            public String getName() {
+                return name;
+            }
+
+            /**
+             * Définit la valeur de la propriété name.
+             * 
+             * @param value
+             *     allowed object is
+             *     {@link String }
+             *     
+             */
+            public void setName(String value) {
+                this.name = value;
             }
 
         }

@@ -1,7 +1,10 @@
-package fetcher;
+package impl;
 
-import keyword.Keyword;
-
+/**
+ * 
+ * @author hubertlobit
+ *
+ */
 public interface ValueFetcher {
 	
 	public Keyword[] getKeywords();

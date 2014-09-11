@@ -1,28 +1,25 @@
-package translator;
+package tsplib95;
 
-import fetcher.DanieleValueFetcher;
+import impl.GlobalConverter;
+import impl.InstanceTranslatorImpl;
 import io.FileLiner;
 
 import java.nio.file.Path;
 
-import converter.GlobalConverter;
-import keyword.DanieleKeyword;
-import static keyword.DanieleKeyword.*;
+import static tsplib95.TSPLIB95Keyword.*;
 import model.Instance;
 import model.Instance.Fleet;
 import model.Instance.Info;
 import model.Instance.Network;
-import model.Instance.Fleet.Vehicle;
 import model.Instance.Requests;
+import model.Instance.Fleet.VehicleProfile;
 import model.ObjectFactory;
 
-public class DanieleTranslator implements InstanceTranslator<DanieleKeyword> {
-
-	private GlobalConverter converter;
+public class TSPLIB95Translator extends InstanceTranslatorImpl {
 
 	public Instance getInstance(Path filePath){
 		FileLiner liner = new FileLiner(filePath);
-		DanieleValueFetcher fetcher = new DanieleValueFetcher(liner.getLines());
+		TSPLIB95ValueFetcher fetcher = new TSPLIB95ValueFetcher(liner.getLines());
 		converter = new GlobalConverter(fetcher);
 
 		ObjectFactory objectFactory = new ObjectFactory();
@@ -34,23 +31,21 @@ public class DanieleTranslator implements InstanceTranslator<DanieleKeyword> {
 		instance.setInfo(info);
 
 		Fleet fleet = objectFactory.createInstanceFleet();
-		int vehicles = (Integer) converter.get(VEHICLES);
+		//int vehicles = (Integer) converter.get(VEHICLES);
 		double capacity = (Double) converter.get(CAPACITY);
-		for(int i = 0 ; i < vehicles ; i++) {
-			Vehicle vehicle = objectFactory.createInstanceFleetVehicle();
-			vehicle.setId(i);
-			vehicle.setCapacity(capacity);
-			
-			String type = (String) converter.get(TYPE);
-			if(type.equals("DCVRP")){
-				double maxLength = (Double) converter.get(MAX_LENGTH);
-				vehicle.setMaxTravelDistance(maxLength);
-				double servTime = (Double) converter.get(SERV_TIME);
-				vehicle.setMaxTravelTime(servTime);
-			}
-			
-			fleet.getVehicle().add(vehicle);
+		VehicleProfile profile = objectFactory.createInstanceFleetVehicleProfile();
+		profile.setCapacity(capacity);
+		//profile.setNumber(vehicles);
+
+		String type = (String) converter.get(TYPE);
+		if(type.equals("DCVRP")){
+			double maxLength = (Double) converter.get(MAX_LENGTH);
+			profile.setMaxTravelDistance(maxLength);
+			double servTime = (Double) converter.get(SERV_TIME);
+			profile.setMaxTravelTime(servTime);
 		}
+
+		fleet.getVehicleProfile().add(profile);
 		instance.setFleet(fleet);
 
 		String edgeWeightType = (String) converter.get(EDGE_WEIGHT_TYPE);
@@ -60,7 +55,7 @@ public class DanieleTranslator implements InstanceTranslator<DanieleKeyword> {
 		if(edgeWeightType.equals("EXPLICIT")){
 			instance.setNetwork((Network) converter.get(EDGE_WEIGHT_SECTION));
 		}
-		
+
 		instance.setRequests((Requests) converter.get(DEMAND_SECTION));
 
 		return instance;

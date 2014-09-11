@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.09.01 à 12:12:00 PM CEST 
+// Généré le : 2014.09.09 à 04:59:16 PM CEST 
 //
 
 
@@ -14,18 +14,19 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Classe Java pour anonymous complex type.
+ * Defines a random variable
+ * 
+ * <p>Classe Java pour random_variable_type complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType>
+ * &lt;complexType name="random_variable_type">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
@@ -58,15 +59,14 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
+@XmlType(name = "random_variable_type", propOrder = {
     "moment",
     "parameter"
 })
-@XmlRootElement(name = "random_variable")
-public class RandomVariable {
+public class RandomVariableType {
 
-    protected List<RandomVariable.Moment> moment;
-    protected List<RandomVariable.Parameter> parameter;
+    protected List<RandomVariableType.Moment> moment;
+    protected List<RandomVariableType.Parameter> parameter;
     @XmlAttribute(name = "distribution", required = true)
     protected String distribution;
 
@@ -88,13 +88,13 @@ public class RandomVariable {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link RandomVariable.Moment }
+     * {@link RandomVariableType.Moment }
      * 
      * 
      */
-    public List<RandomVariable.Moment> getMoment() {
+    public List<RandomVariableType.Moment> getMoment() {
         if (moment == null) {
-            moment = new ArrayList<RandomVariable.Moment>();
+            moment = new ArrayList<RandomVariableType.Moment>();
         }
         return this.moment;
     }
@@ -117,13 +117,13 @@ public class RandomVariable {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link RandomVariable.Parameter }
+     * {@link RandomVariableType.Parameter }
      * 
      * 
      */
-    public List<RandomVariable.Parameter> getParameter() {
+    public List<RandomVariableType.Parameter> getParameter() {
         if (parameter == null) {
-            parameter = new ArrayList<RandomVariable.Parameter>();
+            parameter = new ArrayList<RandomVariableType.Parameter>();
         }
         return this.parameter;
     }

@@ -1,4 +1,4 @@
-package test.daniele;
+package test.tsplib95;
 
 import static org.junit.Assert.*;
 
@@ -8,16 +8,16 @@ import java.util.Collection;
 import org.junit.Test;
 import org.junit.runners.Parameterized;
 
-import fetcher.DanieleValueFetcher;
 import test.ValueFetcherTest;
+import tsplib95.TSPLIB95ValueFetcher;
 
-public class DanieleValueFetcherTest extends ValueFetcherTest<DanieleValueFetcher> {
+public class TSPLIB95ValueFetcherTest extends ValueFetcherTest<TSPLIB95ValueFetcher> {
 
 	private int numberOfKeywords;
 
-	public DanieleValueFetcherTest(String[] input, int numberOfKeywords) {
+	public TSPLIB95ValueFetcherTest(String[] input, int numberOfKeywords) {
 		super(input);
-		this.fetcher = new DanieleValueFetcher(input);
+		this.fetcher = new TSPLIB95ValueFetcher(input);
 		this.numberOfKeywords = numberOfKeywords;
 	}
 

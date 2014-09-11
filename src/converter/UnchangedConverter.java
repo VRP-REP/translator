@@ -1,14 +1,14 @@
 package converter;
 
 
-import java.util.HashMap;
+import impl.Keyword;
 
-import keyword.Keyword;
+import java.util.Map;
 
 public class UnchangedConverter implements Converter<String> {
 
 	@Override
-	public String getOutput(String input, HashMap<Keyword, Object> anteriorValues) {
+	public String getOutput(String input, Map<Keyword, Object> anteriorValues) {
 		return input;
 	}
 

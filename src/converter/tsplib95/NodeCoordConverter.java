@@ -1,13 +1,14 @@
-package converter.daniele;
+package converter.tsplib95;
+
+import impl.Keyword;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static keyword.DanieleKeyword.*;
-import keyword.Keyword;
+import static tsplib95.TSPLIB95Keyword.*;
 import converter.Converter;
 import model.ObjectFactory;
 import model.Instance.Network;
@@ -17,7 +18,7 @@ import model.Instance.Network.Nodes.Node;
 public class NodeCoordConverter implements Converter<Network> {
 
 	@Override
-	public Network getOutput(String input, HashMap<Keyword, Object> anteriorValues) {
+	public Network getOutput(String input, Map<Keyword, Object> anteriorValues) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		Network network = objectFactory.createInstanceNetwork();
 		Nodes nodes = objectFactory.createInstanceNetworkNodes();

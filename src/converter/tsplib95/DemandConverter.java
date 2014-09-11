@@ -1,12 +1,12 @@
-package converter.daniele;
+package converter.tsplib95;
+
+import impl.Keyword;
 
 import java.math.BigInteger;
-import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import keyword.Keyword;
-import model.Demand;
 import model.ObjectFactory;
 import model.Instance.Requests;
 import model.Instance.Requests.Request;
@@ -15,7 +15,7 @@ import converter.Converter;
 public class DemandConverter implements Converter<Requests> {
 
 	@Override
-	public Requests getOutput(String input, HashMap<Keyword, Object> anteriorValues) {
+	public Requests getOutput(String input, Map<Keyword, Object> anteriorValues) {
 		ObjectFactory objectFactory = new ObjectFactory();
 		Requests requests = objectFactory.createInstanceRequests();
 
@@ -26,9 +26,7 @@ public class DemandConverter implements Converter<Requests> {
 			if (matcher.find()) {
 				Request request = objectFactory.createInstanceRequestsRequest();
 				request.setNode(BigInteger.valueOf(Integer.valueOf(matcher.group("id"))));
-				Demand demand = objectFactory.createDemand();
-				//FIXME DEMANDS
-				request.getDemand().add(demand);
+				request.setQuantity(Double.valueOf(matcher.group("demand")));
 				requests.getRequest().add(request);
 			}
 		}

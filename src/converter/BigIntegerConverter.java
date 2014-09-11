@@ -1,15 +1,15 @@
 package converter;
 
 
-import java.math.BigInteger;
-import java.util.HashMap;
+import impl.Keyword;
 
-import keyword.Keyword;
+import java.math.BigInteger;
+import java.util.Map;
 
 public class BigIntegerConverter implements Converter<BigInteger> {
 
 	@Override
-	public BigInteger getOutput(String input, HashMap<Keyword, Object> anteriorValues) {
+	public BigInteger getOutput(String input, Map<Keyword, Object> anteriorValues) {
 		return BigInteger.valueOf((Integer.valueOf(input)));
 	}
 

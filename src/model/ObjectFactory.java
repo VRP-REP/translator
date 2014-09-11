@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.09.01 à 12:12:00 PM CEST 
+// Généré le : 2014.09.09 à 04:59:16 PM CEST 
 //
 
 
@@ -17,7 +17,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the data package. 
+ * generated in the model package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -31,30 +31,14 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _InstanceResourcesResourceDescriptor_QNAME = new QName("", "descriptor");
-    private final static QName _TypeCostWeight_QNAME = new QName("", "weight");
+    private final static QName _RandomVariable_QNAME = new QName("", "random_variable");
+    private final static QName _Dimensions_QNAME = new QName("", "dimensions");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: data
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: model
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link TypeTw }
-     * 
-     */
-    public TypeTw createTypeTw() {
-        return new TypeTw();
-    }
-
-    /**
-     * Create an instance of {@link RandomVariable }
-     * 
-     */
-    public RandomVariable createRandomVariable() {
-        return new RandomVariable();
     }
 
     /**
@@ -66,19 +50,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Instance.AdditionalFees }
+     * Create an instance of {@link TwType }
      * 
      */
-    public Instance.AdditionalFees createInstanceAdditionalFees() {
-        return new Instance.AdditionalFees();
+    public TwType createTwType() {
+        return new TwType();
     }
 
     /**
-     * Create an instance of {@link Instance.Resources }
+     * Create an instance of {@link UncertainParameterType }
      * 
      */
-    public Instance.Resources createInstanceResources() {
-        return new Instance.Resources();
+    public UncertainParameterType createUncertainParameterType() {
+        return new UncertainParameterType();
     }
 
     /**
@@ -95,6 +79,14 @@ public class ObjectFactory {
      */
     public Instance.Drivers.DriverProfile createInstanceDriversDriverProfile() {
         return new Instance.Drivers.DriverProfile();
+    }
+
+    /**
+     * Create an instance of {@link Instance.Resources }
+     * 
+     */
+    public Instance.Resources createInstanceResources() {
+        return new Instance.Resources();
     }
 
     /**
@@ -122,11 +114,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Instance.Fleet.Vehicle }
+     * Create an instance of {@link Instance.Fleet.VehicleProfile }
      * 
      */
-    public Instance.Fleet.Vehicle createInstanceFleetVehicle() {
-        return new Instance.Fleet.Vehicle();
+    public Instance.Fleet.VehicleProfile createInstanceFleetVehicleProfile() {
+        return new Instance.Fleet.VehicleProfile();
     }
 
     /**
@@ -146,83 +138,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Instance.Network.Links.Link }
-     * 
-     */
-    public Instance.Network.Links.Link createInstanceNetworkLinksLink() {
-        return new Instance.Network.Links.Link();
-    }
-
-    /**
      * Create an instance of {@link Instance.Network.Nodes }
      * 
      */
     public Instance.Network.Nodes createInstanceNetworkNodes() {
         return new Instance.Network.Nodes();
-    }
-
-    /**
-     * Create an instance of {@link SpeedProfile }
-     * 
-     */
-    public SpeedProfile createSpeedProfile() {
-        return new SpeedProfile();
-    }
-
-    /**
-     * Create an instance of {@link Tw }
-     * 
-     */
-    public Tw createTw() {
-        return new Tw();
-    }
-
-    /**
-     * Create an instance of {@link TypeTw.Start }
-     * 
-     */
-    public TypeTw.Start createTypeTwStart() {
-        return new TypeTw.Start();
-    }
-
-    /**
-     * Create an instance of {@link TypeTw.End }
-     * 
-     */
-    public TypeTw.End createTypeTwEnd() {
-        return new TypeTw.End();
-    }
-
-    /**
-     * Create an instance of {@link TypeTw.Period }
-     * 
-     */
-    public TypeTw.Period createTypeTwPeriod() {
-        return new TypeTw.Period();
-    }
-
-    /**
-     * Create an instance of {@link Custom }
-     * 
-     */
-    public Custom createCustom() {
-        return new Custom();
-    }
-
-    /**
-     * Create an instance of {@link RandomVariable.Moment }
-     * 
-     */
-    public RandomVariable.Moment createRandomVariableMoment() {
-        return new RandomVariable.Moment();
-    }
-
-    /**
-     * Create an instance of {@link RandomVariable.Parameter }
-     * 
-     */
-    public RandomVariable.Parameter createRandomVariableParameter() {
-        return new RandomVariable.Parameter();
     }
 
     /**
@@ -234,19 +154,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Cost }
+     * Create an instance of {@link RandomVariableType }
      * 
      */
-    public Cost createCost() {
-        return new Cost();
+    public RandomVariableType createRandomVariableType() {
+        return new RandomVariableType();
     }
 
     /**
-     * Create an instance of {@link TypeCost }
+     * Create an instance of {@link Tw }
      * 
      */
-    public TypeCost createTypeCost() {
-        return new TypeCost();
+    public Tw createTw() {
+        return new Tw();
+    }
+
+    /**
+     * Create an instance of {@link TwType.Start }
+     * 
+     */
+    public TwType.Start createTwTypeStart() {
+        return new TwType.Start();
+    }
+
+    /**
+     * Create an instance of {@link TwType.End }
+     * 
+     */
+    public TwType.End createTwTypeEnd() {
+        return new TwType.End();
+    }
+
+    /**
+     * Create an instance of {@link TwType.Period }
+     * 
+     */
+    public TwType.Period createTwTypePeriod() {
+        return new TwType.Period();
     }
 
     /**
@@ -258,11 +202,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Dimensions }
+     * Create an instance of {@link DimensionsType }
      * 
      */
-    public Dimensions createDimensions() {
-        return new Dimensions();
+    public DimensionsType createDimensionsType() {
+        return new DimensionsType();
+    }
+
+    /**
+     * Create an instance of {@link Action }
+     * 
+     */
+    public Action createAction() {
+        return new Action();
     }
 
     /**
@@ -274,22 +226,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Time }
-     * 
-     */
-    public Time createTime() {
-        return new Time();
-    }
-
-    /**
-     * Create an instance of {@link TypeTime }
-     * 
-     */
-    public TypeTime createTypeTime() {
-        return new TypeTime();
-    }
-
-    /**
      * Create an instance of {@link Demand }
      * 
      */
@@ -298,19 +234,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Instance.AdditionalFees.Fee }
+     * Create an instance of {@link TimeDependentParameterType }
      * 
      */
-    public Instance.AdditionalFees.Fee createInstanceAdditionalFeesFee() {
-        return new Instance.AdditionalFees.Fee();
+    public TimeDependentParameterType createTimeDependentParameterType() {
+        return new TimeDependentParameterType();
     }
 
     /**
-     * Create an instance of {@link Instance.Resources.Resource }
+     * Create an instance of {@link UncertainParameterType.Scenario }
      * 
      */
-    public Instance.Resources.Resource createInstanceResourcesResource() {
-        return new Instance.Resources.Resource();
+    public UncertainParameterType.Scenario createUncertainParameterTypeScenario() {
+        return new UncertainParameterType.Scenario();
+    }
+
+    /**
+     * Create an instance of {@link Instance.Drivers.DriverProfile.CompatibleWithAllVehicles }
+     * 
+     */
+    public Instance.Drivers.DriverProfile.CompatibleWithAllVehicles createInstanceDriversDriverProfileCompatibleWithAllVehicles() {
+        return new Instance.Drivers.DriverProfile.CompatibleWithAllVehicles();
     }
 
     /**
@@ -327,6 +271,14 @@ public class ObjectFactory {
      */
     public Instance.Drivers.DriverProfile.WorkloadProfile createInstanceDriversDriverProfileWorkloadProfile() {
         return new Instance.Drivers.DriverProfile.WorkloadProfile();
+    }
+
+    /**
+     * Create an instance of {@link Instance.Resources.Resource }
+     * 
+     */
+    public Instance.Resources.Resource createInstanceResourcesResource() {
+        return new Instance.Resources.Resource();
     }
 
     /**
@@ -354,35 +306,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Instance.Fleet.Vehicle.MaxStops }
+     * Create an instance of {@link Instance.Fleet.TrailerProfile }
      * 
      */
-    public Instance.Fleet.Vehicle.MaxStops createInstanceFleetVehicleMaxStops() {
-        return new Instance.Fleet.Vehicle.MaxStops();
+    public Instance.Fleet.TrailerProfile createInstanceFleetTrailerProfile() {
+        return new Instance.Fleet.TrailerProfile();
     }
 
     /**
-     * Create an instance of {@link Instance.Fleet.Vehicle.Resource }
+     * Create an instance of {@link Instance.Fleet.VehicleProfile.DepartureFromAnyNode }
      * 
      */
-    public Instance.Fleet.Vehicle.Resource createInstanceFleetVehicleResource() {
-        return new Instance.Fleet.Vehicle.Resource();
+    public Instance.Fleet.VehicleProfile.DepartureFromAnyNode createInstanceFleetVehicleProfileDepartureFromAnyNode() {
+        return new Instance.Fleet.VehicleProfile.DepartureFromAnyNode();
     }
 
     /**
-     * Create an instance of {@link Instance.Network.Links.Link.TdTravelTime }
+     * Create an instance of {@link Instance.Fleet.VehicleProfile.ArrivalAtAnyNode }
      * 
      */
-    public Instance.Network.Links.Link.TdTravelTime createInstanceNetworkLinksLinkTdTravelTime() {
-        return new Instance.Network.Links.Link.TdTravelTime();
+    public Instance.Fleet.VehicleProfile.ArrivalAtAnyNode createInstanceFleetVehicleProfileArrivalAtAnyNode() {
+        return new Instance.Fleet.VehicleProfile.ArrivalAtAnyNode();
     }
 
     /**
-     * Create an instance of {@link Instance.Network.Links.Link.TdTraveCost }
+     * Create an instance of {@link Instance.Fleet.VehicleProfile.Resource }
      * 
      */
-    public Instance.Network.Links.Link.TdTraveCost createInstanceNetworkLinksLinkTdTraveCost() {
-        return new Instance.Network.Links.Link.TdTraveCost();
+    public Instance.Fleet.VehicleProfile.Resource createInstanceFleetVehicleProfileResource() {
+        return new Instance.Fleet.VehicleProfile.Resource();
+    }
+
+    /**
+     * Create an instance of {@link Instance.Fleet.VehicleProfile.Trailers }
+     * 
+     */
+    public Instance.Fleet.VehicleProfile.Trailers createInstanceFleetVehicleProfileTrailers() {
+        return new Instance.Fleet.VehicleProfile.Trailers();
+    }
+
+    /**
+     * Create an instance of {@link Instance.Network.Links.Link }
+     * 
+     */
+    public Instance.Network.Links.Link createInstanceNetworkLinksLink() {
+        return new Instance.Network.Links.Link();
     }
 
     /**
@@ -394,21 +362,45 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * Create an instance of {@link Instance.Info.Descriptor }
      * 
      */
-    @XmlElementDecl(namespace = "", name = "descriptor", scope = Instance.Resources.Resource.class)
-    public JAXBElement<String> createInstanceResourcesResourceDescriptor(String value) {
-        return new JAXBElement<String>(_InstanceResourcesResourceDescriptor_QNAME, String.class, Instance.Resources.Resource.class, value);
+    public Instance.Info.Descriptor createInstanceInfoDescriptor() {
+        return new Instance.Info.Descriptor();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Double }{@code >}}
+     * Create an instance of {@link RandomVariableType.Moment }
      * 
      */
-    @XmlElementDecl(namespace = "", name = "weight", scope = TypeCost.class)
-    public JAXBElement<Double> createTypeCostWeight(Double value) {
-        return new JAXBElement<Double>(_TypeCostWeight_QNAME, Double.class, TypeCost.class, value);
+    public RandomVariableType.Moment createRandomVariableTypeMoment() {
+        return new RandomVariableType.Moment();
+    }
+
+    /**
+     * Create an instance of {@link RandomVariableType.Parameter }
+     * 
+     */
+    public RandomVariableType.Parameter createRandomVariableTypeParameter() {
+        return new RandomVariableType.Parameter();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RandomVariableType }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "random_variable")
+    public JAXBElement<RandomVariableType> createRandomVariable(RandomVariableType value) {
+        return new JAXBElement<RandomVariableType>(_RandomVariable_QNAME, RandomVariableType.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DimensionsType }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "dimensions")
+    public JAXBElement<DimensionsType> createDimensions(DimensionsType value) {
+        return new JAXBElement<DimensionsType>(_Dimensions_QNAME, DimensionsType.class, null, value);
     }
 
 }

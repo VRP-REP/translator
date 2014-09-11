@@ -1,9 +1,9 @@
 package test;
 
+import impl.ValueFetcher;
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import fetcher.ValueFetcher;
 
 @RunWith(Parameterized.class)
 public abstract class ValueFetcherTest<T extends ValueFetcher> {

@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.09.01 à 12:12:00 PM CEST 
+// Généré le : 2014.09.09 à 04:59:16 PM CEST 
 //
 
 
@@ -17,12 +17,14 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Classe Java pour type_tw complex type.
+ * Defines a time window type
+ * 
+ * <p>Classe Java pour tw_type complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="type_tw">
+ * &lt;complexType name="tw_type">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;choice>
@@ -64,31 +66,29 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "type_tw", propOrder = {
+@XmlType(name = "tw_type", propOrder = {
     "start",
     "end",
     "period"
 })
 @XmlSeeAlso({
-    model.Instance.Network.Links.Link.TdTravelTime.class,
-    model.Instance.Network.Links.Link.TdTraveCost.class,
     Tw.class
 })
-public class TypeTw {
+public class TwType {
 
-    protected TypeTw.Start start;
-    protected TypeTw.End end;
-    protected TypeTw.Period period;
+    protected TwType.Start start;
+    protected TwType.End end;
+    protected TwType.Period period;
 
     /**
      * Obtient la valeur de la propriété start.
      * 
      * @return
      *     possible object is
-     *     {@link TypeTw.Start }
+     *     {@link TwType.Start }
      *     
      */
-    public TypeTw.Start getStart() {
+    public TwType.Start getStart() {
         return start;
     }
 
@@ -97,10 +97,10 @@ public class TypeTw {
      * 
      * @param value
      *     allowed object is
-     *     {@link TypeTw.Start }
+     *     {@link TwType.Start }
      *     
      */
-    public void setStart(TypeTw.Start value) {
+    public void setStart(TwType.Start value) {
         this.start = value;
     }
 
@@ -109,10 +109,10 @@ public class TypeTw {
      * 
      * @return
      *     possible object is
-     *     {@link TypeTw.End }
+     *     {@link TwType.End }
      *     
      */
-    public TypeTw.End getEnd() {
+    public TwType.End getEnd() {
         return end;
     }
 
@@ -121,10 +121,10 @@ public class TypeTw {
      * 
      * @param value
      *     allowed object is
-     *     {@link TypeTw.End }
+     *     {@link TwType.End }
      *     
      */
-    public void setEnd(TypeTw.End value) {
+    public void setEnd(TwType.End value) {
         this.end = value;
     }
 
@@ -133,10 +133,10 @@ public class TypeTw {
      * 
      * @return
      *     possible object is
-     *     {@link TypeTw.Period }
+     *     {@link TwType.Period }
      *     
      */
-    public TypeTw.Period getPeriod() {
+    public TwType.Period getPeriod() {
         return period;
     }
 
@@ -145,10 +145,10 @@ public class TypeTw {
      * 
      * @param value
      *     allowed object is
-     *     {@link TypeTw.Period }
+     *     {@link TwType.Period }
      *     
      */
-    public void setPeriod(TypeTw.Period value) {
+    public void setPeriod(TwType.Period value) {
         this.period = value;
     }
 

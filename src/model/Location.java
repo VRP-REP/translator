@@ -2,7 +2,7 @@
 // Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
-// Généré le : 2014.09.01 à 12:12:00 PM CEST 
+// Généré le : 2014.09.09 à 04:59:16 PM CEST 
 //
 
 
@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;element name="latitude" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *           &lt;element name="longitude" type="{http://www.w3.org/2001/XMLSchema}double"/>
  *         &lt;/sequence>
- *         &lt;element ref="{}custom"/>
  *       &lt;/choice>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -48,8 +47,7 @@ import javax.xml.bind.annotation.XmlType;
     "cy",
     "cz",
     "latitude",
-    "longitude",
-    "custom"
+    "longitude"
 })
 @XmlRootElement(name = "location")
 public class Location {
@@ -59,7 +57,6 @@ public class Location {
     protected Double cz;
     protected Double latitude;
     protected Double longitude;
-    protected Custom custom;
 
     /**
      * Obtient la valeur de la propriété cx.
@@ -179,30 +176,6 @@ public class Location {
      */
     public void setLongitude(Double value) {
         this.longitude = value;
-    }
-
-    /**
-     * Use this element to define your customized location description
-     * 
-     * @return
-     *     possible object is
-     *     {@link Custom }
-     *     
-     */
-    public Custom getCustom() {
-        return custom;
-    }
-
-    /**
-     * Définit la valeur de la propriété custom.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Custom }
-     *     
-     */
-    public void setCustom(Custom value) {
-        this.custom = value;
     }
 
 }

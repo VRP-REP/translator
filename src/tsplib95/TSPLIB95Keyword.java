@@ -1,4 +1,6 @@
-package keyword;
+package tsplib95;
+
+import impl.Keyword;
 
 import java.util.regex.Pattern;
 
@@ -6,12 +8,12 @@ import converter.DoubleConverter;
 import converter.IntegerConverter;
 import converter.UnchangedConverter;
 import converter.Converter;
-import converter.daniele.ArrayListConverter;
-import converter.daniele.DemandConverter;
-import converter.daniele.EdgeWeightConverter;
-import converter.daniele.NodeCoordConverter;
+import converter.tsplib95.ListConverter;
+import converter.tsplib95.DemandConverter;
+import converter.tsplib95.EdgeWeightConverter;
+import converter.tsplib95.NodeCoordConverter;
 
-public enum DanieleKeyword implements Keyword {
+public enum TSPLIB95Keyword implements Keyword {
 
 	NAME					(),
 	COMMENT					(),
@@ -23,8 +25,8 @@ public enum DanieleKeyword implements Keyword {
 	CAPACITY				(Type.INLINE, new DoubleConverter()),
 	MAX_LENGTH				(Type.INLINE, new DoubleConverter(), "MAX. LENGTH"),
 	SERV_TIME				(Type.INLINE, new DoubleConverter(), "SERV. TIME"),
-	VEHICLES				(Type.INLINE, new IntegerConverter()),
-	DEPOT_SECTION			(Type.BLOCK, new ArrayListConverter()),
+	//VEHICLES				(Type.INLINE, new IntegerConverter()),
+	DEPOT_SECTION			(Type.BLOCK, new ListConverter()),
 	NODE_COORD_SECTION		(Type.BLOCK, new NodeCoordConverter()),
 	EDGE_WEIGHT_SECTION		(Type.BLOCK, new EdgeWeightConverter()),
 	DEMAND_SECTION			(Type.BLOCK, new DemandConverter()),
@@ -40,19 +42,19 @@ public enum DanieleKeyword implements Keyword {
 	private final Converter<?> converter;
 	private final String displayName;
 
-	DanieleKeyword() {
+	TSPLIB95Keyword() {
 		this.type = Type.INLINE;
 		this.converter = new UnchangedConverter();
 		this.displayName = this.toString();
 	}
 
-	DanieleKeyword(Type type, Converter<?> converter) {
+	TSPLIB95Keyword(Type type, Converter<?> converter) {
 		this.type = type;
 		this.converter = converter;
 		this.displayName = this.toString();
 	}
 
-	DanieleKeyword(Type type, Converter<?> converter, String displayName) {
+	TSPLIB95Keyword(Type type, Converter<?> converter, String displayName) {
 		this.type = type;
 		this.converter = converter;
 		this.displayName = displayName;

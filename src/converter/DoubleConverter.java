@@ -1,14 +1,14 @@
 package converter;
 
 
-import java.util.HashMap;
+import impl.Keyword;
 
-import keyword.Keyword;
+import java.util.Map;
 
 public class DoubleConverter implements Converter<Double> {
 
 	@Override
-	public Double getOutput(String input, HashMap<Keyword, Object> anteriorValues) {
+	public Double getOutput(String input, Map<Keyword, Object> anteriorValues) {
 		return Double.valueOf(input);
 	}
 

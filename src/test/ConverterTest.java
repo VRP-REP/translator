@@ -1,8 +1,8 @@
 package test;
 
-import java.util.HashMap;
+import impl.Keyword;
 
-import keyword.Keyword;
+import java.util.HashMap;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
