@@ -27,7 +27,9 @@ public class DemandConverter implements Converter<Requests> {
 				Request request = objectFactory.createInstanceRequestsRequest();
 				request.setNode(BigInteger.valueOf(Integer.valueOf(matcher.group("id"))));
 				request.setQuantity(Double.valueOf(matcher.group("demand")));
-				requests.getRequest().add(request);
+				if(request.getQuantity() > 0) {
+					requests.getRequest().add(request);
+				}
 			}
 		}
 

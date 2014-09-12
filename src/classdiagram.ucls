@@ -91,8 +91,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="converter.tsplib95.ListConverter" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/converter/tsplib95/ListConverter.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="11" language="java" name="converter.tsplib95.DepotConverter" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/converter/tsplib95/DepotConverter.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1664" y="75"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      

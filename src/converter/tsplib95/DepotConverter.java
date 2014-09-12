@@ -1,0 +1,25 @@
+package converter.tsplib95;
+
+import impl.Keyword;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import converter.Converter;
+
+public class DepotConverter implements Converter<List<Integer>> {
+
+	@Override
+	public List<Integer> getOutput(String input, Map<Keyword, Object> anteriorValues) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
+
+		for(String line : input.split("\n")){
+			if(!line.equals("-1")) {
+				list.add(Integer.valueOf(line));
+			}
+		}
+		return list;
+	}
+
+}

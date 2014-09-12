@@ -22,14 +22,15 @@ public class TranslateFiles extends SimpleFileVisitor<Path> {
 
 	@Override
 	public FileVisitResult visitFile(Path file, BasicFileAttributes attr) {
-		if (attr.isRegularFile()) {
+		if (attr.isRegularFile() && file.toString().endsWith(".vrp")) {
 			String path = file.getParent().toString().replace("data/instance", "data/output");
 			Path outputDirectory = Paths.get(path);
 			outputDirectory.toFile().mkdirs();
 			
+			System.out.format("Started translation of %s.\n", file);
 			Instance instance = translator.getInstance(file);
 			String instanceName = instance.getInfo().getName();
-			System.out.format("%s successfully translated.\n", file);
+			System.out.format("%s successfully translated.\n", file.getFileName());
 			
 			path = String.format(outputDirectory + "/%s.xml", instanceName);
 			Path outputPath = Paths.get(path);

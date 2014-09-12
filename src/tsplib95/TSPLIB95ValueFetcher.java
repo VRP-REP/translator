@@ -24,13 +24,13 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 	private Map<TSPLIB95Keyword, String> initMap() {
 		map = new LinkedHashMap<TSPLIB95Keyword, String>();
 		for(TSPLIB95Keyword kw : TSPLIB95Keyword.values()){
-			if(kw.type().equals(INLINE)){
+			if(kw.type().equals(SPECIFICATION)){
 				String inlineValue = getInline(kw);
 				if(inlineValue != null){
 					map.put(kw, inlineValue);
 				};
 			}
-			if(kw.type().equals(BLOCK)){
+			if(kw.type().equals(DATA)){
 				String[] blockValue = getBlock(kw);
 				if(blockValue.length > 0){
 					map.put(kw, String.join("\n", blockValue));
@@ -41,7 +41,7 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 	}
 
 	private String getInline(TSPLIB95Keyword keyword) {
-		for(String line : lines){
+		for(String line : lines) {
 			Matcher matcher = keyword.pattern().matcher(line);
 			if (matcher.find() && matcher.group("keyword").equals(keyword.displayName())) {
 				return matcher.group("value");
@@ -54,10 +54,10 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 		ArrayList<String> block = new ArrayList<String>();
 		boolean end = false;
 		for(int i = 0 ; i < lines.length && !end ; i++){
-			if(lines[i].startsWith(keyword.toString())){
+			if(lines[i].equals(keyword.displayName())){
 				for(int j = i + 1 ; j < lines.length ; j++){
 					for(TSPLIB95Keyword kw : TSPLIB95Keyword.values()){
-						if(lines[j].startsWith(kw.toString())){
+						if(lines[j].startsWith(kw.displayName())){
 							end = true;
 						}
 					}

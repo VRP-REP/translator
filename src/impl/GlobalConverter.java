@@ -3,6 +3,9 @@ package impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import exception.NotImplementedException;
+import exception.UnknownValueException;
+
 public class GlobalConverter {
 
 	private ValueFetcher fetcher;
@@ -17,7 +20,11 @@ public class GlobalConverter {
 	private void startConversion() {
 		for(Keyword kw : fetcher.getKeywords()){
 			String input = fetcher.getValue(kw);
-			values.put(kw, kw.converter().getOutput(input, values));
+			try {
+				values.put(kw, kw.converter().getOutput(input, values));
+			} catch (UnknownValueException | NotImplementedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

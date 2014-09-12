@@ -15,13 +15,14 @@ import org.junit.Test;
 import org.junit.runners.Parameterized;
 
 import converter.tsplib95.NodeCoordConverter;
+import exception.UnknownValueException;
 import test.ConverterTest;
 
 public class NodeCoordConverterTest extends ConverterTest<NodeCoordConverter, Network> {
 
 	private int numberOfNodes;
 
-	public NodeCoordConverterTest(String input, HashMap<Keyword, Object> anteriorValues, int numberOfNodes) {
+	public NodeCoordConverterTest(String input, HashMap<Keyword, Object> anteriorValues, int numberOfNodes) throws UnknownValueException {
 		super(input, anteriorValues);
 		this.converter = new NodeCoordConverter();
 		this.result = converter.getOutput(input, anteriorValues);

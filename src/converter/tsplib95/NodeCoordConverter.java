@@ -3,13 +3,14 @@ package converter.tsplib95;
 import impl.Keyword;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static tsplib95.TSPLIB95Keyword.*;
 import converter.Converter;
+import exception.UnknownValueException;
 import model.ObjectFactory;
 import model.Instance.Network;
 import model.Instance.Network.Nodes;
@@ -18,16 +19,16 @@ import model.Instance.Network.Nodes.Node;
 public class NodeCoordConverter implements Converter<Network> {
 
 	@Override
-	public Network getOutput(String input, Map<Keyword, Object> anteriorValues) {
+	public Network getOutput(String input, Map<Keyword, Object> anteriorValues) throws UnknownValueException {
 		ObjectFactory objectFactory = new ObjectFactory();
 		Network network = objectFactory.createInstanceNetwork();
 		Nodes nodes = objectFactory.createInstanceNetworkNodes();
-		
+
 		@SuppressWarnings("unchecked")
-		ArrayList<Integer> depots = (ArrayList<Integer>) anteriorValues.get(DEPOT_SECTION);
-		String edgeWeightType = (String) anteriorValues.get(EDGE_WEIGHT_TYPE);
-		
-		if(edgeWeightType.equals("EUC_2D")){
+		List<Integer> depots = (List<Integer>) anteriorValues.get(DEPOT_SECTION);
+		String nodeCoordType = (String) anteriorValues.get(NODE_COORD_TYPE);
+
+		if(nodeCoordType.equals("TWOD_COORDS")) {
 			String regex = "^(?<id>[0-9]*)\\s+(?<x>[0-9.-]*)\\s+(?<y>[0-9.-]*)$";
 			Pattern pattern = Pattern.compile(regex);
 			for(String line : input.split("\n")){
@@ -46,8 +47,10 @@ public class NodeCoordConverter implements Converter<Network> {
 			//FIXME EUCLIDEAN
 			network.setEuclidean("");
 			network.setDecimals(2);
+		} else {
+			throw new UnknownValueException(NODE_COORD_TYPE, nodeCoordType);
 		}
-		
+
 		network.setNodes(nodes);
 		return network;
 	}

@@ -31,8 +31,8 @@ public class TSPLIB95ValueFetcherTest extends ValueFetcherTest<TSPLIB95ValueFetc
 				"DIMENSION : 22",
 				"EDGE_WEIGHT_TYPE : EUC_2D",
 				"CAPACITY : 6000",
-				"MAX. LENGTH : 210",
-				"SERV. TIME : 0",
+				"DISTANCE : 210",
+				"SERVICE_TIME : 0",
 				"VEHICLES : 4"
 		};
 

@@ -39,6 +39,10 @@ public class FileLiner {
 			e.printStackTrace();
 		}
 		
+		for(int i = 0 ; i < lines.size() ; i++) {
+			lines.set(i, lines.get(i).trim());
+		}
+		
 		return lines.toArray(new String[]{});
 	}
 	

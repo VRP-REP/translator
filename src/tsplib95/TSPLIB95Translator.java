@@ -39,9 +39,9 @@ public class TSPLIB95Translator extends InstanceTranslatorImpl {
 
 		String type = (String) converter.get(TYPE);
 		if(type.equals("DCVRP")){
-			double maxLength = (Double) converter.get(MAX_LENGTH);
+			double maxLength = (Double) converter.get(DISTANCE);
 			profile.setMaxTravelDistance(maxLength);
-			double servTime = (Double) converter.get(SERV_TIME);
+			double servTime = (Double) converter.get(SERVICE_TIME);
 			profile.setMaxTravelTime(servTime);
 		}
 
