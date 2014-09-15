@@ -13,7 +13,7 @@ public class TSPLIB95Executable {
 	public static void main(String[] args) {
 		TranslateFiles tf = new TranslateFiles(new TSPLIB95Translator());
 		try {
-			Files.walkFileTree(Paths.get("data/instance"), tf);
+			Files.walkFileTree(Paths.get("data/instance/VRPWEB/CVRPPDTW/VRPLIB"), tf);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

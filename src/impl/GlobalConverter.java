@@ -23,7 +23,7 @@ public class GlobalConverter {
 			try {
 				values.put(kw, kw.converter().getOutput(input, values));
 			} catch (UnknownValueException | NotImplementedException e) {
-				e.printStackTrace();
+				System.err.println(e.getMessage());;
 			}
 		}
 	}

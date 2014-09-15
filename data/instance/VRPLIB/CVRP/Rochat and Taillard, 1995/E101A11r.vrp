@@ -5,6 +5,7 @@ DIMENSION : 101
 EDGE_WEIGHT_TYPE : EUC_2D
 CAPACITY : 1409
 VEHICLES : 11
+NODE_COORD_TYPE : TWOD_COORDS
 NODE_COORD_SECTION
   1             -5             70
   2            -17             69
