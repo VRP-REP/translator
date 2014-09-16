@@ -2,6 +2,8 @@ package converter.tsplib95;
 
 import impl.Keyword;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +34,8 @@ public class TimeWindowConverter implements Converter<Network> {
 				horizon.add(matcher.group("end"));
 			}
 		}
-		System.out.println(horizon.toString());
+		
+		Map<String, Map<String, Tw>> timeWindows = new HashMap<String, Map<String, Tw>>();
 		
 		Tw tw = objectFactory.createTw();
 

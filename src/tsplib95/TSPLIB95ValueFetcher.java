@@ -4,7 +4,9 @@ import impl.Keyword;
 import impl.ValueFetcher;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 
@@ -12,12 +14,12 @@ import static tsplib95.TSPLIB95Keyword.Type.*;
 
 public class TSPLIB95ValueFetcher implements ValueFetcher {
 
-	private String[] lines;
+	private List<String> lines;
 
 	private Map<TSPLIB95Keyword, String> map;
 
-	public TSPLIB95ValueFetcher(String[] lines) {
-		this.lines = lines;
+	public TSPLIB95ValueFetcher(List<String> lines) {
+		this.lines = new ArrayList<String>(lines);
 		this.map = initMap();
 	}
 
@@ -31,43 +33,58 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 				};
 			}
 			if(kw.type().equals(DATA)){
-				String[] blockValue = getBlock(kw);
-				if(blockValue.length > 0){
+				List<String> blockValue = getBlock(kw);
+				if(blockValue.size() > 0){
 					map.put(kw, String.join("\n", blockValue));
 				}
 			}
 		}
+		lines.remove("EOF");
+		
+		if(!lines.isEmpty()) {
+			System.err.println("The following lines were not read…");
+			System.out.println(lines);
+		}
+		
 		return map;
 	}
 
 	private String getInline(TSPLIB95Keyword keyword) {
-		for(String line : lines) {
-			Matcher matcher = keyword.pattern().matcher(line);
+		Iterator<String> iter = lines.iterator();
+		while (iter.hasNext()) {
+			Matcher matcher = keyword.pattern().matcher(iter.next());
 			if (matcher.find() && matcher.group("keyword").equals(keyword.displayName())) {
+				iter.remove();
 				return matcher.group("value");
 			}
 		}
 		return null;
 	}
 
-	private String[] getBlock(TSPLIB95Keyword keyword) {
+	private List<String> getBlock(TSPLIB95Keyword keyword) {
 		ArrayList<String> block = new ArrayList<String>();
+		Iterator<String> iter = lines.iterator();
+		boolean begin = false;
 		boolean end = false;
-		for(int i = 0 ; i < lines.length && !end ; i++){
-			if(lines[i].equals(keyword.displayName())){
-				for(int j = i + 1 ; j < lines.length ; j++){
-					for(TSPLIB95Keyword kw : TSPLIB95Keyword.values()){
-						if(lines[j].startsWith(kw.displayName())){
-							end = true;
-						}
-					}
-					if(!end){
-						block.add(lines[j]);
+		while (iter.hasNext() && !end) {
+			if(!begin && iter.next().equals(keyword.displayName())){
+				iter.remove();
+				begin = true;
+			}
+			if(begin) {
+				String value = iter.next();
+				for(TSPLIB95Keyword kw : TSPLIB95Keyword.values()){
+					if(value.startsWith(kw.displayName())){
+						end = true;
 					}
 				}
-			}	
+				if(!end){
+					iter.remove();
+					block.add(value);
+				}
+			}
 		}
-		return block.toArray(new String[]{});
+		return block;
 	}
 
 	@Override

@@ -10,7 +10,6 @@ import java.util.Map;
 
 import static tsplib95.TSPLIB95Keyword.*;
 import converter.Converter;
-import exception.NotImplementedException;
 import exception.UnknownValueException;
 import model.ObjectFactory;
 import model.Instance.Network;
@@ -23,7 +22,7 @@ public class EdgeWeightConverter implements Converter<Network> {
 
 	@Override
 	public Network getOutput(String input, Map<Keyword, Object> anteriorValues)
-			throws UnknownValueException, NotImplementedException {
+			throws UnknownValueException {
 
 		ObjectFactory objectFactory = new ObjectFactory();
 		Network network = objectFactory.createInstanceNetwork();
@@ -196,10 +195,6 @@ public class EdgeWeightConverter implements Converter<Network> {
 			break;
 		default:
 			throw new UnknownValueException(EDGE_WEIGHT_TYPE, edgeWeightType);
-		}
-
-		if(!tokens.isEmpty()){
-			System.err.println("Tokenlist should be empty after linkage !");
 		}
 
 		network.setNodes(nodes);

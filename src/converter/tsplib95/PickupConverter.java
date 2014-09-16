@@ -11,7 +11,9 @@ import exception.NotImplementedException;
 public class PickupConverter implements Converter<Object> {
 
 	@Override
-	public Object getOutput(String input, Map<Keyword, Object> anteriorValues) throws NotImplementedException {
+	public Object getOutput(String input, Map<Keyword, Object> anteriorValues)
+			throws NotImplementedException {
+		
 		throw new NotImplementedException(PICKUP_SECTION);
 	}
 

@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 /**
  * This class intends to read any type of text file, converting it
@@ -22,14 +24,14 @@ public class FileLiner {
 	/**
 	 * The lines of file.
 	 */
-	private String[] lines;
+	private List<String> lines;
 	
 	public FileLiner(Path path){
 		this.path = path;
 		this.lines = read();
 	}
 	
-	private String[] read() {
+	private List<String> read() {
 		Charset charset = Charset.defaultCharset();   
 		
 		List<String> lines = null;
@@ -39,18 +41,24 @@ public class FileLiner {
 			e.printStackTrace();
 		}
 		
-		for(int i = 0 ; i < lines.size() ; i++) {
-			lines.set(i, lines.get(i).trim());
+		ListIterator<String> iter = lines.listIterator();
+		while(iter.hasNext()){
+			String value = iter.next().trim();
+			if(value.length() == 0){
+				iter.remove();
+			} else {
+				iter.set(value);
+			}
 		}
 		
-		return lines.toArray(new String[]{});
+		return lines;
 	}
 	
 	public Path getPath() {
 		return this.path;
 	}
 	
-	public String[] getLines() {
+	public List<String> getLines() {
 		return this.lines;
 	}
 

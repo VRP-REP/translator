@@ -97,7 +97,7 @@ public enum TSPLIB95Keyword implements Keyword {
 
 	public Pattern pattern() {
 		if(this.type.equals(SPECIFICATION)){
-			return Pattern.compile("^(?<keyword>[A-Z\\_]*)\\s*:\\s+(?<value>.*)$");
+			return Pattern.compile("^(?<keyword>[A-Z\\_]*)\\s*:\\s*(?<value>.*)$");
 		}
 		if(this.type.equals(DATA)){
 			return Pattern.compile("^(?<keyword>[A-Z\\_]*)\n+(?<value>.*)$");

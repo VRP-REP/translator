@@ -1,5 +1,7 @@
 package test;
 
+import java.util.List;
+
 import impl.ValueFetcher;
 
 import org.junit.runner.RunWith;
@@ -8,10 +10,10 @@ import org.junit.runners.Parameterized;
 @RunWith(Parameterized.class)
 public abstract class ValueFetcherTest<T extends ValueFetcher> {
 
-	protected String[] input;
+	protected List<String> input;
 	protected T fetcher;
 
-	public ValueFetcherTest(String[] input){
+	public ValueFetcherTest(List<String> input){
 		this.input = input;
 	}
 

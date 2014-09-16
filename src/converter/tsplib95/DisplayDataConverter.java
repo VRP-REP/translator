@@ -11,7 +11,9 @@ import exception.NotImplementedException;
 public class DisplayDataConverter implements Converter<Object> {
 
 	@Override
-	public Object getOutput(String input, Map<Keyword, Object> anteriorValues) throws NotImplementedException {
+	public Object getOutput(String input, Map<Keyword, Object> anteriorValues)
+			throws NotImplementedException {
+		
 		throw new NotImplementedException(DISPLAY_DATA_SECTION);
 	}
 
