@@ -6,16 +6,13 @@ import java.util.Map;
 
 import static tsplib95.TSPLIB95Keyword.*;
 import converter.Converter;
-import model.ObjectFactory;
-import model.Instance.Network;
+import exception.NotImplementedException;
 
-public class FixedEdgesConverter implements Converter<Network> {
+public class FixedEdgesConverter implements Converter<Object> {
 
 	@Override
-	public Network getOutput(String input, Map<Keyword, Object> anteriorValues) {
-		ObjectFactory objectFactory = new ObjectFactory();
-		Network network = objectFactory.createInstanceNetwork();
-		return network;
+	public Object getOutput(String input, Map<Keyword, Object> anteriorValues) throws NotImplementedException {
+		throw new NotImplementedException(FIXED_EDGES_SECTION);
 	}
 
 }
