@@ -7,11 +7,25 @@ import java.util.Map;
 
 import impl.Canonizer;
 
+/**
+ * A strategy class that can add/remove implicit data to complete/clean what was read/written in files.
+ * 
+ * @author hubertlobit
+ *
+ */
 public class TSPLIB95Canonizer implements Canonizer<TSPLIB95Keyword> {
 
 	@Override
 	public void completeData(Map<TSPLIB95Keyword, String> map) {
 
+		/**
+		 * If edges are not explicit, they are given by a function.
+		 * This piece of information has no default value, so it won't be removed in cleanData method.
+		 */
+		if(!map.get(EDGE_WEIGHT_TYPE).equals("EXPLICIT")){
+			map.put(EDGE_WEIGHT_FORMAT, "FUNCTION");
+		}
+		
 		/**
 		 * Default value for NODE_COORD_TYPE as specified in documentation.
 		 */
@@ -34,10 +48,6 @@ public class TSPLIB95Canonizer implements Canonizer<TSPLIB95Keyword> {
 			if(depots[depots.length - 1].startsWith("-1")){
 				map.put(DEPOT_SECTION, String.join("\n", Arrays.copyOfRange(depots, 0, depots.length - 1)));
 			}
-		}
-		
-		if(!map.get(EDGE_WEIGHT_TYPE).equals("EXPLICIT")){
-			map.put(EDGE_WEIGHT_FORMAT, "FUNCTION");
 		}
 
 	}

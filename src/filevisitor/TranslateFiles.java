@@ -16,9 +16,12 @@ public class TranslateFiles extends SimpleFileVisitor<Path> {
 	
 	private InstanceTranslator translator;
 	
-	public TranslateFiles(InstanceTranslator translator) {
+	private PathModifier modifier;
+	
+	public TranslateFiles(InstanceTranslator translator, PathModifier modifier) {
 		super();
 		this.translator = translator;
+		this.modifier = modifier;
 	}
 
 	@Override
