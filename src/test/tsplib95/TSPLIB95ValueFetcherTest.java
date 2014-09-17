@@ -18,7 +18,8 @@ public class TSPLIB95ValueFetcherTest extends ValueFetcherTest<TSPLIB95ValueFetc
 
 	public TSPLIB95ValueFetcherTest(List<String> input, int numberOfKeywords) {
 		super(input);
-		this.fetcher = new TSPLIB95ValueFetcher(input);
+		this.fetcher = new TSPLIB95ValueFetcher();
+		fetcher.initialize(input);
 		this.numberOfKeywords = numberOfKeywords;
 	}
 
@@ -27,18 +28,21 @@ public class TSPLIB95ValueFetcherTest extends ValueFetcherTest<TSPLIB95ValueFetc
 
 		List<String> input1 = Arrays.asList(new String[]{
 				"NAME : D022-04g",
-				"COMMENT : Gaskell, 1967; Eilon, Watson-Gandy and Christofides, 1971",
-				"TYPE : DCVRP",
+				"COMMENT :",
+				"TYPE: ",
 				"DIMENSION : 22",
-				"EDGE_WEIGHT_TYPE : EUC_2D",
 				"CAPACITY : 6000",
-				"DISTANCE : 210",
+				"EDGE_WEIGHT_TYPE : EUC_2D",
+				"EDGE_WEIGHT_FORMAT: FUNCTION",
+				"NODE_COORD_TYPE : TWOD_COORDS",
+				"DISPLAY_DATA_TYPE : COORD_DISPLAY",
+				"DISTANCE : 210.00",
 				"SERVICE_TIME : 0",
 				"VEHICLES : 4"
 		});
 
 		return Arrays.asList(new Object[][] {
-				{input1, 9}
+				{input1, 12}
 		});
 	}
 

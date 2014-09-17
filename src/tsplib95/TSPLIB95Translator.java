@@ -19,7 +19,8 @@ public class TSPLIB95Translator extends InstanceTranslatorImpl {
 
 	public Instance getInstance(Path filePath){
 		FileLiner liner = new FileLiner(filePath);
-		TSPLIB95ValueFetcher fetcher = new TSPLIB95ValueFetcher(liner.getLines());
+		TSPLIB95ValueFetcher fetcher = new TSPLIB95ValueFetcher();
+		fetcher.initialize(liner.getLines());
 		converter = new GlobalConverter(fetcher);
 
 		ObjectFactory objectFactory = new ObjectFactory();

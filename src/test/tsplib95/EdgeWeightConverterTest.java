@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 
 import model.Instance.Network;
 
@@ -15,8 +16,7 @@ import org.junit.Test;
 import org.junit.runners.Parameterized;
 
 import converter.tsplib95.EdgeWeightConverter;
-import exception.NotImplementedException;
-import exception.UnknownValueException;
+import exception.ConverterException;
 import test.ConverterTest;
 
 public class EdgeWeightConverterTest extends ConverterTest<EdgeWeightConverter, Network> {
@@ -24,8 +24,8 @@ public class EdgeWeightConverterTest extends ConverterTest<EdgeWeightConverter, 
 	private int numberOfNodes;
 	private int numberOfLinks;
 
-	public EdgeWeightConverterTest(String input, HashMap<Keyword, Object> anteriorValues, int numberOfNodes, int numberOfLinks)
-			throws UnknownValueException, NotImplementedException {
+	public EdgeWeightConverterTest(String input, Map<Keyword, Object> anteriorValues, int numberOfNodes, int numberOfLinks)
+			throws ConverterException {
 		super(input, anteriorValues);
 		this.converter = new EdgeWeightConverter();
 		this.result = converter.getOutput(input, anteriorValues);

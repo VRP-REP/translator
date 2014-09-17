@@ -3,8 +3,7 @@ package impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import exception.NotImplementedException;
-import exception.UnknownValueException;
+import exception.ConverterException;
 
 public class GlobalConverter {
 
@@ -22,7 +21,7 @@ public class GlobalConverter {
 			String input = fetcher.getValue(kw);
 			try {
 				values.put(kw, kw.converter().getOutput(input, values));
-			} catch (UnknownValueException | NotImplementedException e) {
+			} catch (ConverterException e) {
 				System.err.println(e.getMessage());;
 			}
 		}

@@ -7,5 +7,5 @@ public interface Keyword {
 	public String displayName();
 	
 	public Converter<?> converter();
-	
+
 }

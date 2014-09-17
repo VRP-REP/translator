@@ -2,7 +2,7 @@ package exception;
 
 import impl.Keyword;
 
-public class UnknownValueException extends Exception {
+public class UnknownValueException extends ConverterException {
 
 	/**
 	 * 

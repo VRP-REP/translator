@@ -64,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="8" language="java" name="impl.TranslateFiles" project="VRPLIBTranslator" 
-    file="/VRPLIBTranslator/src/impl/TranslateFiles.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="filevisitor.TranslateFiles" project="VRPLIBTranslator" 
+    file="/VRPLIBTranslator/src/filevisitor/TranslateFiles.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2027" y="514"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      

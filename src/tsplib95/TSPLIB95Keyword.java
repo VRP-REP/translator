@@ -43,8 +43,8 @@ public enum TSPLIB95Keyword implements Keyword {
 	CAPACITY_VOL			(SPECIFICATION, new DoubleConverter()),
 	
 	/** OFFICIAL DATA KEYWORDS **/
-	DEPOT_SECTION			(DATA, new DepotConverter()),				/* 1.2.2 */
 	NODE_COORD_SECTION		(DATA, new NodeCoordConverter()),			/* 1.2.1 */
+	DEPOT_SECTION			(DATA, new DepotConverter()),				/* 1.2.2 */
 	DEMAND_SECTION			(DATA, new DemandConverter()),				/* 1.2.3 */
 	EDGE_DATA_SECTION		(DATA, new EdgeDataConverter()),			/* 1.2.4 */
 	FIXED_EDGES_SECTION		(DATA, new FixedEdgesConverter()),			/* 1.2.5 */

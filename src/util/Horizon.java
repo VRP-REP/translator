@@ -6,7 +6,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * Receive some timestamps (09:30 for instance) ; calculate the smallest interval ; create an horizon…
+ * From some timestamps (09:30 for instance), this class is able to create an horizon.
  * 
  * @author hubertlobit
  *

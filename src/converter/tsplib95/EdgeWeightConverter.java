@@ -10,6 +10,8 @@ import java.util.Map;
 
 import static tsplib95.TSPLIB95Keyword.*;
 import converter.Converter;
+import exception.ConverterException;
+import exception.UnexpectedValueException;
 import exception.UnknownValueException;
 import model.ObjectFactory;
 import model.Instance.Network;
@@ -22,7 +24,7 @@ public class EdgeWeightConverter implements Converter<Network> {
 
 	@Override
 	public Network getOutput(String input, Map<Keyword, Object> anteriorValues)
-			throws UnknownValueException {
+			throws ConverterException {
 
 		ObjectFactory objectFactory = new ObjectFactory();
 		Network network = objectFactory.createInstanceNetwork();
@@ -50,6 +52,8 @@ public class EdgeWeightConverter implements Converter<Network> {
 				links.setSymmetric(true);
 			}
 			switch (edgeWeightFormat) {
+			case "FUNCTION":
+				throw new UnexpectedValueException(EDGE_WEIGHT_FORMAT, edgeWeightFormat);
 			case "FULL_MATRIX":
 				/**
 				 * 0     (1,2) (1,3) (1,4) (1,5)
@@ -193,13 +197,17 @@ public class EdgeWeightConverter implements Converter<Network> {
 			}
 			network.setLinks(links);
 			break;
+		case "EUC_2D": case "EUC_3D": case "MAX_2D": case "MAX_3D":
+		case "MAN_2D": case "MAN_3D": case "CEIL_2D": case "GEO":
+		case "ATT": case "XRAY1": case "XRAY2": case "SPECIAL":
+			throw new UnexpectedValueException(EDGE_WEIGHT_TYPE, edgeWeightType);
 		default:
 			throw new UnknownValueException(EDGE_WEIGHT_TYPE, edgeWeightType);
 		}
 
 		network.setNodes(nodes);
 		return network;
-
+		
 	}
 
 	private Link link(int i, int j, String value) {

@@ -2,7 +2,7 @@ package test;
 
 import impl.Keyword;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -14,11 +14,11 @@ import exception.UnknownValueException;
 public abstract class ConverterTest<T extends Converter<?>, R> {
 
 	protected String input;
-	protected HashMap<Keyword, Object> anteriorValues;
+	protected Map<Keyword, Object> anteriorValues;
 	protected T converter;
 	protected R result;
 
-	public ConverterTest(String input, HashMap<Keyword, Object> options) throws UnknownValueException {
+	public ConverterTest(String input, Map<Keyword, Object> options) throws UnknownValueException {
 		this.input = input;
 		this.anteriorValues = options;
 	}

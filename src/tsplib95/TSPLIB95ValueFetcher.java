@@ -3,6 +3,10 @@ package tsplib95;
 import impl.Keyword;
 import impl.ValueFetcher;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -17,36 +21,12 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 	private List<String> lines;
 
 	private Map<TSPLIB95Keyword, String> map;
+	
+	private TSPLIB95Canonizer canonizer;
 
-	public TSPLIB95ValueFetcher(List<String> lines) {
-		this.lines = new ArrayList<String>(lines);
-		this.map = initMap();
-	}
-
-	private Map<TSPLIB95Keyword, String> initMap() {
-		map = new LinkedHashMap<TSPLIB95Keyword, String>();
-		for(TSPLIB95Keyword kw : TSPLIB95Keyword.values()){
-			if(kw.type().equals(SPECIFICATION)){
-				String inlineValue = getInline(kw);
-				if(inlineValue != null){
-					map.put(kw, inlineValue);
-				};
-			}
-			if(kw.type().equals(DATA)){
-				List<String> blockValue = getBlock(kw);
-				if(blockValue.size() > 0){
-					map.put(kw, String.join("\n", blockValue));
-				}
-			}
-		}
-		lines.remove("EOF");
-		
-		if(!lines.isEmpty()) {
-			System.err.println("The following lines were not read…");
-			System.out.println(lines);
-		}
-		
-		return map;
+	public TSPLIB95ValueFetcher() {
+		this.map = new LinkedHashMap<TSPLIB95Keyword, String>();
+		this.canonizer = new TSPLIB95Canonizer();
 	}
 
 	private String getInline(TSPLIB95Keyword keyword) {
@@ -88,6 +68,34 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 	}
 
 	@Override
+	public void initialize(List<String> lines) {
+		this.lines = new ArrayList<String>(lines);
+		map.clear();
+		for(TSPLIB95Keyword kw : TSPLIB95Keyword.values()){
+			if(kw.type().equals(SPECIFICATION)){
+				String inlineValue = getInline(kw);
+				if(inlineValue != null){
+					map.put(kw, inlineValue);
+				};
+			}
+			if(kw.type().equals(DATA)){
+				List<String> blockValue = getBlock(kw);
+				if(blockValue.size() > 0){
+					map.put(kw, String.join("\n", blockValue));
+				}
+			}
+		}
+		this.lines.remove("EOF");
+		
+		if(!this.lines.isEmpty()) {
+			System.err.println("The following lines were not read…");
+			System.out.println(this.lines);
+		}
+		
+		canonizer.completeData(map);
+	}
+
+	@Override
 	public Keyword[] getKeywords() {
 		return map.keySet().toArray(new TSPLIB95Keyword[]{});
 	}
@@ -95,6 +103,31 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 	@Override
 	public String getValue(Keyword keyword) {
 		return map.get(keyword);
+	}
+	
+	@Override
+	public void write(Path path) {
+		canonizer.cleanData(map);
+		
+		path.getParent().toFile().mkdirs();
+		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+			for(TSPLIB95Keyword kw : TSPLIB95Keyword.values()){
+				String value = getValue(kw);
+				if(value != null){
+					if(kw.type().equals(SPECIFICATION)) {
+						writer.write(String.format("%s : %s%n", kw, value));
+					}
+					if(kw.type().equals(DATA)) {
+						writer.write(String.format("%s%n%s%n", kw, value));
+					}
+				}
+			}
+			writer.write("EOF");
+		} catch (IOException x) {
+			System.err.format("IOException: %s%n", x);
+		}
+		
+		canonizer.completeData(map);
 	}
 
 }

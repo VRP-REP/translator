@@ -2,13 +2,13 @@ package exception;
 
 import impl.Keyword;
 
-public class NotImplementedException extends Exception {
-
+public class NotImplementedException extends ConverterException {
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1005216244078165311L;
-	
+	private static final long serialVersionUID = 4707105774750431538L;
+
 	public NotImplementedException(Keyword keyword) {
 		super("Converter for keyword " + keyword.displayName() + " is not implemented.");
 	}

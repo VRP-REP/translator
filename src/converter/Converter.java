@@ -5,6 +5,7 @@ import impl.Keyword;
 
 import java.util.Map;
 
+import exception.ConverterException;
 import exception.NotImplementedException;
 import exception.UnknownValueException;
 
@@ -25,6 +26,6 @@ public interface Converter<T> {
 	 * @throws UnknownValueException
 	 * @throws NotImplementedException
 	 */
-	public T getOutput(String input, Map<Keyword, Object> anteriorValues)  throws UnknownValueException, NotImplementedException;
+	public T getOutput(String input, Map<Keyword, Object> anteriorValues)  throws ConverterException;
 	
 }
