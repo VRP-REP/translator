@@ -45,9 +45,9 @@ Novoa | VRPSD | 160 | Own format | No
 
 ###[TSPLIB dataset](http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/vrp/)
 
-Allmost every instance is translated, except the ones with special distance calculators.
+Almost every instance is translated, except the ones with special distance calculators.
 
-###[VRPLIB](ttp://www.or.deis.unibo.it/research_pages/ORinstances/VRPLIB/VRPLIB.html)
+###[VRPLIB](http://www.or.deis.unibo.it/research_pages/ORinstances/VRPLIB/VRPLIB.html)
 
 Dataset | Variant | Number of instances | Format | Translated ?
 --- | --- | --- | --- | ---
