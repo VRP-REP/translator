@@ -19,7 +19,7 @@ import converter.tsplib95.EdgeWeightConverter;
 import exception.ConverterException;
 import test.ConverterTest;
 
-public class EdgeWeightConverterTest extends ConverterTest<EdgeWeightConverter, Network> {
+public class EdgeWeightConverterTest extends ConverterTest<Network> {
 
 	private int numberOfNodes;
 	private int numberOfLinks;

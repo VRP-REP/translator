@@ -9,12 +9,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
-public abstract class CanonizerTest<K extends Keyword, T extends Canonizer<?>> {
+public abstract class CanonizerTest {
 
-	protected Map<K, String> map;
-	protected T canonizer;
+	protected Map<Keyword, String> map;
+	protected Canonizer canonizer;
 
-	public CanonizerTest(Map<K, String> map) {
+	public CanonizerTest(Map<Keyword, String> map) {
 		this.map = map;
 	}
 

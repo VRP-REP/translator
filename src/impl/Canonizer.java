@@ -2,10 +2,10 @@ package impl;
 
 import java.util.Map;
 
-public interface Canonizer<T extends Keyword> {
+public interface Canonizer {
 	
-	public void completeData(Map<T, String> map);
+	public void completeData(Map<Keyword, String> map);
 	
-	public void cleanData(Map<T, String> map);
+	public void cleanData(Map<Keyword, String> map);
 
 }

@@ -1,7 +1,8 @@
 package tsplib95;
 
 import impl.GlobalConverter;
-import impl.InstanceTranslatorImpl;
+import impl.InstanceTranslator;
+import impl.ValueFetcher;
 import io.FileLiner;
 
 import java.nio.file.Path;
@@ -15,13 +16,15 @@ import model.Instance.Requests;
 import model.Instance.Fleet.VehicleProfile;
 import model.ObjectFactory;
 
-public class TSPLIB95Translator extends InstanceTranslatorImpl {
+public class TSPLIB95Translator implements InstanceTranslator {
 
 	public Instance getInstance(Path filePath){
 		FileLiner liner = new FileLiner(filePath);
-		TSPLIB95ValueFetcher fetcher = new TSPLIB95ValueFetcher();
+		ValueFetcher fetcher = new TSPLIB95ValueFetcher();
+		GlobalConverter converter = new GlobalConverter();
+		
 		fetcher.initialize(liner.getLines());
-		converter = new GlobalConverter(fetcher);
+		converter.convert(fetcher);
 
 		ObjectFactory objectFactory = new ObjectFactory();
 		Instance instance = objectFactory.createInstance();

@@ -12,7 +12,7 @@ import org.junit.runners.Parameterized;
 import test.ValueFetcherTest;
 import tsplib95.TSPLIB95ValueFetcher;
 
-public class TSPLIB95ValueFetcherTest extends ValueFetcherTest<TSPLIB95ValueFetcher> {
+public class TSPLIB95ValueFetcherTest extends ValueFetcherTest {
 
 	private int numberOfKeywords;
 

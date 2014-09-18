@@ -7,16 +7,14 @@ import exception.ConverterException;
 
 public class GlobalConverter {
 
-	private ValueFetcher fetcher;
 	private Map<Keyword, Object> values;
 
-	public GlobalConverter(ValueFetcher fetcher) {
-		this.fetcher = fetcher;
+	public GlobalConverter() {
 		this.values = new HashMap<Keyword, Object>();
-		startConversion();
 	}
 
-	private void startConversion() {
+	public void convert(ValueFetcher fetcher) {
+		values.clear();
 		for(Keyword kw : fetcher.getKeywords()){
 			String input = fetcher.getValue(kw);
 			try {

@@ -8,10 +8,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
-public abstract class ValueFetcherTest<T extends ValueFetcher> {
+public abstract class ValueFetcherTest {
 
 	protected List<String> input;
-	protected T fetcher;
+	protected ValueFetcher fetcher;
 
 	public ValueFetcherTest(List<String> input){
 		this.input = input;

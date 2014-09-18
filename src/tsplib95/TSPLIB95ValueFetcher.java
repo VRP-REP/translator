@@ -1,5 +1,6 @@
 package tsplib95;
 
+import impl.Canonizer;
 import impl.Keyword;
 import impl.ValueFetcher;
 
@@ -20,12 +21,12 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 
 	private List<String> lines;
 
-	private Map<TSPLIB95Keyword, String> map;
+	private Map<Keyword, String> map;
 	
-	private TSPLIB95Canonizer canonizer;
+	private Canonizer canonizer;
 
 	public TSPLIB95ValueFetcher() {
-		this.map = new LinkedHashMap<TSPLIB95Keyword, String>();
+		this.map = new LinkedHashMap<Keyword, String>();
 		this.canonizer = new TSPLIB95Canonizer();
 	}
 

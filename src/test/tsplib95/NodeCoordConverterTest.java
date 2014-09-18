@@ -19,7 +19,7 @@ import converter.tsplib95.NodeCoordConverter;
 import exception.ConverterException;
 import test.ConverterTest;
 
-public class NodeCoordConverterTest extends ConverterTest<NodeCoordConverter, Network> {
+public class NodeCoordConverterTest extends ConverterTest<Network> {
 
 	private int numberOfNodes;
 
