@@ -32,12 +32,21 @@ public class NodeCoordConverter implements Converter<Network> {
 		String edgeWeightFormat = (String) anteriorValues.get(EDGE_WEIGHT_FORMAT);
 		String edgeWeightType = (String) anteriorValues.get(EDGE_WEIGHT_TYPE);
 
-		switch (nodeCoordType) {
-		case "NO_COORDS":
-			break;
-		case "TWOD_COORDS":
-			String regex = "^(?<id>[0-9]*)\\s+(?<x>[0-9.-]*)\\s+(?<y>[0-9.-]*)$";
-			Pattern pattern = Pattern.compile(regex);
+		if(nodeCoordType.equals("NO_COORDS")) {
+			System.err.println("NODE_COORD_SECTION ignored because of NODE_COORD_TYPE set to NO_COORDS.");
+		} else {
+			String regex;
+			Pattern pattern;
+			
+			if(nodeCoordType.equals("TWOD_COORDS")) {
+				regex = "^(?<id>[0-9]*)\\s+(?<x>[0-9.-]*)\\s+(?<y>[0-9.-]*)$";
+			} else if(nodeCoordType.equals("THREED_COORDS")) {
+				regex = "^(?<id>[0-9]*)\\s+(?<x>[0-9.-]*)\\s+(?<y>[0-9.-]*)$";
+			} else {
+				throw new UnknownValueException(NODE_COORD_TYPE, nodeCoordType);
+			}
+			
+			pattern = Pattern.compile(regex);
 			for(String line : input.split("\n")){
 				Matcher matcher = pattern.matcher(line);
 				if (matcher.find()) {
@@ -47,14 +56,12 @@ public class NodeCoordConverter implements Converter<Network> {
 					node.setType(BigInteger.valueOf(1));
 					node.setCx(Double.valueOf(matcher.group("x")));
 					node.setCy(Double.valueOf(matcher.group("y")));
+					if(nodeCoordType.equals("THREED_COORDS")) {
+						node.setCz(Double.valueOf(matcher.group("z")));
+					}
 					nodes.getNode().add(node);
 				}
 			}
-			break;
-		case "THREED_COORDS":
-			throw new NotImplementedException(NODE_COORD_TYPE, nodeCoordType);
-		default:
-			throw new UnknownValueException(NODE_COORD_TYPE, nodeCoordType);
 		}
 
 		switch (edgeWeightFormat) {

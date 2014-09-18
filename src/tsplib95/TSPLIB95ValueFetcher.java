@@ -9,10 +9,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 
 import static tsplib95.TSPLIB95Keyword.Type.*;
@@ -26,7 +27,12 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 	private Canonizer canonizer;
 
 	public TSPLIB95ValueFetcher() {
-		this.map = new LinkedHashMap<Keyword, String>();
+		this.map = new TreeMap<Keyword, String>(new Comparator<Keyword>() {
+			@Override
+			public int compare(Keyword o1, Keyword o2) {
+				return o1.priority() - o2.priority();
+			}
+		});
 		this.canonizer = new TSPLIB95Canonizer();
 	}
 

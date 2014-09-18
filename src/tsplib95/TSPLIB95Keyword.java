@@ -84,15 +84,20 @@ public enum TSPLIB95Keyword implements Keyword {
 		this.converter = converter;
 		this.displayName = displayName;
 	}
-
+	
 	@Override
-	public Converter<?> converter() {
-		return converter;
+	public int priority() {
+		return this.ordinal();
 	}
 
 	@Override
 	public String displayName() {
 		return this.displayName;
+	}
+
+	@Override
+	public Converter<?> converter() {
+		return converter;
 	}
 
 	public Pattern pattern() {
