@@ -1,6 +1,7 @@
 package test.tsplib95;
 
 import static org.junit.Assert.*;
+import impl.tsplib95.TSPLIB95ValueFetcher;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -10,7 +11,6 @@ import org.junit.Test;
 import org.junit.runners.Parameterized;
 
 import test.ValueFetcherTest;
-import tsplib95.TSPLIB95ValueFetcher;
 
 public class TSPLIB95ValueFetcherTest extends ValueFetcherTest {
 

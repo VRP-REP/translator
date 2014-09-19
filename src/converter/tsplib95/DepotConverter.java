@@ -10,7 +10,7 @@ import java.util.Map;
 import model.Instance.Network;
 import model.Instance.Network.Nodes.Node;
 import converter.Converter;
-import static tsplib95.TSPLIB95Keyword.*;
+import static impl.tsplib95.TSPLIB95Keyword.*;
 
 public class DepotConverter implements Converter<List<Integer>> {
 

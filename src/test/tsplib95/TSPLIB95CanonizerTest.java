@@ -1,8 +1,10 @@
 package test.tsplib95;
 
+import static impl.tsplib95.TSPLIB95Keyword.*;
 import static org.junit.Assert.*;
-import static tsplib95.TSPLIB95Keyword.*;
 import impl.Keyword;
+import impl.tsplib95.TSPLIB95Canonizer;
+import impl.tsplib95.TSPLIB95Keyword;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,8 +15,6 @@ import org.junit.Test;
 import org.junit.runners.Parameterized;
 
 import test.CanonizerTest;
-import tsplib95.TSPLIB95Canonizer;
-import tsplib95.TSPLIB95Keyword;
 
 public class TSPLIB95CanonizerTest extends CanonizerTest {
 

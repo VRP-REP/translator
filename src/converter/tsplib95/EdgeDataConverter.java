@@ -4,7 +4,7 @@ import impl.Keyword;
 
 import java.util.Map;
 
-import static tsplib95.TSPLIB95Keyword.*;
+import static impl.tsplib95.TSPLIB95Keyword.*;
 import converter.Converter;
 import exception.NotImplementedException;
 

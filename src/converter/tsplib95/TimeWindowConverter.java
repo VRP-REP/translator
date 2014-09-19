@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import util.Horizon;
-import static tsplib95.TSPLIB95Keyword.*;
+import static impl.tsplib95.TSPLIB95Keyword.*;
 import converter.Converter;
 import exception.NotImplementedException;
 import model.ObjectFactory;

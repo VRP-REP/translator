@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static tsplib95.TSPLIB95Keyword.*;
+import static impl.tsplib95.TSPLIB95Keyword.*;
 import converter.Converter;
 import exception.ConverterException;
 import exception.NotImplementedException;

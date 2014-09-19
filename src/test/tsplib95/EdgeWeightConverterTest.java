@@ -1,7 +1,7 @@
 package test.tsplib95;
 
+import static impl.tsplib95.TSPLIB95Keyword.*;
 import static org.junit.Assert.*;
-import static tsplib95.TSPLIB95Keyword.*;
 import impl.Keyword;
 
 import java.util.ArrayList;
