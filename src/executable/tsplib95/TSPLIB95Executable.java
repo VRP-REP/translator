@@ -20,7 +20,7 @@ public class TSPLIB95Executable {
 			public Path get(Path path) {
 				String modifiedPath = path.toString();
 				modifiedPath = modifiedPath.replace("/tsplib95_instance", "/output");
-				modifiedPath = modifiedPath.replace(".vrp$", ".xml$");
+				modifiedPath = modifiedPath.replace(".vrp", ".xml");
 				return Paths.get(modifiedPath);
 			}
 		});

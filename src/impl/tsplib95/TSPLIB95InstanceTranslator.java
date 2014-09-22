@@ -18,6 +18,7 @@ import model.ObjectFactory;
 
 public class TSPLIB95InstanceTranslator implements InstanceTranslator {
 
+	@Override
 	public Instance getInstance(Path path){
 		FileLiner liner = new FileLiner(path);
 		ValueFetcher fetcher = new TSPLIB95ValueFetcher();

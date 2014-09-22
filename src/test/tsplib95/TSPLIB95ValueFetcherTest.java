@@ -38,11 +38,15 @@ public class TSPLIB95ValueFetcherTest extends ValueFetcherTest {
 				"DISPLAY_DATA_TYPE : COORD_DISPLAY",
 				"DISTANCE : 210.00",
 				"SERVICE_TIME : 0",
-				"VEHICLES : 4"
+				"VEHICLES : 4",
+				"NODE_COORD_SECTION",
+				"1 23 -33",
+				"2 3 -3",
+				"3 12 -12"
 		});
 
 		return Arrays.asList(new Object[][] {
-				{input1, 12}
+				{input1, 13}
 		});
 	}
 

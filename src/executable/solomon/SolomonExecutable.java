@@ -1,6 +1,6 @@
 package executable.solomon;
 
-import impl.solomon.SolomonTranslator;
+import impl.solomon.SolomonInstanceTranslator;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -15,12 +15,12 @@ public class SolomonExecutable {
 
 	public static void main(String[] args) {
 		
-		TranslateFiles tf = new TranslateFiles(new SolomonTranslator(), new NullPathSelector(), new PathTransformer() {
+		TranslateFiles tf = new TranslateFiles(new SolomonInstanceTranslator(), new NullPathSelector(), new PathTransformer() {
 			@Override
 			public Path get(Path path) {
 				String modifiedPath = path.toString();
 				modifiedPath = modifiedPath.replace("/solomon_instance", "/output");
-				modifiedPath = modifiedPath.replace(".vrp$", ".xml$");
+				modifiedPath = modifiedPath.replace(".txt", ".xml").replace(".TXT", ".xml");
 				return Paths.get(modifiedPath);
 			}
 		});

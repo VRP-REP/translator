@@ -23,7 +23,7 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 	private List<String> lines;
 
 	private Map<Keyword, String> map;
-	
+
 	private Canonizer canonizer;
 
 	public TSPLIB95ValueFetcher() {
@@ -54,12 +54,11 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 		boolean begin = false;
 		boolean end = false;
 		while (iter.hasNext() && !end) {
-			if(!begin && iter.next().equals(keyword.displayName())){
+			String value = iter.next();
+			if(!begin && value.equals(keyword.displayName())){
 				iter.remove();
 				begin = true;
-			}
-			if(begin) {
-				String value = iter.next();
+			} else if(begin) {
 				for(TSPLIB95Keyword kw : TSPLIB95Keyword.values()){
 					if(value.startsWith(kw.displayName())){
 						end = true;
@@ -93,12 +92,12 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 			}
 		}
 		this.lines.remove("EOF");
-		
+
 		if(!this.lines.isEmpty()) {
 			System.err.println("The following lines were not read…");
 			System.out.println(this.lines);
 		}
-		
+
 		canonizer.completeData(map);
 	}
 
@@ -111,11 +110,11 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 	public String getValue(Keyword keyword) {
 		return map.get(keyword);
 	}
-	
+
 	@Override
 	public void write(Path path) {
 		canonizer.cleanData(map);
-		
+
 		path.getParent().toFile().mkdirs();
 		try (BufferedWriter writer = Files.newBufferedWriter(path)) {
 			for(TSPLIB95Keyword kw : TSPLIB95Keyword.values()){
@@ -133,7 +132,7 @@ public class TSPLIB95ValueFetcher implements ValueFetcher {
 		} catch (IOException x) {
 			System.err.format("IOException: %s%n", x);
 		}
-		
+
 		canonizer.completeData(map);
 	}
 
