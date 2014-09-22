@@ -1,4 +1,5 @@
 /bin
 /target/
 /data/tsplib95_instance/
+/data/solomon_instance/
 /data/output/
