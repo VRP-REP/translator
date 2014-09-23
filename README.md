@@ -1,7 +1,7 @@
 #Instances translator
 This projects aims to make it easy to translate VRP instances to the VRP-REP unified format, based on XML.
 
-For the moment, the translator converts most of TSPLIB95 files, using conventions as described in [the official document](http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/DOC.PS).
+For the moment, the translator converts most of TSPLIB95 files, using conventions as described in [the official document](http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/DOC.PS), and Solomon-based instances.
 
 ##Overview of datasets
 
@@ -33,9 +33,9 @@ Christofides et al. 1979 | CVRP | 14 | Own format | No
 Christofides et al. 1979 — Set M | CVRP | 5 | TSPLIB95 | Yes
 Golden et al. 1998 | CVRP | 20 | TSPLIB95 | Yes
 Rochat and Taillard 1995 | CVRP | 13 | Own format | No
-Solomon_100 | CVRPTW | 56 | Own format | No
-Solomon_25 | CVRPTW | 56 | Own format | No
-Solomon_50 | CVRPTW | 56 | Own format | No
+Solomon_100 | CVRPTW | 56 | Own format | Yes
+Solomon_25 | CVRPTW | 56 | Own format | Yes
+Solomon_50 | CVRPTW | 56 | Own format | Yes
 Pillac | DVRP | 42 | Own format | No
 Lackner | DVRP | 336 | Own format | No
 Lackner_rd | DVRP | 280 | Own format | No
@@ -99,10 +99,10 @@ Breedam 1994 – Set T1 | CVRPPDTW | 60 | Own format | No
 Breedam 1994 – Set T2 | CVRPPDTW | 60 | Own format | No
 VRPLIB | CVRPPDTW | 77 | Extension of TSPLIB95 | No
 Cordeau et al. 2002a | CVRPTW | 56 | Own format | No
-Homberger | CVRPTW | 300 | Own format | No
-Solomon_100 | CVRPTW | 56 | Own format | No
-Solomon_25 | CVRPTW | 56 | Own format | No
-Solomon_50 | CVRPTW | 56 | Own format | No
+Homberger | CVRPTW | 300 | Own format | Yes
+Solomon_100 | CVRPTW | 56 | Own format | Yes
+Solomon_25 | CVRPTW | 56 | Own format | Yes
+Solomon_50 | CVRPTW | 56 | Own format | Yes
 Cordeau et al. 1997 | MDVRP | 33 | Own format | No
 Gillet and Johnson 1976 | MDVRP | 1 | TSPLIB95 | Yes
 Cordeau et al. 2004 | MDVRPTW | 20 | Own format | No

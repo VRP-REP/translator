@@ -4,12 +4,10 @@ import impl.InstanceTranslator;
 
 import java.math.BigInteger;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Iterator;
 
 import util.io.FileLiner;
 import model.Instance;
-import model.TwType;
 import model.Instance.Fleet;
 import model.Instance.Network;
 import model.Instance.Network.Nodes;
@@ -45,8 +43,8 @@ public class SolomonInstanceTranslator implements InstanceTranslator {
 		String[] earlyInfo = iter.next().split("\\s+");
 		profile.setNumber(Integer.valueOf(earlyInfo[0]));
 		profile.setCapacity(Double.valueOf(earlyInfo[1]));
+		profile.setType(BigInteger.valueOf(0));
 		fleet.getVehicleProfile().add(profile);
-		instance.setFleet(fleet);
 		
 		if(!iter.next().equals("CUSTOMER")) { System.err.println("Error"); }
 		if(!iter.next().matches("CUST\\s+NO.\\s+XCOORD.\\s+YCOORD.\\s+DEMAND\\s+READY\\s+TIME\\s+DUE\\s+DATE\\s+SERVICE\\s+TIME")) { System.err.println("Error"); }
@@ -62,9 +60,16 @@ public class SolomonInstanceTranslator implements InstanceTranslator {
 			node.setId(nodeId);
 			node.setCx(Double.valueOf(customerInfo[1]));
 			node.setCy(Double.valueOf(customerInfo[2]));
+			int type = (Double.valueOf(customerInfo[3]) == 0) ? 0 : 1;
+			if(Double.valueOf(customerInfo[3]) == 0) {
+				profile.getDepartureNode().add(nodeId);
+				profile.getArrivalNode().add(nodeId);
+			}
+			node.setType(BigInteger.valueOf(type));
 			nodes.getNode().add(node);
 			
 			Request request = objectFactory.createInstanceRequestsRequest();
+			request.setId(BigInteger.valueOf(Integer.valueOf(customerInfo[0])));
 			request.setNode(nodeId);
 			request.setQuantity(Double.valueOf(customerInfo[3]));
 			
@@ -81,8 +86,11 @@ public class SolomonInstanceTranslator implements InstanceTranslator {
 			requests.getRequest().add(request);
 		}
 		
+		network.setEuclidean("");
+		network.setDecimals(2);
 		network.setNodes(nodes);
 		instance.setNetwork(network);
+		instance.setFleet(fleet);
 		instance.setRequests(requests);
 		return instance;
 	}

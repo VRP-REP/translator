@@ -4,7 +4,9 @@ import impl.GlobalConverter;
 import impl.InstanceTranslator;
 import impl.ValueFetcher;
 
+import java.math.BigInteger;
 import java.nio.file.Path;
+import java.util.List;
 
 import util.io.FileLiner;
 import static impl.tsplib95.TSPLIB95Keyword.*;
@@ -23,7 +25,7 @@ public class TSPLIB95InstanceTranslator implements InstanceTranslator {
 		FileLiner liner = new FileLiner(path);
 		ValueFetcher fetcher = new TSPLIB95ValueFetcher();
 		GlobalConverter converter = new GlobalConverter();
-		
+
 		fetcher.initialize(liner.getLines());
 		converter.convert(fetcher);
 
@@ -35,12 +37,18 @@ public class TSPLIB95InstanceTranslator implements InstanceTranslator {
 		info.setDataset((String) converter.get(COMMENT));
 		instance.setInfo(info);
 
+		@SuppressWarnings("unchecked")
+		List<Integer> depots = (List<Integer>) converter.get(DEPOT_SECTION);
 		Fleet fleet = objectFactory.createInstanceFleet();
 		//int vehicles = (Integer) converter.get(VEHICLES);
 		double capacity = (Double) converter.get(CAPACITY);
 		VehicleProfile profile = objectFactory.createInstanceFleetVehicleProfile();
 		profile.setCapacity(capacity);
-		//profile.setNumber(vehicles);
+		for(int depot : depots) {
+			profile.getDepartureNode().add(BigInteger.valueOf(depot));
+			profile.getArrivalNode().add(BigInteger.valueOf(depot));
+		}
+		profile.setType(BigInteger.valueOf(0));
 
 		String type = (String) converter.get(TYPE);
 		if(type.equals("DCVRP")){

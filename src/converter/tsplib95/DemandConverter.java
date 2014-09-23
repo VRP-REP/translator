@@ -21,16 +21,19 @@ public class DemandConverter implements Converter<Requests> {
 
 		String regex = "^(?<id>[0-9]*)\\s+(?<demand>[0-9]*)$";
 		Pattern pattern = Pattern.compile(regex);
+		int i = 0;
 		for(String line : input.split("\n")){
 			Matcher matcher = pattern.matcher(line);
 			if (matcher.find()) {
 				Request request = objectFactory.createInstanceRequestsRequest();
+				request.setId(BigInteger.valueOf(i));
 				request.setNode(BigInteger.valueOf(Integer.valueOf(matcher.group("id"))));
 				request.setQuantity(Double.valueOf(matcher.group("demand")));
 				if(request.getQuantity() > 0) {
 					requests.getRequest().add(request);
 				}
 			}
+			i++;
 		}
 
 		return requests;
