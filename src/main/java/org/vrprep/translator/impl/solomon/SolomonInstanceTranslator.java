@@ -93,7 +93,6 @@ public class SolomonInstanceTranslator implements InstanceTranslator {
 				request.setServiceTime(serviceTime);
 				requests.getRequest().add(request);
 			} else {
-				// TODO : est-ce vraiment MaxTravelTime ?
 				profile.setMaxTravelTime(Double.valueOf(twEnd));
 			}
 		}
