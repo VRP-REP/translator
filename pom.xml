@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.vrp-rep</groupId>
 	<artifactId>vrprep-translator</artifactId>
-	<version>0.1.0-SNAPSHOT</version>
+	<version>0.1.0</version>
 	<name>VRP-REP translator</name>
 	<description>VRP-REP is a web sharing platform that put together data dedicated to Vehicle Routing Problem, that mainly uses a recommended data format described in an xsd file. This repository contains some tools for translating files in VRP-REP format.</description>
 	<url>https://github.com/VRP-REP/VRPREPTranslator</url>
@@ -10,7 +10,7 @@
 		<connection>scm:git:git@github.com:VRP-REP/VRPREPTranslator.git</connection>
 		<url>scm:git:git@github.com:VRP-REP/VRPREPTranslator.git</url>
 		<developerConnection>scm:git:git@github.com:VRP-REP/VRPREPTranslator.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>vrprep-translator-0.1.0</tag>
 	</scm>
 	<organization>
 		<name>VRP-REP</name>
