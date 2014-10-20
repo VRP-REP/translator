@@ -132,7 +132,7 @@
 		<dependency>
 			<groupId>org.vrp-rep</groupId>
 			<artifactId>vrprep-model</artifactId>
-			<version>0.1.4</version>
+			<version>0.2.1</version>
 		</dependency>
 	</dependencies>
 </project>

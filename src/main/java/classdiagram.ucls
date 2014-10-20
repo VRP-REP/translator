@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.6" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="org.vrprep.translator.util.file.ParametrableFileVisitor" 
-    project="VRPREPTranslator" file="/VRPREPTranslator/src/org/vrprep/translator/util/file/ParametrableFileVisitor.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="org.vrprep.translator.util.file.ParametrableFileVisitor" project="translator" 
+    file="/translator/src/main/java/org/vrprep/translator/util/file/ParametrableFileVisitor.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="313" y="252"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
@@ -11,8 +11,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="org.vrprep.translator.util.file.PathTransformer" project="VRPREPTranslator" 
-    file="/VRPREPTranslator/src/org/vrprep/translator/util/file/PathTransformer.java" binary="false" 
+  <interface id="2" language="java" name="org.vrprep.translator.util.file.PathTransformer" project="translator" 
+    file="/translator/src/main/java/org/vrprep/translator/util/file/PathTransformer.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="582" y="412"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
