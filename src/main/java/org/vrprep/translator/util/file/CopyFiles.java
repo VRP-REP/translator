@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.vrprep.translator.util.path.PathSelector;
+import org.vrprep.translator.util.path.PathTransformer;
+
 import static java.nio.file.StandardCopyOption.*;
 
 public class CopyFiles extends ParametrableFileVisitor {
@@ -20,7 +23,7 @@ public class CopyFiles extends ParametrableFileVisitor {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.format("%s successfully copied.\n", inputPath.getFileName());
+		System.out.format("%s successfully copied to %s.\n", inputPath.getFileName(), outputPath);
 	}
 	
 }

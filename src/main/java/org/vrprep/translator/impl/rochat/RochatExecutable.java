@@ -1,18 +1,17 @@
-package org.vrprep.translator.executable;
+package org.vrprep.translator.impl.rochat;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.vrprep.translator.impl.solomon.SolomonInstanceTranslator;
 import org.vrprep.translator.util.file.CopyFiles;
-import org.vrprep.translator.util.file.NullPathSelector;
-import org.vrprep.translator.util.file.PathSelector;
-import org.vrprep.translator.util.file.PathTransformer;
 import org.vrprep.translator.util.file.TranslateFiles;
+import org.vrprep.translator.util.path.NullPathSelector;
+import org.vrprep.translator.util.path.PathSelector;
+import org.vrprep.translator.util.path.PathTransformer;
 
-public class SolomonExecutable {
+public class RochatExecutable {
 
 	public static void main(String[] args) {
 		copy();
@@ -48,7 +47,7 @@ public class SolomonExecutable {
 	}
 	
 	private static void translate() {
-		TranslateFiles tf = new TranslateFiles(new SolomonInstanceTranslator(), new NullPathSelector(), new PathTransformer() {
+		TranslateFiles tf = new TranslateFiles(new RochatInstanceTranslator(), new NullPathSelector(), new PathTransformer() {
 			@Override
 			public Path get(Path path) {
 				String modifiedPath = path.toString();

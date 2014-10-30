@@ -11,8 +11,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="org.vrprep.translator.util.file.PathTransformer" project="translator" 
-    file="/translator/src/main/java/org/vrprep/translator/util/file/PathTransformer.java" binary="false" 
+  <interface id="2" language="java" name="org.vrprep.translator.util.path.PathTransformer" project="translator" 
+    file="/translator/src/main/java/org/vrprep/translator/util/path/PathTransformer.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="582" y="412"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 

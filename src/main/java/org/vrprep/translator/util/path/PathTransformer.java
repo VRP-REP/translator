@@ -1,4 +1,4 @@
-package org.vrprep.translator.util.file;
+package org.vrprep.translator.util.path;
 
 import java.nio.file.Path;
 

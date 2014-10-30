@@ -8,6 +8,9 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
+import org.vrprep.translator.util.path.PathSelector;
+import org.vrprep.translator.util.path.PathTransformer;
+
 public abstract class ParametrableFileVisitor extends SimpleFileVisitor<Path> {
 
 	protected PathSelector selector;

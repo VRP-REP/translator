@@ -7,6 +7,8 @@ import javax.xml.bind.JAXBException;
 import org.vrprep.model.instance.Instance;
 import org.vrprep.model.util.Instances;
 import org.vrprep.translator.impl.InstanceTranslator;
+import org.vrprep.translator.util.path.PathSelector;
+import org.vrprep.translator.util.path.PathTransformer;
 import org.xml.sax.SAXException;
 
 public class TranslateFiles extends ParametrableFileVisitor {

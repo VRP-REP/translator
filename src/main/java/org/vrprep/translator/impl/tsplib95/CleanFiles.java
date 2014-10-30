@@ -1,17 +1,20 @@
-package org.vrprep.translator.util.file;
+package org.vrprep.translator.impl.tsplib95;
 
 import java.nio.file.Path;
 
 import org.vrprep.translator.impl.ValueFetcher;
+import org.vrprep.translator.util.file.ParametrableFileVisitor;
 import org.vrprep.translator.util.io.FileLiner;
+import org.vrprep.translator.util.path.PathSelector;
+import org.vrprep.translator.util.path.PathTransformer;
 
 public class CleanFiles extends ParametrableFileVisitor {
 	
 	private ValueFetcher fetcher;
 	
-	public CleanFiles(ValueFetcher fetcher, PathSelector selector, PathTransformer transformer) {
+	public CleanFiles(PathSelector selector, PathTransformer transformer) {
 		super(selector, transformer);
-		this.fetcher = fetcher;
+		this.fetcher = new TSPLIB95ValueFetcher();
 	}
 
 	@Override
