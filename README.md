@@ -109,7 +109,7 @@ Cordeau et al. 2004 | MDVRPTW | 20 | Own format | No
 Cordeau et al. 1998 | PVRP | 42 | Own format | No
 Cordeau et al. 2001 | PVRPTW | 20 | Own format | No
 
-###[NON-PUBLIC DATA]
+###[OTHER SOURCES]
 Dataset | Variant | Number of instances | Translated ?
 --- | --- | --- | --- | ---
 Cristiansen and Lysgaard 2007  | VRPSD | 40 | Yes
