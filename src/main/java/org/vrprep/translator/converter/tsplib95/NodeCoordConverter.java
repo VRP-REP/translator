@@ -72,7 +72,7 @@ public class NodeCoordConverter implements Converter<Network> {
 				throw new UnexpectedValueException(EDGE_WEIGHT_TYPE, edgeWeightType);
 			case "EUC_2D":
 				network.setEuclidean(new Euclidean());
-				network.setDecimals(2);
+				network.setDecimals(0);
 				break;
 			case "EUC_3D":
 				throw new NotImplementedException(EDGE_WEIGHT_TYPE, edgeWeightType);

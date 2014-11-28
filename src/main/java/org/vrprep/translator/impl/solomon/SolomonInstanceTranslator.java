@@ -31,7 +31,10 @@ public class SolomonInstanceTranslator implements InstanceTranslator {
 		FileLiner liner = new FileLiner(path);
 		Iterator<String> iter = liner.getLines().iterator();
 		Info info = objectFactory.createInstanceInfo();
-		info.setName((String) iter.next());
+		iter.next();
+		String filename = (String) path.getFileName().toString();
+		String instancename = filename.substring(0, filename.lastIndexOf("."));
+		info.setName(instancename);
 		info.setDataset((String) path.getParent().getFileName().toString());
 		instance.setInfo(info);
 
@@ -98,7 +101,7 @@ public class SolomonInstanceTranslator implements InstanceTranslator {
 		}
 
 		network.setEuclidean(new Euclidean());
-		network.setDecimals(2);
+		network.setDecimals(0);
 		network.setNodes(nodes);
 		instance.setNetwork(network);
 		instance.setFleet(fleet);

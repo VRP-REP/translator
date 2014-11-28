@@ -3,8 +3,8 @@
 	<preprocess source="data/original_instance" target="data/solomon/instance">
 		<class name="org.vrprep.translator.util.file.CopyFiles" />
 		<selections>
-			<selection pattern="^.*/Solomon.*/.*\\.txt$" />
-			<selection pattern="^.*/Gehring and Homberger 1999/.*\\.TXT$" />
+			<selection pattern="^.*/TRANSLATED/.*/Solomon 1987.*/.*\\.txt$" />
+			<selection pattern="^.*/TRANSLATED/.*/Gehring and Homberger 1999.*/.*\\.TXT$" />
 		</selections>
 		<replacements>
 			<replacement source=".TXT" target=".txt" />

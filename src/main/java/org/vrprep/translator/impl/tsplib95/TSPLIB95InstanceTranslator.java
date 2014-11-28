@@ -33,8 +33,10 @@ public class TSPLIB95InstanceTranslator implements InstanceTranslator {
 		Instance instance = objectFactory.createInstance();
 
 		Info info = objectFactory.createInstanceInfo();
-		info.setName((String) converter.get(NAME));
-		info.setDataset((String) converter.get(COMMENT));
+		String filename = (String) path.getFileName().toString();
+		String instancename = filename.substring(0, filename.lastIndexOf("."));
+		info.setName(instancename);
+		info.setDataset((String) path.getParent().getFileName().toString());
 		instance.setInfo(info);
 
 		@SuppressWarnings("unchecked")
