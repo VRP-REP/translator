@@ -109,6 +109,19 @@ Cordeau et al. 2004 | MDVRPTW | 20 | Own format | No
 Cordeau et al. 1998 | PVRP | 42 | Own format | No
 Cordeau et al. 2001 | PVRPTW | 20 | Own format | No
 
+###[OTHER SOURCES]
+Dataset | Variant | Number of instances | Translated ?
+--- | --- | --- | --- | ---
+Cristiansen and Lysgaard 2007  | VRPSD | 40 | Yes
+Chao 2002 | TTRP | 21 | No
+El Fallahi et al. 2008 - Set 1| MC-VRP | 20 | No
+El Fallahi et al. 2008 - Set 2| MC-VRP | 20 | No
+Lin et al. 2010 | TTRP | 36 | No
+Mendoza et al. 2010 | MC-VRPSD | 180 | Yes
+Mendoza et al. 2014 | VRPSD-DC | 39 | Yes
+Villegas et al. 2010 | STTRPSD | 32 | No
+
+
 ##How to create your own instance translator ?
 
 To be written later…
